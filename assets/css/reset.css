@@ -1,0 +1,20 @@
+body {
+  font-family: 'Nunito', san-serif;
+  background-color: #203674;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  height: 5px;
+  width: 5px;
+}
+
+::-webkit-scrollbar-thumb,
+::-webkit-scrollbar-thumb {
+  background: #203674;
+  border: 1px solid #878787;
+  border-radius: 0.25rem;
+  box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075) !important;
+}
+
+/* End Scrollbar */

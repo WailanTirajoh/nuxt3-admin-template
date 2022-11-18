@@ -1,55 +1,8 @@
 @import url('../fonts/nunito.css');
+@import url('./reset.css');
+@import url('./sidebar.css');
+@import url('./baloon.css');
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
-body {
-  font-family: 'Nunito', san-serif;
-  background-color: #203674;
-}
-
-/* Scrollbar */
-::-webkit-scrollbar {
-  height: 5px;
-  width: 5px;
-}
-
-::-webkit-scrollbar-thumb,
-::-webkit-scrollbar-thumb {
-  background: #203674;
-  border: 1px solid #878787;
-  border-radius: 0.25rem;
-  box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075) !important;
-}
-
-/* End Scrollbar */
-.router-link-active {
-  position: relative;
-}
-
-.router-link-active::before {
-  -webkit-animation: active-side-menu-chevron-animation .3s ease-in-out .33333s;
-  animation: active-side-menu-chevron-animation .3s ease-in-out .33333s;
-  -webkit-animation-delay: 1s;
-  animation-delay: 1s;
-  -webkit-animation-fill-mode: forwards;
-  animation-fill-mode: forwards;
-  background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='80' viewBox='0 0 20 122.1'%3E%3Cpath data-name='Union 1' d='M16.038 122H16v-2.213a95.805 95.805 0 0 0-2.886-20.735 94.894 94.894 0 0 0-7.783-20.434A39.039 39.039 0 0 1 0 61.051a39.035 39.035 0 0 1 5.331-17.567 94.9 94.9 0 0 0 7.783-20.435A95.746 95.746 0 0 0 16 2.314V0h4v122h-3.961v.1l-.001-.1z' fill='%23e0f2fe'/%3E%3C/svg%3E");
-  background-repeat: no-repeat;
-  background-size: cover;
-  bottom: 0;
-  content: "";
-  height: 80px;
-  margin-bottom: auto;
-  margin-right: -30px;
-  margin-top: auto;
-  /* opacity: 0; */
-  position: absolute;
-  right: 0;
-  top: 0;
-  width: 20px;
-}
-
-/* .router-link-active::before { */
-/* } */

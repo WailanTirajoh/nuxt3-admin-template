@@ -1,0 +1,209 @@
+:root {
+  --tooltip-border-radius: 0.5rem;
+  --tooltip-color: rgba(28, 28, 28, 1);
+  --tooltip-text-color: rgb(255, 255, 255);
+  --tooltip-font-size: 12px;
+  --tooltip-move: 4px;
+  --tooltip-shadow: 0 2px 4px -1px rgb(0 0 0 / 20%),
+    0 4px 5px 0 rgb(0 0 0 / 14%), 0 1px 10px 0 rgb(0 0 0 / 12%);
+}
+
+button[aria-label][data-tooltip-pos] {
+  overflow: visible;
+}
+
+[aria-label][data-tooltip-pos][data-tooltip-show='true'] {
+  position: relative;
+  cursor: pointer;
+}
+[aria-label][data-tooltip-pos][data-tooltip-show='true']:after {
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.18s ease-out 0.18s;
+  text-indent: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
+    Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  font-weight: normal;
+  font-style: normal;
+  text-shadow: none;
+  font-size: var(--tooltip-font-size);
+  background: var(--tooltip-color);
+  color: var(--tooltip-text-color);
+  border-radius: var(--tooltip-border-radius);
+  box-shadow: var(--tooltip-shadow);
+  content: attr(aria-label);
+  padding: 0.5em 1em;
+  position: absolute;
+  white-space: nowrap;
+  z-index: 100;
+}
+[aria-label][data-tooltip-pos][data-tooltip-show='true']:before {
+  width: 0;
+  height: 0;
+  border: 5px solid transparent;
+  border-top-color: var(--tooltip-color);
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.18s ease-out 0.18s;
+  content: '';
+  position: absolute;
+  z-index: 100;
+}
+[aria-label][data-tooltip-pos][data-tooltip-show='true']:hover:before,
+[aria-label][data-tooltip-pos][data-tooltip-show='true']:hover:after,
+[aria-label][data-tooltip-pos][data-tooltip-show='true'][data-tooltip-visible]:before,
+[aria-label][data-tooltip-pos][data-tooltip-show='true'][data-tooltip-visible]:after,
+[aria-label][data-tooltip-pos][data-tooltip-show='true']:not([data-tooltip-nofocus]):focus:before,
+[aria-label][data-tooltip-pos][data-tooltip-show='true']:not([data-tooltip-nofocus]):focus:after {
+  opacity: 1;
+  pointer-events: none;
+}
+[aria-label][data-tooltip-pos][data-tooltip-show='true'].font-awesome:after {
+  font-family: FontAwesome, -apple-system, BlinkMacSystemFont, 'Segoe UI',
+    Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+[aria-label][data-tooltip-pos][data-tooltip-show='true'][data-tooltip-break]:after {
+  white-space: pre;
+}
+[aria-label][data-tooltip-pos][data-tooltip-show='true'][data-tooltip-break][data-tooltip-length]:after {
+  white-space: pre-line;
+  word-break: break-word;
+}
+[aria-label][data-tooltip-pos][data-tooltip-show='true'][data-tooltip-blunt]:before,
+[aria-label][data-tooltip-pos][data-tooltip-show='true'][data-tooltip-blunt]:after {
+  transition: none;
+}
+[aria-label][data-tooltip-pos][data-tooltip-show='true'][data-tooltip-pos='up']:hover:after,
+[aria-label][data-tooltip-pos][data-tooltip-show='true'][data-tooltip-pos='up'][data-tooltip-visible]:after,
+[aria-label][data-tooltip-pos][data-tooltip-show='true'][data-tooltip-pos='down']:hover:after,
+[aria-label][data-tooltip-pos][data-tooltip-show='true'][data-tooltip-pos='down'][data-tooltip-visible]:after {
+  transform: translate(-50%, 0);
+}
+[aria-label][data-tooltip-pos][data-tooltip-show='true'][data-tooltip-pos='up']:hover:before,
+[aria-label][data-tooltip-pos][data-tooltip-show='true'][data-tooltip-pos='up'][data-tooltip-visible]:before,
+[aria-label][data-tooltip-pos][data-tooltip-show='true'][data-tooltip-pos='down']:hover:before,
+[aria-label][data-tooltip-pos][data-tooltip-show='true'][data-tooltip-pos='down'][data-tooltip-visible]:before {
+  transform: translate(-50%, 0);
+}
+[aria-label][data-tooltip-pos][data-tooltip-show='true'][data-tooltip-pos*='-left']:after {
+  left: 0;
+}
+[aria-label][data-tooltip-pos][data-tooltip-show='true'][data-tooltip-pos*='-left']:before {
+  left: 5px;
+}
+[aria-label][data-tooltip-pos][data-tooltip-show='true'][data-tooltip-pos*='-right']:after {
+  right: 0;
+}
+[aria-label][data-tooltip-pos][data-tooltip-show='true'][data-tooltip-pos*='-right']:before {
+  right: 5px;
+}
+[aria-label][data-tooltip-pos][data-tooltip-show='true'][data-tooltip-po*='-left']:hover:after,
+[aria-label][data-tooltip-pos][data-tooltip-show='true'][data-tooltip-po*='-left'][data-tooltip-visible]:after,
+[aria-label][data-tooltip-pos][data-tooltip-show='true'][data-tooltip-pos*='-right']:hover:after,
+[aria-label][data-tooltip-pos][data-tooltip-show='true'][data-tooltip-pos*='-right'][data-tooltip-visible]:after {
+  transform: translate(0, 0);
+}
+[aria-label][data-tooltip-pos][data-tooltip-show='true'][data-tooltip-po*='-left']:hover:before,
+[aria-label][data-tooltip-pos][data-tooltip-show='true'][data-tooltip-po*='-left'][data-tooltip-visible]:before,
+[aria-label][data-tooltip-pos][data-tooltip-show='true'][data-tooltip-pos*='-right']:hover:before,
+[aria-label][data-tooltip-pos][data-tooltip-show='true'][data-tooltip-pos*='-right'][data-tooltip-visible]:before {
+  transform: translate(0, 0);
+}
+[aria-label][data-tooltip-pos][data-tooltip-show='true'][data-tooltip-pos^='up']:before,
+[aria-label][data-tooltip-pos][data-tooltip-show='true'][data-tooltip-pos^='up']:after {
+  bottom: 100%;
+  transform-origin: top;
+  transform: translate(0, var(--tooltip-move));
+}
+[aria-label][data-tooltip-pos][data-tooltip-show='true'][data-tooltip-pos^='up']:after {
+  margin-bottom: 10px;
+}
+[aria-label][data-tooltip-pos][data-tooltip-show='true'][data-tooltip-pos='up']:before,
+[aria-label][data-tooltip-pos][data-tooltip-show='true'][data-tooltip-pos='up']:after {
+  left: 50%;
+  transform: translate(-50%, var(--tooltip-move));
+}
+[aria-label][data-tooltip-pos][data-tooltip-show='true'][data-tooltip-pos^='down']:before,
+[aria-label][data-tooltip-pos][data-tooltip-show='true'][data-tooltip-pos^='down']:after {
+  top: 100%;
+  transform: translate(0, calc(var(--tooltip-move) * -1));
+}
+[aria-label][data-tooltip-pos][data-tooltip-show='true'][data-tooltip-pos^='down']:after {
+  margin-top: 10px;
+}
+[aria-label][data-tooltip-pos][data-tooltip-show='true'][data-tooltip-pos^='down']:before {
+  width: 0;
+  height: 0;
+  border: 5px solid transparent;
+  border-bottom-color: var(--tooltip-color);
+}
+[aria-label][data-tooltip-pos][data-tooltip-show='true'][data-tooltip-pos='down']:after,
+[aria-label][data-tooltip-pos][data-tooltip-show='true'][data-tooltip-pos='down']:before {
+  left: 50%;
+  transform: translate(-50%, calc(var(--tooltip-move) * -1));
+}
+[aria-label][data-tooltip-pos][data-tooltip-show='true'][data-tooltip-pos='left']:hover:after,
+[aria-label][data-tooltip-pos][data-tooltip-show='true'][data-tooltip-pos='left'][data-tooltip-visible]:after,
+[aria-label][data-tooltip-pos][data-tooltip-show='true'][data-tooltip-pos='right']:hover:after,
+[aria-label][data-tooltip-pos][data-tooltip-show='true'][data-tooltip-pos='right'][data-tooltip-visible]:after {
+  transform: translate(0, -50%);
+}
+[aria-label][data-tooltip-pos][data-tooltip-show='true'][data-tooltip-pos='left']:hover:before,
+[aria-label][data-tooltip-pos][data-tooltip-show='true'][data-tooltip-pos='left'][data-tooltip-visible]:before,
+[aria-label][data-tooltip-pos][data-tooltip-show='true'][data-tooltip-pos='right']:hover:before,
+[aria-label][data-tooltip-pos][data-tooltip-show='true'][data-tooltip-pos='right'][data-tooltip-visible]:before {
+  transform: translate(0, -50%);
+}
+[aria-label][data-tooltip-pos][data-tooltip-show='true'][data-tooltip-pos='left']:after,
+[aria-label][data-tooltip-pos][data-tooltip-show='true'][data-tooltip-pos='left']:before {
+  right: 100%;
+  top: 50%;
+  transform: translate(var(--tooltip-move), -50%);
+}
+[aria-label][data-tooltip-pos][data-tooltip-show='true'][data-tooltip-pos='left']:after {
+  margin-right: 10px;
+}
+[aria-label][data-tooltip-pos][data-tooltip-show='true'][data-tooltip-pos='left']:before {
+  width: 0;
+  height: 0;
+  border: 5px solid transparent;
+  border-left-color: var(--tooltip-color);
+}
+[aria-label][data-tooltip-pos][data-tooltip-show='true'][data-tooltip-pos='right']:after,
+[aria-label][data-tooltip-pos][data-tooltip-show='true'][data-tooltip-pos='right']:before {
+  left: 100%;
+  top: 50%;
+  transform: translate(calc(var(--tooltip-move) * -1), -50%);
+}
+[aria-label][data-tooltip-pos][data-tooltip-show='true'][data-tooltip-pos='right']:after {
+  margin-left: 10px;
+}
+[aria-label][data-tooltip-pos][data-tooltip-show='true'][data-tooltip-pos='right']:before {
+  width: 0;
+  height: 0;
+  border: 5px solid transparent;
+  border-right-color: var(--tooltip-color);
+}
+[aria-label][data-tooltip-pos][data-tooltip-show='true'][data-tooltip-length]:after {
+  white-space: normal;
+}
+[aria-label][data-tooltip-pos][data-tooltip-show='true'][data-tooltip-length='small']:after {
+  width: 80px;
+}
+[aria-label][data-tooltip-pos][data-tooltip-show='true'][data-tooltip-length='medium']:after {
+  width: 150px;
+}
+[aria-label][data-tooltip-pos][data-tooltip-show='true'][data-tooltip-length='large']:after {
+  width: 260px;
+}
+[aria-label][data-tooltip-pos][data-tooltip-show='true'][data-tooltip-length='xlarge']:after {
+  width: 380px;
+}
+@media screen and (max-width: 768px) {
+  [aria-label][data-tooltip-pos][data-tooltip-show='true'][data-tooltip-length='xlarge']:after {
+    width: 90vw;
+  }
+}
+[aria-label][data-tooltip-pos][data-tooltip-show='true'][data-tooltip-length='fit']:after {
+  width: 100%;
+}

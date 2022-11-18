@@ -9,7 +9,7 @@
       <div class="flex min-h-screen text-sky-900 rounded-3xl shadow-lg">
         <BaseSidebar class="h-full" />
         <div class="w-full sm:w-[calc(100%-8rem)] lg:w-[calc(100%-16rem)] bg-[#071a50] rounded-3xl sm:rounded-l-none">
-          <div class="p-5 bg-sky-100 h-full rounded-3xl">
+          <div class="p-6 bg-sky-100 h-full rounded-3xl">
             <slot />
           </div>
         </div>
