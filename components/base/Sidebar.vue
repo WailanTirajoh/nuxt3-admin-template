@@ -3,7 +3,7 @@ import VueFeather from "vue-feather"
 </script>
 
 <template>
-  <div class="hidden sm:block lg:w-64 sm:w-32 text-md bg-[#071a50] text-gray-400 shadow p-6 min-h-screen rounded-l-3xl">
+  <div class="hidden sm:block lg:w-64 sm:w-32 text-md bg-[#071a50] text-gray-400 shadow p-6 py-10 min-h-screen rounded-l-3xl">
     <ul>
       <li>
         <NuxtLink to="/"
