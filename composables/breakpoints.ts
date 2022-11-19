@@ -1,7 +1,10 @@
 import { computed, onMounted, onUnmounted, ref } from "vue"
 
+/**
+ * Breakpoint reference https://tailwindcss.com/docs/screens
+ */
 export const useBreakpoints = () => {
-  let windowWidth = ref(window.innerWidth)
+  let windowWidth = ref(0)
 
   const onWidthChange = () => windowWidth.value = window.innerWidth
   onMounted(() => window.addEventListener('resize', onWidthChange))
@@ -13,7 +16,6 @@ export const useBreakpoints = () => {
     if (windowWidth.value >= 1024 && windowWidth.value < 1280) return 'lg'
     if (windowWidth.value >= 1280 && windowWidth.value < 1536) return 'xl'
     if (windowWidth.value > 1536) return '2xl'
-    return null; // This is an unreachable line, simply to keep eslint happy.
   })
 
   const width = computed(() => windowWidth.value)

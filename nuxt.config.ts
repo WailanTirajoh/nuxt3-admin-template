@@ -1,6 +1,8 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
-  css: ['~/assets/css/main.css'],
+  css: [
+    '~/assets/css/main.css'
+  ],
   postcss: {
     plugins: {
       tailwindcss: {},
@@ -8,7 +10,8 @@ export default defineNuxtConfig({
     },
   },
   typescript: {
-    shim: false
+    shim: false,
+    strict: true
   },
   runtimeConfig: {
     apiSecret: '',
@@ -16,4 +19,7 @@ export default defineNuxtConfig({
       apiBase: '/api'
     }
   },
+  modules: [
+    '@pinia/nuxt',
+  ]
 })
