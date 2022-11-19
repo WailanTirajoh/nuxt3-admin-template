@@ -41,7 +41,7 @@ const closeOffCanvas = () => {
     <span @click="openOffCanvas()">
       <slot name="button"></slot>
     </span>
-    <transition-group name="slide-fade">
+    <transition name="slide-fade">
       <div v-if="isOpen"
         class="fixed bottom-0 z-40 flex flex-col max-w-full bg-white bg-clip-padding transition-all duration-300 ease-in-out h-full shadow-2xl"
         :class="classPosition" :style="{  width: props.width  }">
@@ -59,7 +59,7 @@ const closeOffCanvas = () => {
           <slot />
         </div>
       </div>
-    </transition-group>
+    </transition>
     <transition enter-active-class="ease-in-out duration-300" enter-from-class="opacity-0" enter-to-class="opacity-100"
       leave-active-class="ease-in-out duration-300" leave-from-class="opacity-25" leave-to-class="opacity-0" appear="">
       <div v-if="isOpen" class="fixed inset-0 z-30 bg-black transition-all ease-in-out opacity-25"

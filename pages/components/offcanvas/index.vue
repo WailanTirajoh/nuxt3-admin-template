@@ -42,7 +42,7 @@ import Offcanvas from "~/components/base/util/Offcanvas.vue"
       <div class="col-span-12">
         <BaseOtherComingSoon>
           <div>
-            Top & Bottom offcanvas
+            TODO: Top & Bottom offcanvas
           </div>
         </BaseOtherComingSoon>
       </div>
