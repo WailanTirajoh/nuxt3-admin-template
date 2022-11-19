@@ -1,5 +1,12 @@
 export default [
   {
+    "isTitle": true,
+    "name": "Menu",
+    "url": "",
+    "icon": "",
+    "submenu": []
+  },
+  {
     "isTitle": false,
     "name": "Dashboard",
     "url": "/",
@@ -46,6 +53,20 @@ export default [
   },
   {
     "isTitle": false,
+    "name": "Inbox",
+    "url": "/inbox",
+    "icon": "inbox",
+    "submenu": []
+  },
+  {
+    "isTitle": true,
+    "name": "Form & Tables",
+    "url": "",
+    "icon": "",
+    "submenu": []
+  },
+  {
+    "isTitle": false,
     "name": "Forms",
     "key": "forms",
     "icon": "sidebar",
@@ -81,12 +102,5 @@ export default [
         "icon": "chevron-right"
       },
     ]
-  },
-  {
-    "isTitle": false,
-    "name": "Inbox",
-    "url": "/inbox",
-    "icon": "inbox",
-    "submenu": []
   },
 ]
