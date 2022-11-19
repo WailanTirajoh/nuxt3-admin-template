@@ -1,13 +1,17 @@
 <script setup lang="ts">
+import { useToastStore } from "~/store/toast"
+
 useHead({
   htmlAttrs: {
     lang: 'en',
   }
 })
+const toastStore = useToastStore()
 </script>
 
 <template>
   <div>
+    <BaseToastGroup :toasts="toastStore.toasts" />
     <BaseLayoutHeader />
     <div class="px-2 py-8 md:px-6 lg:px-8">
       <div class="px-11">
