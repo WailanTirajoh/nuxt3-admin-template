@@ -13,44 +13,72 @@ export default [
     "icon": "box",
     "submenu": [
       {
-        "name": "Form",
-        "url": "/form",
-        "icon": "book-open"
-      },
-      {
         "name": "Modal",
-        "url": "/components/1-column",
-        "icon": "users"
+        "url": "/components/modal",
+        "icon": "chevron-right"
       },
       {
-        "name": "SlideOver",
-        "url": "/components/1-column",
-        "icon": "users"
+        "name": "Offcanvas",
+        "url": "/components/offcanvas",
+        "icon": "chevron-right"
       },
       {
         "name": "Button",
-        "url": "/components/1-column",
-        "icon": "users"
+        "url": "/components/button",
+        "icon": "chevron-right"
       },
       {
         "name": "Toast",
-        "url": "/components/1-column",
-        "icon": "users"
+        "url": "/components/toast",
+        "icon": "chevron-right"
       },
       {
         "name": "Dropdown",
-        "url": "/components/1-column",
-        "icon": "users"
+        "url": "/components/dropdown",
+        "icon": "chevron-right"
       },
       {
-        "name": "Dropdown",
-        "url": "/components/1-column",
-        "icon": "users"
+        "name": "Icons",
+        "url": "/components/icon",
+        "icon": "chevron-right"
+      },
+    ]
+  },
+  {
+    "isTitle": false,
+    "name": "Forms",
+    "key": "forms",
+    "icon": "sidebar",
+    "submenu": [
+      {
+        "name": "Input",
+        "url": "/form/input",
+        "icon": "chevron-right"
       },
       {
-        "name": "Icon",
-        "url": "/components/1-column",
-        "icon": "users"
+        "name": "Input Group",
+        "url": "/form/input-group",
+        "icon": "chevron-right"
+      },
+      {
+        "name": "Select",
+        "url": "/form/select",
+        "icon": "chevron-right"
+      },
+      {
+        "name": "Radio",
+        "url": "/form/radio",
+        "icon": "chevron-right"
+      },
+      {
+        "name": "Checkbox",
+        "url": "/form/checkbox",
+        "icon": "chevron-right"
+      },
+      {
+        "name": "Textarea",
+        "url": "/form/textarea",
+        "icon": "chevron-right"
       },
     ]
   },

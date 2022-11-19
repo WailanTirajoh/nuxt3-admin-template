@@ -8,12 +8,13 @@
     "postinstall": "nuxt prepare"
   },
   "devDependencies": {
+    "@pinia/nuxt": "^0.4.4",
+    "@types/feather-icons": "^4.29.0",
     "autoprefixer": "^10.4.13",
     "nuxt": "3.0.0",
-    "postcss": "^8.4.19",
-    "tailwindcss": "^3.2.4",
     "pinia": "^2.0.23",
-    "@pinia/nuxt": "^0.4.4"
+    "postcss": "^8.4.19",
+    "tailwindcss": "^3.2.4"
   },
   "dependencies": {
     "feather-icons": "^4.29.0",
