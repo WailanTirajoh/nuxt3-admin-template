@@ -3,6 +3,10 @@ import VueFeather from "vue-feather";
 import feather from "feather-icons";
 import { useToastStore } from "~/store/toast"
 
+useHead({
+  title: 'Icons'
+})
+
 const toastStore = useToastStore()
 const icons = Object.keys(feather.icons);
 const search = ref("");

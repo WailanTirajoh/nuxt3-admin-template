@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import VueFeather from "vue-feather"
+import { useSidebarStore } from "~~/store/sidebar";
 
 interface Props {
   item: {
@@ -20,6 +21,7 @@ interface Props {
 defineProps<Props>();
 
 const { width, type } = useBreakpoints()
+const sidebarStore = useSidebarStore()
 
 const isOpen = ref(false)
 const toggleOpen = () => {
@@ -31,12 +33,12 @@ const toggleOpen = () => {
   <li>
     <div :data-tooltip-show="type === 'md'" data-tooltip-pos="right" :aria-label="item.name" @click="toggleOpen">
       <div
-        class="flex justify-center lg:justify-start duration-300 items-center rounded-lg gap-3 cursor-pointer px-5 py-3 mb-4 hover:bg-[#142e71] border-transparent">
+        class="flex sm:justify-center lg:justify-start duration-300 items-center rounded-lg gap-3 cursor-pointer px-5 py-3 mb-4 sm:hover:bg-[#142e71] border-transparent">
         <vue-feather :type="item.icon"></vue-feather>
-        <div class="hidden lg:block select-none whitespace-nowrap overflow-hidden text-ellipsis">
+        <div class="sm:hidden lg:block select-none whitespace-nowrap overflow-hidden text-ellipsis">
           {{ item.name }}
         </div>
-        <div class="ml-auto lg:flex items-center hidden">
+        <div class="sm:hidden lg:flex ml-auto items-center">
           <vue-feather type="chevron-down" class="duration-100" :class="{ 'rotate-180': isOpen }"></vue-feather>
         </div>
       </div>
@@ -49,10 +51,11 @@ const toggleOpen = () => {
           <li>
             <div :data-tooltip-show="type === 'md'" data-tooltip-pos="right" :aria-label="sub.name">
               <nuxt-link :to="sub.url"
-                class="flex justify-center lg:justify-start duration-300 items-center gap-3 cursor-pointer px-5 py-3 mb-2 hover:bg-[#142e71] border-transparent"
-                exact-active-class="border-l-4 !border-sky-800 font-bold bg-[#142e71]">
+                class="flex sm:justify-center lg:justify-start duration-300 items-center gap-3 cursor-pointer px-5 py-3 mb-2 sm:hover:bg-[#142e71] border-transparent"
+                exact-active-class="border-l-4 !border-sky-800 font-bold bg-[#142e71]"
+                @click="sidebarStore.mobileOpen = false">
                 <vue-feather :type="sub.icon"></vue-feather>
-                <div class="hidden lg:block select-none">
+                <div class="sm:hidden lg:block select-none">
                   {{ sub.name }}
                 </div>
               </nuxt-link>

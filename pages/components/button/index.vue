@@ -1,4 +1,8 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+useHead({
+  title: 'Buttons'
+})
+</script>
 
 <template>
   <div class="">

@@ -1,5 +1,10 @@
 <script setup lang="ts">
 import Offcanvas from "~/components/base/util/Offcanvas.vue"
+
+useHead({
+  title: 'Offcanvas'
+})
+
 </script>
 
 <template>

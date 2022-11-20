@@ -1,5 +1,9 @@
 <script setup lang="ts">
 import Modal from "~/components/base/util/Modal.vue"
+
+useHead({
+  title: 'Modals'
+})
 </script>
 
 <template>

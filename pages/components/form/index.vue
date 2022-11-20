@@ -1,5 +1,7 @@
 <script setup lang="ts">
-
+useHead({
+  title: 'Forms'
+})
 </script>
 
 <template>

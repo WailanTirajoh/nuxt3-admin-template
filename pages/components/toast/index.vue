@@ -1,6 +1,10 @@
 <script setup lang="ts">
 import { useToastStore } from "~/store/toast"
 
+useHead({
+  title: 'Toasts'
+})
+
 const toastStore = useToastStore()
 const addToast = (type: string = "success", message: string) => {
   toastStore.addToast({
