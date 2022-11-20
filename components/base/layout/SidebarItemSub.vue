@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import VueFeather from "vue-feather"
 
-defineProps<{
+interface Props {
   item: {
     isTitle: boolean
     name: string
@@ -15,7 +15,9 @@ defineProps<{
     }>
   }
   type?: string
-}>();
+}
+
+defineProps<Props>();
 
 const { width, type } = useBreakpoints()
 

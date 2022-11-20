@@ -3,14 +3,14 @@
 <script setup lang="ts">
 import VueFeather from "vue-feather";
 
-const emit = defineEmits(['on-close'])
-const props = defineProps({
-  fullHeight: {
-    type: Boolean,
-    required: false,
-    default: () => true,
-  },
+interface Props {
+  fullHeight?: boolean
+}
+
+const props = withDefaults(defineProps<Props>(), {
+  fullHeight: true
 })
+const emit = defineEmits(['on-close'])
 
 const isOpen = ref(false)
 const bodyHeight = computed(() => {

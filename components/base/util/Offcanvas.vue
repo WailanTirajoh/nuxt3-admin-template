@@ -1,17 +1,14 @@
 <script setup lang="ts">
 import VueFeather from "vue-feather";
 
-const props = defineProps({
-  position: {
-    type: String,
-    required: false,
-    default: () => "left",
-  },
-  width: {
-    type: String,
-    required: false,
-    default: () => "400px"
-  }
+interface Props {
+  position?: string,
+  width?: string,
+}
+
+const props = withDefaults(defineProps<Props>(), {
+  position: 'left',
+  width: '400px'
 });
 
 const classPosition = computed(() => {
@@ -44,7 +41,7 @@ const closeOffCanvas = () => {
     <transition name="slide-fade">
       <div v-if="isOpen"
         class="fixed bottom-0 z-40 flex flex-col max-w-full bg-white bg-clip-padding transition-all duration-300 ease-in-out h-full shadow-2xl"
-        :class="classPosition" :style="{  width: props.width  }">
+        :class="classPosition" :style="{ width: props.width }">
         <div class="flex justify-between p-4 border-b-2 border-b-gray-200 items-center">
           <h3 class="font-medium text-2xl" @click="closeOffCanvas()">
             <slot name="header"></slot>

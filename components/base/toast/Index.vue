@@ -4,43 +4,20 @@
 import VueFeather from "vue-feather"
 import { useToastStore } from "~/store/toast"
 
-const props = defineProps({
-  id: {
-    type: String,
-    required: true,
-  },
-  message: {
-    type: String,
-    required: false,
-    default: () => {
-      return ''
-    },
-  },
-  html: {
-    type: String,
-    required: false,
-    default: () => {
-      return ''
-    },
-  },
-  lifetime: {
-    type: Number,
-    required: false,
-    default: () => {
-      return 5000 // in milisecond
-    },
-  },
-  type: {
-    type: String,
-    required: true,
-  },
-  jsonMessage: {
-    type: Object,
-    required: false,
-    default: () => {
-      return null
-    },
-  },
+interface Props {
+  id: string,
+  message?: string,
+  html?: string,
+  lifetime?: number,
+  type: string,
+  jsonMessage?: object | null
+}
+
+const props = withDefaults(defineProps<Props>(), {
+  message: '',
+  html: '',
+  lifetime: 5000,
+  jsonMessage: null
 })
 
 const type = ref(props.type)

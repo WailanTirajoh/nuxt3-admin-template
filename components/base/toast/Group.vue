@@ -2,16 +2,13 @@
 import { Toast } from '~~/interface/toast';
 import ToastVue from "./Index.vue"
 
-const props = defineProps({
-  toasts: {
-    type: Array<Toast>,
-    required: true
-  },
-  position: {
-    type: String,
-    required: false,
-    default: () => 'bottom-right',
-  },
+interface Props {
+  toasts: Array<Toast>
+  position?: string
+}
+
+const props = withDefaults(defineProps<Props>(), {
+  position: 'bottom-right'
 })
 
 const position = computed(() => {
@@ -46,9 +43,8 @@ const enterClass = computed(() => {
 
 <template>
   <div>
-    <transition-group tag="ul" name="list"
-      class="w-80 fixed inset-x-0 z-50 grid gap-2 break-words pt-3" :class="position" style="overflow-wrap: anywhere"
-      appear>
+    <transition-group tag="ul" name="list" class="w-80 fixed inset-x-0 z-50 grid gap-2 break-words pt-3"
+      :class="position" style="overflow-wrap: anywhere" appear>
       <toast-vue v-for="toast in props.toasts" :id="toast.id" :key="`toast-${toast.id}`" class="w-full"
         :message="toast.message" :type="toast.type" :lifetime="toast.lifetime" :json-message="toast.jsonMessage"
         :html="toast.html" />
