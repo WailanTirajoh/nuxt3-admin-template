@@ -2,20 +2,56 @@
 import VueFeather from "vue-feather"
 import { useSidebarStore } from "~~/store/sidebar";
 const sidebarStore = useSidebarStore()
-const { width, type } = useBreakpoints()
 </script>
 <template>
-  <header class="md:flex w-full border-sky-800 border-b text-gray-200">
-    <div class="border-r border-sky-800 py-5 p-2 px-10">
-      Wai Admin
-      <button class="block sm:hidden float-right " @click="sidebarStore.mobileOpen = !sidebarStore.mobileOpen">
+  <header class="md:flex w-full text-gray-200">
+    <div
+      class="border-r border-b border-sky-800 h-20 flex justify-between md:justify-center items-center w-full md:w-52 px-8">
+      <div class="">
+        Wai Admin
+      </div>
+      <button class="block md:hidden float-right" @click="sidebarStore.mobileOpen = !sidebarStore.mobileOpen">
         <div class="-rotate-90">
           <vue-feather type="bar-chart-2"></vue-feather>
         </div>
       </button>
     </div>
-    <div class="block sm:hidden" v-if="type === 'sm'" v-show="sidebarStore.mobileOpen">
+    <div class="block md:hidden" v-show="sidebarStore.mobileOpen">
       <BaseLayoutMobileNav />
+    </div>
+    <div class="border-r border-b border-sky-800 h-20 flex items-center w-full justify-between px-12">
+      <div class="">
+        test
+      </div>
+      <div class="">
+        <BaseUtilDropdown align="right" width="48">
+          <template #trigger>
+            <button>
+              <img class="w-10 h-10 rounded-full border border-sky-800" src="/images/profile.jpeg" alt="">
+            </button>
+          </template>
+
+          <template #content>
+            <NuxtLink to="/profile">
+              <button
+                class="block w-full px-4 py-2 text-sm leading-5 text-gray-700 dark:text-gray-200 text-left hover:bg-gray-100 dark:hover:bg-gray-900 focus:outline-none focus:bg-gray-100 dark:focus:bg-gray-800 transition">
+                <div class="flex gap-2 items-center">
+                  <font-awesome-icon :icon="['fas', 'address-card']" />
+                  <div class="">Profile</div>
+                </div>
+              </button>
+            </NuxtLink>
+            <!-- Account Management -->
+            <button
+              class="block w-full px-4 py-2 text-sm leading-5 text-gray-700 dark:text-gray-200 text-left hover:bg-gray-100 dark:hover:bg-gray-900 focus:outline-none focus:bg-gray-100 dark:focus:bg-gray-800 transition">
+              <div class="flex gap-2 items-center">
+                <font-awesome-icon :icon="['fas', 'arrow-right-from-bracket']" />
+                <div class="">Logout</div>
+              </div>
+            </button>
+          </template>
+        </BaseUtilDropdown>
+      </div>
     </div>
   </header>
 </template>

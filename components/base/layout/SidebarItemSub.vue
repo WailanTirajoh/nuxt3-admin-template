@@ -33,12 +33,12 @@ const toggleOpen = () => {
   <li>
     <div :data-tooltip-show="type === 'md'" data-tooltip-pos="right" :aria-label="item.name" @click="toggleOpen">
       <div
-        class="flex sm:justify-center lg:justify-start duration-300 items-center rounded-lg gap-3 cursor-pointer px-5 py-3 mb-4 sm:hover:bg-[#142e71] border-transparent">
+        class="flex md:justify-center lg:justify-start duration-300 items-center rounded-lg gap-3 cursor-pointer px-5 py-3 mb-4 md:hover:bg-[#142e71] border-transparent">
         <vue-feather :type="item.icon"></vue-feather>
-        <div class="sm:hidden lg:block select-none whitespace-nowrap overflow-hidden text-ellipsis">
+        <div class="md:hidden lg:block select-none whitespace-nowrap overflow-hidden text-ellipsis">
           {{ item.name }}
         </div>
-        <div class="sm:hidden lg:flex ml-auto items-center">
+        <div class="md:hidden lg:flex ml-auto items-center">
           <vue-feather type="chevron-down" class="duration-100" :class="{ 'rotate-180': isOpen }"></vue-feather>
         </div>
       </div>
@@ -46,16 +46,16 @@ const toggleOpen = () => {
     <transition enter-active-class="transition ease-out duration-100" enter-from-class="transform opacity-0"
       enter-to-class="transform opacity-100" leave-active-class="transition ease-in duration-100"
       leave-from-class="transform opacity-100" leave-to-class="transform opacity-0">
-      <ul class="bg-[#102765] rounded-xl pt-3 pb-1 mb-2" v-if="isOpen">
+      <ul class="bg-[#1027659a] rounded-xl pt-3 pb-1 mb-2" v-if="isOpen">
         <template v-for="sub in item.submenu" :key="item.key">
           <li>
             <div :data-tooltip-show="type === 'md'" data-tooltip-pos="right" :aria-label="sub.name">
               <nuxt-link :to="sub.url"
-                class="flex sm:justify-center lg:justify-start duration-300 items-center gap-3 cursor-pointer px-5 py-3 mb-2 sm:hover:bg-[#142e71] border-transparent"
+                class="flex md:justify-center lg:justify-start duration-300 items-center gap-3 cursor-pointer px-5 py-3 mb-2 md:hover:bg-[#142e71] border-transparent"
                 exact-active-class="border-l-4 !border-sky-800 font-bold bg-[#142e71]"
                 @click="sidebarStore.mobileOpen = false">
                 <vue-feather :type="sub.icon"></vue-feather>
-                <div class="sm:hidden lg:block select-none">
+                <div class="md:hidden lg:block select-none">
                   {{ sub.name }}
                 </div>
               </nuxt-link>
