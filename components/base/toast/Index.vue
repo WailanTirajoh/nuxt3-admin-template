@@ -73,9 +73,9 @@ const removeToast = () => {
 </script>
 
 <template>
-  <li :class="type">
+  <div :class="type">
     <transition name="toast">
-      <div v-if="isShown" class="text-center relative" @mouseenter="hover = true" @mouseleave="hover = false">
+      <div class="text-center relative" @mouseenter="hover = true" @mouseleave="hover = false">
         <div class="py-3 text-white px-2 shadow bg-opacity-95 rounded relative max-h-60 overflow-y-auto"
           :class="classType">
           <div class="text-black opacity-50 cursor-pointer rounded-full absolute top-2 right-4" @click="removeToast()">
@@ -102,11 +102,11 @@ const removeToast = () => {
         <div class="bg-gray-200 bg-opacity-40 h-1 absolute bottom-0 rounded-xl mx-auto" :style="barStyle"></div>
       </div>
     </transition>
-  </li>
+  </div>
 </template>
 
 <style scoped>
-.toast-enter-from {
+/* .toast-enter-from {
   opacity: 0;
   transform: translateX(100px);
 }
@@ -172,5 +172,5 @@ const removeToast = () => {
   100% {
     transform: translateY(0px);
   }
-}
+} */
 </style>
