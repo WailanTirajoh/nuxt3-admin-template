@@ -4,20 +4,24 @@
 import VueFeather from "vue-feather"
 import { useToastStore } from "~/store/toast"
 
+// issue to import props to define props
+// ref: https://github.com/vuejs/core/issues/4294
 interface Props {
-  id: string,
-  message?: string,
-  html?: string,
-  lifetime?: number,
-  type: string,
+  id: string
+  message?: string
+  html?: string
+  lifetime?: number
+  type: string
   jsonMessage?: object | null
+  title?: string | null
 }
 
 const props = withDefaults(defineProps<Props>(), {
   message: '',
   html: '',
   lifetime: 5000,
-  jsonMessage: null
+  jsonMessage: null,
+  title: null
 })
 
 const type = ref(props.type)
@@ -30,13 +34,13 @@ const toastStore = useToastStore()
 const classType = computed(() => {
   switch (props.type) {
     case 'success':
-      return { 'bg-green-600 dark:bg-gray-600': true }
+      return { 'border-t-green-600 dark:border-t-gray-600': true }
     case 'info':
-      return { 'bg-gray-400 dark:bg-gray-600': true }
+      return { 'border-t-gray-400 dark:border-t-gray-600': true }
     case 'error':
-      return { 'bg-red-600 dark:bg-gray-600': true, error: false }
+      return { 'border-t-red-600 dark:border-t-gray-600': true, error: false }
     default:
-      return { 'bg-green-600 dark:bg-gray-600': true }
+      return { 'border-t-green-600 dark:border-t-gray-600': true }
   }
 })
 
@@ -50,6 +54,19 @@ const iconType = computed(() => {
       return 'alert-circle'
     default:
       return 'help-circle'
+  }
+})
+
+const textColor = computed(() => {
+  switch (props.type) {
+    case 'success':
+      return 'text-green-800'
+    case 'info':
+      return 'text-sky-800'
+    case 'error':
+      return 'text-red-800'
+    default:
+      return 'text-gray-800'
   }
 })
 
@@ -75,21 +92,28 @@ const removeToast = () => {
 <template>
   <div :class="type">
     <transition name="toast">
-      <div class="text-center relative" @mouseenter="hover = true" @mouseleave="hover = false">
-        <div class="py-3 text-white px-2 shadow bg-opacity-95 rounded relative max-h-60 overflow-y-auto"
+      <div class="text-center relative text-gray-800" @mouseenter="hover = true" @mouseleave="hover = false">
+        <div class="py-3 pt-1 px-2 shadow bg-opacity-95 rounded relative max-h-60 overflow-y-auto bg-white border-t-8"
           :class="classType">
-          <div class="text-black opacity-50 cursor-pointer rounded-full absolute top-2 right-4" @click="removeToast()">
-            <vue-feather class="text-gray-50" type="x" />
+          <div class="text-black opacity-50 cursor-pointer rounded-full absolute top-2 right-2" @click="removeToast()">
+            <vue-feather class="text-gray-900" type="x" />
           </div>
-          <div class="flex items-center gap-2 text-left">
+          <div class="flex items-center gap-3 text-left">
             <template v-if="iconType">
-              <vue-feather class="text-gray-50" :type="iconType" />
+              <vue-feather class="font-bold text-lg" :class="textColor" :type="iconType" />
             </template>
-            <template v-if="message">
-              <div class="text-left pr-4">
-                {{ message }}
-              </div>
-            </template>
+            <div class="text-left pr-4">
+              <template v-if="title">
+                <div :class="textColor" class="font-bold text-lg text-gray-900">
+                  {{ title }}
+                </div>
+              </template>
+              <template v-if="message">
+                <div>
+                  {{ message }}
+                </div>
+              </template>
+            </div>
             <template v-if="jsonMessage">
               <ul class="flex flex-col gap-2">
                 <li v-for="(tmessage, key) in jsonMessage" :key="'errmes' + key" class="p-2 rounded text-left border">
@@ -99,7 +123,7 @@ const removeToast = () => {
             </template>
           </div>
         </div>
-        <div class="bg-gray-200 bg-opacity-40 h-1 absolute bottom-0 rounded-xl mx-auto" :style="barStyle"></div>
+        <div class="bg-gray-900 bg-opacity-40 h-1 absolute bottom-0 rounded-xl mx-auto" :style="barStyle"></div>
       </div>
     </transition>
   </div>

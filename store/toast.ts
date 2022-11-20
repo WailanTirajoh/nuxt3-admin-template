@@ -16,8 +16,9 @@ export const useToastStore = defineStore('toast', () => {
   }
 
   interface Success {
-    message: string,
+    message: string
     lifetime?: number
+    title?: string
   }
   const success = (params: Success) => {
     addToast({
@@ -25,6 +26,22 @@ export const useToastStore = defineStore('toast', () => {
       message: params.message,
       lifetime: params.lifetime ?? 5000,
       type: 'success',
+      title: params.title || 'Success'
+    })
+  }
+
+  interface Error {
+    message: string
+    lifetime?: number
+    title?: string
+  }
+  const error = (params: Error) => {
+    addToast({
+      id: '',
+      message: params.message,
+      lifetime: params.lifetime ?? 5000,
+      type: 'error',
+      title: params.title || 'Error'
     })
   }
 
@@ -32,6 +49,7 @@ export const useToastStore = defineStore('toast', () => {
     toasts,
     addToast,
     removeToast,
-    success
+    success,
+    error,
   }
 })

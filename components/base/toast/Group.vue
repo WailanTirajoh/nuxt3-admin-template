@@ -47,7 +47,7 @@ const enterClass = computed(() => {
       :class="position" style="overflow-wrap: anywhere" appear>
       <toast-vue v-for="toast in props.toasts" :id="toast.id" :key="`toast-${toast.id}`" class="w-full"
         :message="toast.message" :type="toast.type" :lifetime="toast.lifetime" :json-message="toast.jsonMessage"
-        :html="toast.html" />
+        :html="toast.html" :title="toast.title" />
     </transition-group>
   </div>
 </template>

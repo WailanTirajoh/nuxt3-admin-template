@@ -1,8 +1,9 @@
 export interface Toast {
   id: string
-  message: string
-  type: string
-  lifetime: number
-  jsonMessage?: object
+  message?: string
   html?: string
+  lifetime?: number
+  type: string
+  jsonMessage?: object | null
+  title?: string | null
 }
