@@ -10,7 +10,7 @@ interface Props {
 const props = withDefaults(defineProps<Props>(), {
   fullHeight: true
 })
-const emit = defineEmits(['on-close'])
+const emit = defineEmits(['on-close', 'on-open'])
 
 const isOpen = ref(false)
 const bodyHeight = computed(() => {
@@ -22,16 +22,18 @@ const bodyHeight = computed(() => {
 
 const toggleModal = () => {
   isOpen.value = !isOpen.value
-  if (isOpen.value === false) emit('on-close')
 }
 
 watch(isOpen, (newValue) => {
-  if(newValue) {
-    document.body.style.overflow = 'hidden';
-  } else {
-    document.body.style.overflow = '';
+  if (process.client) {
+    if (newValue) {
+      emit('on-open')
+      document.body.style.overflow = 'hidden';
+    } else {
+      emit('on-close')
+      document.body.style.overflow = '';
+    }
   }
-
 }, {
   immediate: true,
 })

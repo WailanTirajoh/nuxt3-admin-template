@@ -18,13 +18,13 @@ const filteredIcon = computed(() => {
   });
 });
 
+const composableText = useText()
 const copyText = (text: string) => {
-  if (!text) return;
-  navigator.clipboard.writeText(text);
-
-  toastStore.success({
-    message: `${text} copied to clipboard!`
-  })
+  if (composableText.copy(text)) {
+    toastStore.success({
+      message: `${text} copied to clipboard!`
+    })
+  }
 };
 </script>
 

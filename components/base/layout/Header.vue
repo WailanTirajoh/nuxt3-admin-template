@@ -21,7 +21,7 @@ const sidebarStore = useSidebarStore()
     </div>
     <div class="border-r border-b border-sky-800 h-20 flex items-center w-full justify-between px-12">
       <div class="">
-        test
+      <!-- TODO: Add searchbar -->
       </div>
       <div class="">
         <BaseUtilDropdown align="right" width="48">

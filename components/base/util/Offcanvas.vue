@@ -34,10 +34,12 @@ const closeOffCanvas = () => {
 
 
 watch(isOpen, (newValue) => {
-  if (newValue) {
-    document.body.style.overflow = 'hidden';
-  } else {
-    document.body.style.overflow = '';
+  if (process.client) {
+    if (newValue) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
   }
 }, {
   immediate: true,
