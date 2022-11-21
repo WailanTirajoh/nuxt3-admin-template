@@ -1,13 +1,5 @@
 # Nuxt 3 admin template
 
-## Preview
-url: https://nuxt3-admin-template.vercel.app
-- Web View
-![alt text](https://github.com/WailanTirajoh/nuxt3-admin-template/blob/main/preview-web.jpg?raw=true)
-
-- Mobile View
-![alt text](https://github.com/WailanTirajoh/nuxt3-admin-template/blob/main/preview-mobile.png?raw=true)
-
 ## Installation
 ```
 # Clone this repository
@@ -22,3 +14,13 @@ npm install
 # Development
 npm run dev
 ```
+
+## Preview
+url: https://nuxt3-admin-template.vercel.app
+- Web View
+
+![alt text](https://github.com/WailanTirajoh/nuxt3-admin-template/blob/main/preview-web.jpg?raw=true)
+
+- Mobile View
+
+![alt text](https://github.com/WailanTirajoh/nuxt3-admin-template/blob/main/preview-mobile.png?raw=true)
