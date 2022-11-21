@@ -24,6 +24,17 @@ const toggleModal = () => {
   isOpen.value = !isOpen.value
   if (isOpen.value === false) emit('on-close')
 }
+
+watch(isOpen, (newValue) => {
+  if(newValue) {
+    document.body.style.overflow = 'hidden';
+  } else {
+    document.body.style.overflow = '';
+  }
+
+}, {
+  immediate: true,
+})
 </script>
 
 <template>
@@ -40,7 +51,7 @@ const toggleModal = () => {
         class="overflow-x-hidden overflow-y-auto fixed inset-0 z-40 outline-none focus:outline-none justify-center pt-12 flex w-100">
         <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8" style="width: 100%">
           <div
-            class="border-0 rounded-3xl shadow-lg relative flex flex-col w-full bg-white dark:bg-gray-800 outline-none focus:outline-none">
+            class="border-0 rounded-2xl shadow-lg relative flex flex-col w-full bg-white dark:bg-gray-800 outline-none focus:outline-none">
             <div
               class="flex items-center justify-between p-5 border-b border-solid border-slate-200 dark:border-gray-700 rounded-t px-6">
               <div class="text-3xl font-semibold">
