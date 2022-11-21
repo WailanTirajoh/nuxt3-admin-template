@@ -23,8 +23,8 @@ const { width, type } = useBreakpoints()
   <li>
     <div :data-tooltip-show="type === 'md'" data-tooltip-pos="right" aria-label="Dashboard">
       <nuxt-link :to="item.url"
-        class="flex md:justify-center lg:justify-start duration-300 items-center rounded-lg gap-3 cursor-pointer px-5 py-3 mb-4 md:hover:bg-[#142e71] border-transparent"
-        exact-active-class="text-[#9fafcb] bg-[#142e71] !hover:bg-[#16347e] border-b-4 !border-[#102766] font-bold"
+        class="flex md:justify-center lg:justify-start duration-300 items-center rounded-lg gap-3 cursor-pointer px-5 py-3 mb-4 md:hover:bg-[#1d152a7a] border-transparent"
+        exact-active-class="bg-[#1d152a] !md:hover:bg-[#1d152a] border-b-4 !border-[#150f1e] text-[#9fafcb] font-bold"
         @click="sidebarStore.mobileOpen = false">
         <vue-feather :type="item.icon"></vue-feather>
         <div class="md:hidden lg:block select-none whitespace-nowrap overflow-hidden text-ellipsis">
