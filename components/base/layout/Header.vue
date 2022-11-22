@@ -2,10 +2,12 @@
 import VueFeather from "vue-feather"
 import { useSidebarStore } from "~~/store/sidebar";
 const sidebarStore = useSidebarStore()
+const animationOpenClose = useAnimationOpenClose()
 </script>
 <template>
-  <div class="px-2 md:px-8">
-    <header class="md:flex w-full text-gray-200 border border-[#1d152a7a] rounded-b-xl bg-opacity-40 px-2"
+  <div class="px-2 md:px-6 md:sticky md:top-0 md:z-10">
+    <header
+      class="md:flex w-full text-gray-200 border-spacing-1 border-t-0 shadow-xl border-[#1d152a7a] rounded-b-xl bg-opacity-40 bg-gray-900 px-2"
       style="backdrop-filter: blur(7.5px)">
       <div class="h-14 flex justify-between md:justify-center items-center w-full md:w-52 px-4">
         <div class="">
@@ -17,9 +19,12 @@ const sidebarStore = useSidebarStore()
           </div>
         </button>
       </div>
-      <div class="block md:hidden" v-show="sidebarStore.mobileOpen">
-        <BaseLayoutMobileNav />
-      </div>
+      <transition name="expand" @enter="animationOpenClose.animateEnter"
+        @after-enter="animationOpenClose.animateAfterEnter" @leave="animationOpenClose.animateLeave">
+        <div class="block md:hidden" v-show="sidebarStore.mobileOpen">
+          <BaseLayoutMobileNav />
+        </div>
+      </transition>
       <div class="h-14 flex items-center w-full justify-between px-4 md:px-10">
         <div class="">
           <!-- TODO: Add searchbar -->
@@ -57,3 +62,11 @@ const sidebarStore = useSidebarStore()
     </header>
   </div>
 </template>
+
+<style scoped>
+.expand-enter-active,
+.expand-leave-active {
+  transition: all .4s ease-in-out;
+  overflow: hidden;
+}
+</style>

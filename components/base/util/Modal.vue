@@ -77,7 +77,9 @@ watch(isOpen, (newValue) => {
     </transition>
     <transition enter-active-class="ease-out duration-300" enter-from-class="opacity-0" enter-to-class="opacity-100"
       leave-active-class="ease-in duration-200" leave-from-class="opacity-100" leave-to-class="opacity-0">
-      <div v-if="isOpen" class="fixed inset-0 z-30 bg-black opacity-25"></div>
+      <div v-show="isOpen" class="fixed inset-0 transform transition-all z-10">
+        <div class="absolute inset-0 bg-gray-900 opacity-50" @click="toggleModal"></div>
+      </div>
     </transition>
   </div>
 </template>

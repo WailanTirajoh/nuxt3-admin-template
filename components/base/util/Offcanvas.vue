@@ -70,10 +70,11 @@ watch(isOpen, (newValue) => {
         </div>
       </div>
     </transition>
-    <transition enter-active-class="ease-in-out duration-300" enter-from-class="opacity-0" enter-to-class="opacity-100"
-      leave-active-class="ease-in-out duration-300" leave-from-class="opacity-25" leave-to-class="opacity-0" appear="">
-      <div v-if="isOpen" class="fixed inset-0 z-30 bg-black transition-all ease-in-out opacity-25"
-        @click="closeOffCanvas()"></div>
+    <transition enter-active-class="ease-out duration-300" enter-from-class="opacity-0" enter-to-class="opacity-100"
+      leave-active-class="ease-in duration-200" leave-from-class="opacity-100" leave-to-class="opacity-0">
+      <div v-show="isOpen" class="fixed inset-0 transform transition-all z-10">
+        <div class="absolute inset-0 bg-gray-900 opacity-50" @click="closeOffCanvas"></div>
+      </div>
     </transition>
   </div>
 </template>
