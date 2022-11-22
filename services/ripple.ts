@@ -12,11 +12,11 @@ interface RippleInterface {
   color: string
   zIndex: string
 
-  beforeMount: (
+  mounted: (
     el: HTMLElement,
     binding: {
       modifiers: object,
-      value: string
+      value: string | boolean
     }
   ) => void
 }
@@ -31,9 +31,9 @@ const setProps = (modifiers: Array<any>, props: Props): void => {
 const Ripple: RippleInterface = {
   color: '',
   zIndex: '',
-  beforeMount(el: HTMLElement, binding: {
+  mounted(el: HTMLElement, binding: {
     modifiers: object
-    value: string
+    value: string | boolean
   }) {
     // Default values.
     const props = {
@@ -44,10 +44,12 @@ const Ripple: RippleInterface = {
     setProps(Object.keys(binding.modifiers), props)
 
     el.addEventListener(props.event, function (event: Event) {
+      if (binding.value === false) return
       rippler(event as MouseEvent, el)
     })
-
-    const bg = binding.value || Ripple.color || 'rgba(0, 0, 0, 0.35)'
+    let value
+    if (typeof binding.value !== 'boolean') value = binding.value
+    const bg = value || Ripple.color || 'rgba(0, 0, 0, 0.35)'
     const zIndex = Ripple.zIndex || '9999'
 
     function rippler(event: MouseEvent, el: HTMLElement) {
