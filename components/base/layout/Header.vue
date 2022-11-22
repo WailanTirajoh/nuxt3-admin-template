@@ -7,11 +7,11 @@ const animationOpenClose = useAnimationOpenClose()
 <template>
   <div class="px-2 md:px-6 md:sticky md:top-0 md:z-10">
     <header
-      class="md:flex w-full text-gray-200 border-spacing-1 border-t-0 shadow-xl border-[#1d152a7a] rounded-b-xl bg-opacity-40 bg-gray-900 px-2"
+      class="md:flex w-full text-gray-200 border-spacing-1 border-t-0 shadow-xl border-[#1d152a7a] rounded-b-3xl bg-opacity-40 bg-gray-900 px-2"
       style="backdrop-filter: blur(7.5px)">
       <div class="h-14 flex justify-between md:justify-center items-center w-full md:w-52 px-4">
-        <div class="">
-          Wai Admin
+        <div class="font-bold">
+          NuxiAdmin
         </div>
         <button class="block md:hidden float-right" @click="sidebarStore.mobileOpen = !sidebarStore.mobileOpen">
           <div class="-rotate-90">
@@ -47,7 +47,6 @@ const animationOpenClose = useAnimationOpenClose()
                   </div>
                 </button>
               </NuxtLink>
-              <!-- Account Management -->
               <button
                 class="block w-full px-4 py-2 text-sm leading-5 text-gray-700 dark:text-gray-200 text-left hover:bg-gray-100 dark:hover:bg-gray-900 focus:outline-none focus:bg-gray-100 dark:focus:bg-gray-800 transition">
                 <div class="flex gap-2 items-center">

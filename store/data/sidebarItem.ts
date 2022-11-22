@@ -103,4 +103,11 @@ export default [
       },
     ]
   },
+  {
+    "isTitle": true,
+    "name": "Pages",
+    "url": "",
+    "icon": "",
+    "submenu": []
+  },
 ]

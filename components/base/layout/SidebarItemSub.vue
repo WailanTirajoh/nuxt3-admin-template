@@ -21,14 +21,13 @@ interface Props {
 defineProps<Props>();
 
 const { width, type } = useBreakpoints()
+const animationOpenClose = useAnimationOpenClose()
 const sidebarStore = useSidebarStore()
 
 const isOpen = ref(false)
 const toggleOpen = () => {
   isOpen.value = !isOpen.value
 }
-
-const animationOpenClose = useAnimationOpenClose()
 </script>
 
 <template>
@@ -41,7 +40,7 @@ const animationOpenClose = useAnimationOpenClose()
           {{ item.name }}
         </div>
         <div class="md:hidden lg:flex ml-auto items-center">
-          <vue-feather type="chevron-down" class="duration-100" :class="{ 'rotate-180': isOpen }"></vue-feather>
+          <vue-feather type="chevron-down" class="duration-300" :class="{ 'rotate-180': isOpen }"></vue-feather>
         </div>
       </div>
     </div>
@@ -54,7 +53,7 @@ const animationOpenClose = useAnimationOpenClose()
             <div :data-tooltip-show="type === 'md'" data-tooltip-pos="right" :aria-label="sub.name">
               <nuxt-link :to="sub.url"
                 class="flex md:justify-center lg:justify-start duration-300 items-center gap-3 cursor-pointer px-5 py-3 mb-2 md:hover:bg-[#1d152a] border-transparent"
-                exact-active-class="border-l-4 !border-sky-800 font-bold bg-[#1d152a] !text-[#f0f0f0]"
+                exact-active-class="border-l-4 !border-gray-300 font-bold bg-[#1d152a] !text-[#f0f0f0]"
                 @click="sidebarStore.mobileOpen = false">
                 <vue-feather :type="sub.icon"></vue-feather>
                 <div class="md:hidden lg:block select-none">

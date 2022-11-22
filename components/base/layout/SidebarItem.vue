@@ -14,8 +14,8 @@ interface Props {
 }
 
 defineProps<Props>();
-const sidebarStore = useSidebarStore()
 
+const sidebarStore = useSidebarStore()
 const { width, type } = useBreakpoints()
 </script>
 
