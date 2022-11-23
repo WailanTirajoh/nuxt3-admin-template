@@ -14,6 +14,7 @@ interface Props {
   type: string
   jsonMessage?: object | null
   title?: string | null
+  showLifetime?: boolean
 }
 
 const props = withDefaults(defineProps<Props>(), {
@@ -21,7 +22,8 @@ const props = withDefaults(defineProps<Props>(), {
   html: '',
   lifetime: 5000,
   jsonMessage: null,
-  title: null
+  title: null,
+  showLifetime: true
 })
 
 const type = ref(props.type)
@@ -70,7 +72,9 @@ const textColor = computed(() => {
   }
 })
 
-const barStyle = computed(() => `width: ${(lifetime.value / props.lifetime) * 100}%`)
+const lifetimePercent = computed(() => (lifetime.value / props.lifetime) * 100)
+
+const barStyle = computed(() => `width: ${lifetimePercent.value}%`)
 
 onMounted(() => {
   isShown.value = true
@@ -123,7 +127,10 @@ const removeToast = () => {
             </template>
           </div>
         </div>
-        <div class="bg-gray-900 bg-opacity-40 h-1 absolute bottom-0 rounded-xl mx-auto" :style="barStyle"></div>
+        <div v-if="showLifetime" class="bg-gray-900 bg-opacity-40 h-[0.35rem] absolute bottom-0 rounded-b-md mx-auto"
+          :class="{
+            'rounded-br-none': lifetimePercent < 95
+          }" :style="barStyle"></div>
       </div>
     </transition>
   </div>

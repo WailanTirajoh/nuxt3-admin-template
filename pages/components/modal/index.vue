@@ -45,9 +45,9 @@ const modalCode = `<Modal :full-height="false">
       <div class="col-span-12 md:col-span-5">
         <Modal :full-height="false">
           <template #button>
-            <button class="bg-sky-800 hover:bg-sky-900 text-white rounded p-2 text-lg">
+            <BaseButton>
               Modal
-            </button>
+            </BaseButton>
           </template>
           <template #header>
             <div>

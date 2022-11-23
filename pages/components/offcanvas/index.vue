@@ -18,9 +18,9 @@ useHead({
         <div class="flex gap-2">
           <Offcanvas position="left">
             <template #button>
-              <button class="bg-sky-800 hover:bg-sky-900 text-white rounded p-2 text-lg">
+              <BaseButton>
                 Left Offcanvas
-              </button>
+              </BaseButton>
             </template>
             <template #header>
               Left Offcanvas
@@ -31,9 +31,9 @@ useHead({
           </Offcanvas>
           <Offcanvas position="right">
             <template #button>
-              <button class="bg-sky-800 hover:bg-sky-900 text-white rounded p-2 text-lg">
+              <BaseButton>
                 Right Offcanvas
-              </button>
+              </BaseButton>
             </template>
             <template #header>
               Right Offcanvas
