@@ -108,6 +108,25 @@ export default [
     "name": "Pages",
     "url": "",
     "icon": "",
-    "submenu": []
+    "submenu": [
+    ]
+  },
+  {
+    "isTitle": false,
+    "name": "Page",
+    "url": "",
+    "icon": "sidebar",
+    "submenu": [
+      {
+        "name": "Login",
+        "url": "/login",
+        "icon": "chevron-right"
+      },
+      {
+        "name": "Profile",
+        "url": "/profile",
+        "icon": "chevron-right"
+      },
+    ]
   },
 ]

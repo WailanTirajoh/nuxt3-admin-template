@@ -37,7 +37,7 @@ const copyText = (text: string) => {
         v-model="search" placeholder="Type to search icon . . ." />
     </div>
     <div class="text-sm italic">*Click to copy the text</div>
-    <TransitionGroup name="list" tag="ul" class="grid gap-2 grid-cols-cst">
+    <TransitionGroup name="list" tag="ul" class="grid gap-2 grid-cols-[repeat(auto-fill,_minmax(14rem,_1fr))]">
       <li class="duration-100 bg-white hover:bg-sky-50 p-2 rounded flex items-center gap-2 cursor-pointer"
         v-for="icon in filteredIcon" :key="icon" @click="copyText(icon)">
         <vue-feather :type="icon"></vue-feather>
@@ -48,9 +48,6 @@ const copyText = (text: string) => {
 </template>
 
 <style scoped>
-.grid-cols-cst {
-  grid-template-columns: repeat(auto-fill, minmax(14rem, 1fr));
-}
 
 .list-move,
 .list-enter-active,
