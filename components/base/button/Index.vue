@@ -24,23 +24,23 @@ const btnColor = computed(() => {
   let color = ''
   switch (props.type) {
     case 'secondary':
-      color = 'bg-gray-400'
-      if (!btnDisabled.value) color += ' active:bg-gray-400 hover:bg-gray-500'
+      color = 'bg-gray-200 text-gray-800'
+      if (!btnDisabled.value) color += ' active:bg-gray-200 hover:bg-gray-300'
       break;
     case 'danger':
-      color = 'bg-red-800'
+      color = 'bg-red-800 text-white'
       if (!btnDisabled.value) color += ' active:bg-red-900 hover:bg-red-700'
       break;
     case 'success':
-      color = 'bg-green-800'
+      color = 'bg-green-800 text-white'
       if (!btnDisabled.value) color += ' active:bg-green-900 hover:bg-green-700'
       break;
     case 'light':
-      color = 'bg-gray-100'
-      if (!btnDisabled.value) color += ' active:bg-gray-100 hover:bg-gray-50'
+      color = 'bg-white text-gray-800'
+      if (!btnDisabled.value) color += ' active:bg-white hover:bg-gray-50'
       break;
     default:
-      color = 'bg-gray-800'
+      color = 'bg-gray-800 text-white'
       if (!btnDisabled.value) color += ' active:bg-gray-900 hover:bg-gray-700'
   }
 
@@ -96,7 +96,7 @@ const btnRipple = computed(() => {
 </script>
 
 <template>
-  <button v-ripple="btnRipple" v-bind="$attrs" class="p-2 rounded-md text-white relative duration-200" :class="[
+  <button v-ripple="btnRipple" v-bind="$attrs" class="p-2 rounded-md relative duration-200" :class="[
     btnColor,
     ...btnClasses,
     btnTextPosition
@@ -107,7 +107,7 @@ const btnRipple = computed(() => {
         v-if="btnDisabled">
       </div>
     </transition>
-    <vue-feather class="" :class="[
+    <vue-feather class="mr-2" :class="[
       btnIconPosition,
       {
         'animate-[spin_2s_linear_infinite]': btnLoading

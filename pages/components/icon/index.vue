@@ -38,17 +38,18 @@ const copyText = (text: string) => {
     </div>
     <div class="text-sm italic">*Click to copy the text</div>
     <TransitionGroup name="list" tag="ul" class="grid gap-2 grid-cols-[repeat(auto-fill,_minmax(14rem,_1fr))]">
-      <li class="duration-100 bg-white hover:bg-sky-50 p-2 rounded flex items-center gap-2 cursor-pointer"
-        v-for="icon in filteredIcon" :key="icon" @click="copyText(icon)">
-        <vue-feather :type="icon"></vue-feather>
-        <span>{{ icon }}</span>
+      <li v-for="icon in filteredIcon" :key="icon" @click="copyText(icon)">
+        <BaseButton :icon="icon" type="light" class="w-full !text-sky-900" text-position="left" ripple>
+          {{ icon }}
+        </BaseButton>
+        <!-- <vue-feather :type="icon"></vue-feather> -->
+        <!-- <span>{{ icon }}</span> -->
       </li>
     </TransitionGroup>
   </div>
 </template>
 
 <style scoped>
-
 .list-move,
 .list-enter-active,
 .list-leave-active {

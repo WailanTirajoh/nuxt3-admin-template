@@ -54,6 +54,20 @@ export default [
         "icon": "chevron-right",
         "submenu": []
       },
+      {
+        "isTitle": false,
+        "name": "Skeleton",
+        "url": "/components/skeleton",
+        "icon": "chevron-right",
+        "submenu": []
+      },
+      {
+        "isTitle": false,
+        "name": "Tabs",
+        "url": "/components/tabs",
+        "icon": "chevron-right",
+        "submenu": []
+      },
     ]
   },
   {
