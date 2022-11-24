@@ -3,6 +3,7 @@
 <script setup lang="ts">
 import VueFeather from "vue-feather"
 import { useToastStore } from "~/store/toast"
+import { Type } from "~~/interface/toast"
 
 // issue to import props to define props
 // ref: https://github.com/vuejs/core/issues/4294
@@ -11,7 +12,7 @@ interface Props {
   message?: string
   html?: string
   lifetime?: number
-  type: string
+  type: Type
   jsonMessage?: object | null
   title?: string | null
   showLifetime?: boolean
@@ -40,7 +41,9 @@ const classType = computed(() => {
     case 'info':
       return { 'border-t-gray-400 dark:border-t-gray-600': true }
     case 'error':
-      return { 'border-t-red-600 dark:border-t-gray-600': true, error: false }
+      return { 'border-t-red-600 dark:border-t-gray-600': true, 'error': true }
+    case 'warning':
+      return { 'border-t-red-600 dark:border-t-gray-600': true }
     default:
       return { 'border-t-green-600 dark:border-t-gray-600': true }
   }
@@ -53,6 +56,8 @@ const iconType = computed(() => {
     case 'info':
       return 'message-circle'
     case 'error':
+      return 'alert-circle'
+    case 'warning':
       return 'alert-circle'
     default:
       return 'help-circle'

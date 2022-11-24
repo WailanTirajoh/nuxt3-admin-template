@@ -20,34 +20,39 @@ export default [
     "icon": "box",
     "submenu": [
       {
+        "isTitle": false,
         "name": "Modal",
         "url": "/components/modal",
-        "icon": "chevron-right"
+        "icon": "chevron-right",
+        "submenu": []
       },
       {
+        "isTitle": false,
         "name": "Offcanvas",
         "url": "/components/offcanvas",
-        "icon": "chevron-right"
+        "icon": "chevron-right",
+        "submenu": []
       },
       {
+        "isTitle": false,
         "name": "Button",
         "url": "/components/button",
-        "icon": "chevron-right"
+        "icon": "chevron-right",
+        "submenu": []
       },
       {
+        "isTitle": false,
         "name": "Toast",
         "url": "/components/toast",
-        "icon": "chevron-right"
+        "icon": "chevron-right",
+        "submenu": []
       },
       {
-        "name": "Dropdown",
-        "url": "/components/dropdown",
-        "icon": "chevron-right"
-      },
-      {
+        "isTitle": false,
         "name": "Icons",
         "url": "/components/icon",
-        "icon": "chevron-right"
+        "icon": "chevron-right",
+        "submenu": []
       },
     ]
   },
@@ -72,34 +77,46 @@ export default [
     "icon": "sidebar",
     "submenu": [
       {
+        "isTitle": false,
         "name": "Input",
         "url": "/form/input",
-        "icon": "chevron-right"
+        "icon": "chevron-right",
+        "submenu": []
       },
       {
+        "isTitle": false,
         "name": "Input Group",
         "url": "/form/input-group",
-        "icon": "chevron-right"
+        "icon": "chevron-right",
+        "submenu": []
       },
       {
+        "isTitle": false,
         "name": "Select",
         "url": "/form/select",
-        "icon": "chevron-right"
+        "icon": "chevron-right",
+        "submenu": []
       },
       {
+        "isTitle": false,
         "name": "Radio",
         "url": "/form/radio",
-        "icon": "chevron-right"
+        "icon": "chevron-right",
+        "submenu": []
       },
       {
+        "isTitle": false,
         "name": "Checkbox",
         "url": "/form/checkbox",
-        "icon": "chevron-right"
+        "icon": "chevron-right",
+        "submenu": []
       },
       {
+        "isTitle": false,
         "name": "Textarea",
         "url": "/form/textarea",
-        "icon": "chevron-right"
+        "icon": "chevron-right",
+        "submenu": []
       },
     ]
   },
@@ -118,14 +135,18 @@ export default [
     "icon": "sidebar",
     "submenu": [
       {
+        "isTitle": false,
         "name": "Login",
         "url": "/login",
-        "icon": "chevron-right"
+        "icon": "chevron-right",
+        "submenu": []
       },
       {
+        "isTitle": false,
         "name": "Profile",
         "url": "/profile",
-        "icon": "chevron-right"
+        "icon": "chevron-right",
+        "submenu": []
       },
     ]
   },
