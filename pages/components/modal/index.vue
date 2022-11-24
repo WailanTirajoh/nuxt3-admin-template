@@ -42,11 +42,33 @@ const modalCode = `<Modal :full-height="false">
     </h1>
     <hr class="my-2 border-sky-700" />
     <div class="grid grid-cols-12 gap-2">
-      <div class="col-span-12 md:col-span-5">
+      <div class="col-span-12 md:col-span-5 flex gap-2">
         <Modal :full-height="false">
           <template #button>
             <BaseButton>
               Modal
+            </BaseButton>
+          </template>
+          <template #header>
+            <div>
+              Header
+            </div>
+          </template>
+          <template #body>
+            <div>
+              Body
+            </div>
+          </template>
+          <template #footer>
+            <div class="flex justify-end w-full">
+              Footer
+            </div>
+          </template>
+        </Modal>
+        <Modal :full-height="false" width="800px">
+          <template #button>
+            <BaseButton>
+              Modal with width 800px
             </BaseButton>
           </template>
           <template #header>

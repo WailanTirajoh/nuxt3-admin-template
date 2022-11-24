@@ -42,6 +42,32 @@ useHead({
               Offcanvas body
             </div>
           </Offcanvas>
+          <Offcanvas position="right" width="800px">
+            <template #button>
+              <BaseButton>
+                Right Offcanvas with width 800px
+              </BaseButton>
+            </template>
+            <template #header>
+              Right Offcanvas
+            </template>
+            <div class="">
+              Offcanvas body
+            </div>
+          </Offcanvas>
+          <Offcanvas position="left" width="600px">
+            <template #button>
+              <BaseButton>
+                Left Offcanvas with width 600px
+              </BaseButton>
+            </template>
+            <template #header>
+              Right Offcanvas
+            </template>
+            <div class="">
+              Offcanvas body
+            </div>
+          </Offcanvas>
         </div>
       </div>
       <div class="col-span-12">

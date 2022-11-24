@@ -5,10 +5,12 @@ import VueFeather from "vue-feather";
 
 interface Props {
   fullHeight?: boolean
+  width?: string
 }
 
 const props = withDefaults(defineProps<Props>(), {
-  fullHeight: true
+  fullHeight: true,
+  width: '100%'
 })
 const emit = defineEmits(['on-close', 'on-open'])
 
@@ -51,7 +53,7 @@ watch(isOpen, (newValue) => {
       leave-to-class="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95">
       <div v-if="isOpen"
         class="overflow-x-hidden overflow-y-auto fixed inset-0 z-40 outline-none focus:outline-none justify-center pt-12 flex w-100">
-        <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8" style="width: 100%">
+        <div class="relative max-w-7xl mx-auto px-2 sm:px-6 lg:px-8" :style="{ width: props.width }">
           <div
             class="border-0 rounded-2xl shadow-lg relative flex flex-col w-full bg-white dark:bg-gray-800 outline-none focus:outline-none">
             <div
