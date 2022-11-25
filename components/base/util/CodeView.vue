@@ -24,6 +24,7 @@ const copyText = (text: string) => {
       @click="copyText(props.text)">
       <vue-feather type="copy" />
     </button>
-    <pre class="bg-gray-900 text-gray-300 px-4 py-2 rounded-lg overflow-auto">{{ props.text }}</pre>
+    <pre
+      class="bg-gray-900 text-gray-300 px-4 py-2 rounded-lg overflow-auto max-h-[600px] scrollbar text-xs">{{ props.text }}</pre>
   </div>
 </template>
