@@ -47,7 +47,7 @@ const exampleCode = `<BaseTab
 
 <template>
   <div class="grid grid-cols-12 gap-2">
-    <div class="col-span-6">
+    <div class="col-span-12 md:col-span-6">
       <div class="text-lg font-bold mb-1">
         Horizontal Tab
       </div>
@@ -65,7 +65,7 @@ const exampleCode = `<BaseTab
         </template>
       </BaseTab>
     </div>
-    <div class="col-span-6">
+    <div class="col-span-12 md:col-span-6">
       <BaseUtilCodeView :text="exampleCode" />
     </div>
   </div>

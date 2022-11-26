@@ -2,6 +2,7 @@
 @import url('./reset.css');
 @import url('./sidebar.css');
 @import url('./tooltip.css');
+@import url('./skeleton.css');
 
 @tailwind base;
 @tailwind components;

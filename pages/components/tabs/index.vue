@@ -11,6 +11,9 @@
       <div class="col-span-12">
         <BaseExampleTabHorizontal />
       </div>
+      <div class="col-span-12 my-2">
+        <hr />
+      </div>
       <div class="col-span-12">
         <BaseExampleTabVertical />
       </div>
