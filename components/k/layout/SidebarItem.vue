@@ -37,11 +37,11 @@ const toggleOpen = () => {
   <li v-else-if="item.submenu.length === 0">
     <div :data-tooltip-show="type === 'md'" data-tooltip-pos="right" :aria-label="item.name">
       <nuxt-link :to="item.url"
-        class="flex md:justify-center lg:justify-start duration-300 items-center gap-3 cursor-pointer px-5 py-3 mb-2 md:hover:bg-[#1d152a57] border-transparent"
+        class="flex md:justify-center lg:justify-start duration-300 items-center gap-3 cursor-pointer px-5 py-3 mb-2 md:hover:bg-gray-900 md:hover:bg-opacity-40 border-transparent"
         :class="{
           'rounded-lg': level === 1
         }"
-        :exact-active-class="level === 1 ? 'bg-[#1d152a93] !md:hover:bg-[#1d152a] border-b-4 !border-[#150f1a57] !text-[#f0f0f0] font-bold' : 'border-l-4 !border-gray-300 font-bold bg-[#1d152a93] !text-[#f0f0f0]'"
+        :exact-active-class="level === 1 ? 'bg-gray-900 bg-opacity-40 !md:hover:bg-opacity-60 border-b-4 !border-gray-900 !border-opacity-70 !text-[#f0f0f0] font-bold' : 'border-l-4 !border-gray-900 !border-opacity-70 font-bold bg-gray-900 bg-opacity-40 !text-[#f0f0f0]'"
         @click="sidebarStore.mobileOpen = false">
         <vue-feather v-if="item.icon" :type="item.icon"></vue-feather>
         <div class="md:hidden lg:block select-none whitespace-nowrap overflow-hidden text-ellipsis">
@@ -53,7 +53,7 @@ const toggleOpen = () => {
   <li v-else>
     <div :data-tooltip-show="type === 'md'" data-tooltip-pos="right" :aria-label="item.name" @click="toggleOpen">
       <div
-        class="flex md:justify-center lg:justify-start duration-300 items-center rounded-lg gap-3 cursor-pointer px-5 py-3 mb-2 md:hover:bg-[#1d152a] border-transparent">
+        class="flex md:justify-center lg:justify-start duration-300 items-center rounded-lg gap-3 cursor-pointer px-5 py-3 mb-2 md:hover:bg-gray-900 md:hover:bg-opacity-40 border-transparent">
         <vue-feather v-if="item.icon" :type="item.icon"></vue-feather>
         <div class="md:hidden lg:block select-none whitespace-nowrap overflow-hidden text-ellipsis">
           {{ item.name }}
