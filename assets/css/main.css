@@ -3,6 +3,7 @@
 @import url('./sidebar.css');
 @import url('./tooltip.css');
 @import url('./skeleton.css');
+@import url('./package.css');
 
 @tailwind base;
 @tailwind components;

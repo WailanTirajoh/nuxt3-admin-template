@@ -2,6 +2,8 @@
 useHead({
   title: 'Editors'
 })
+
+const test = ref('')
 </script>
 
 <template>
@@ -10,6 +12,10 @@ useHead({
       Editors
     </h1>
     <hr class="my-2 border-sky-700" />
+    <client-only>
+      {{ test }}
+      <KEditorQuill v-model="test" />
+    </client-only>
     <KOtherComingSoon />
   </div>
 </template>
