@@ -27,7 +27,7 @@ const alignmentClasses = computed(() => {
   return 'origin-top'
 })
 const open = ref(false)
-const closeOnEscape = (e: BaseeyboardEvent) => {
+const closeOnEscape = (e: KeyboardEvent) => {
   if (open.value && e.key === 'Escape') {
     open.value = false
   }

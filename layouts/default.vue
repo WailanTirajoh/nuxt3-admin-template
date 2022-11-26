@@ -12,12 +12,12 @@ const toastStore = useToastStore()
 
 <template>
   <div>
-    <BaseToastGroup :toasts="toastStore.toasts" />
+    <KToastGroup :toasts="toastStore.toasts" />
     <div class="px-0 md:px-3 lg:px-4">
-      <BaseLayoutHeader />
+      <KLayoutHeader />
       <div class="py-4">
         <div class="flex min-h-screen text-sky-900 bg-opacity-40 bg-gray-900 rounded-3xl shadow-lg">
-          <BaseLayoutSidebar class="h-full" />
+          <KLayoutSidebar class="h-full" />
           <div class="w-full md:w-[calc(100%-8rem)] lg:w-[calc(100%-16rem)] sm:rounded-l-none">
             <div class="p-6 bg-gray-100 h-full rounded-3xl">
               <slot />

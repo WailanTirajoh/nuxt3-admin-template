@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import Offcanvas from "~/components/Base/util/Offcanvas.vue"
 
 useHead({
   title: 'Offcanvas'
@@ -16,11 +15,11 @@ useHead({
     <div class="grid grid-cols-12 gap-2">
       <div class="col-span-12">
         <div class="grid md:flex gap-2">
-          <Offcanvas position="left">
+          <KUtilOffcanvas position="left">
             <template #button>
-              <BaseButton>
+              <KButton>
                 Left Offcanvas
-              </BaseButton>
+              </KButton>
             </template>
             <template #header>
               Left Offcanvas
@@ -28,54 +27,54 @@ useHead({
             <div class="">
               Offcanvas body
             </div>
-          </Offcanvas>
-          <Offcanvas position="right">
+          </KUtilOffcanvas>
+          <KUtilOffcanvas position="right">
             <template #button>
-              <BaseButton>
+              <KButton>
                 Right Offcanvas
-              </BaseButton>
+              </KButton>
             </template>
             <template #header>
               Right Offcanvas
             </template>
-            <div class="">
+            <template #body>
               Offcanvas body
-            </div>
-          </Offcanvas>
-          <Offcanvas position="right" width="800px">
+            </template>
+          </KUtilOffcanvas>
+          <KUtilOffcanvas position="right" width="800px">
             <template #button>
-              <BaseButton>
+              <KButton>
                 Right Offcanvas with width 800px
-              </BaseButton>
+              </KButton>
             </template>
             <template #header>
               Right Offcanvas
             </template>
-            <div class="">
+            <template #body>
               Offcanvas body
-            </div>
-          </Offcanvas>
-          <Offcanvas position="left" width="600px">
+            </template>
+          </KUtilOffcanvas>
+          <KUtilOffcanvas position="left" width="600px">
             <template #button>
-              <BaseButton>
+              <KButton>
                 Left Offcanvas with width 600px
-              </BaseButton>
+              </KButton>
             </template>
             <template #header>
               Right Offcanvas
             </template>
-            <div class="">
+            <template #body>
               Offcanvas body
-            </div>
-          </Offcanvas>
+            </template>
+          </KUtilOffcanvas>
         </div>
       </div>
       <div class="col-span-12">
-        <BaseOtherComingSoon>
+        <KOtherComingSoon>
           <div>
             TODO: Top & Bottom offcanvas
           </div>
-        </BaseOtherComingSoon>
+        </KOtherComingSoon>
       </div>
     </div>
   </div>

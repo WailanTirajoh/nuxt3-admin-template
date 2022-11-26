@@ -16,17 +16,17 @@ const toastStore = useToastStore()
     <hr class="my-2 border-sky-700" />
     <div class="grid grid-cols-12 gap-2">
       <div class="col-span-12 flex gap-2">
-        <BaseButton type="success" @click="toastStore.success({
+        <KButton type="success" @click="toastStore.success({
           message: 'Success toast'
         })">
           Success
-        </BaseButton>
+        </KButton>
 
-        <BaseButton type="danger" @click="toastStore.error({
+        <KButton type="danger" @click="toastStore.error({
           message: 'Error toast'
         })">
         Error
-        </BaseButton>
+        </KButton>
       </div>
     </div>
   </div>
