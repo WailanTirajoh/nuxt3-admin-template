@@ -4,7 +4,7 @@ import VueFeather from "vue-feather"
 /**
  * Available type
  */
-type Type = 'primary' | 'secondary' | 'danger' | 'success' | 'light'
+type Type = 'primary' | 'secondary' | 'danger' | 'success' | 'light' | 'warning' | 'info'
 type IconPosition = 'left' | 'right'
 type TextPosition = 'left' | 'center' | 'right'
 
@@ -38,6 +38,14 @@ const btnColor = computed(() => {
     case 'light':
       color = 'bg-white text-gray-800'
       if (!btnDisabled.value) color += ' active:bg-white hover:bg-gray-50'
+      break;
+    case 'warning':
+      color = 'bg-yellow-800 text-white'
+      if (!btnDisabled.value) color += ' active:bg-yellow-900 hover:bg-yellow-700'
+      break;
+    case 'info':
+      color = 'bg-gray-800 text-white'
+      if (!btnDisabled.value) color += ' active:bg-gray-800 hover:bg-gray-700'
       break;
     default:
       color = 'bg-gray-800 text-white'

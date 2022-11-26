@@ -15,11 +15,13 @@ export const useToastStore = defineStore('toast', () => {
     toasts.value.splice(index, 1)
   }
 
-  interface Success {
+  interface ToastDeafult {
     message: string
     lifetime?: number
     title?: string
   }
+
+  interface Success extends ToastDeafult { }
   const success = (params: Success) => {
     addToast({
       id: '',
@@ -30,11 +32,7 @@ export const useToastStore = defineStore('toast', () => {
     })
   }
 
-  interface Error {
-    message: string
-    lifetime?: number
-    title?: string
-  }
+  interface Error extends ToastDeafult { }
   const error = (params: Error) => {
     addToast({
       id: '',
@@ -45,11 +43,35 @@ export const useToastStore = defineStore('toast', () => {
     })
   }
 
+  interface Warning extends ToastDeafult { }
+  const warning = (params: Warning) => {
+    addToast({
+      id: '',
+      message: params.message,
+      lifetime: params.lifetime ?? 5000,
+      type: 'warning',
+      title: params.title || 'Warning'
+    })
+  }
+
+  interface Info extends ToastDeafult { }
+  const info = (params: Info) => {
+    addToast({
+      id: '',
+      message: params.message,
+      lifetime: params.lifetime ?? 5000,
+      type: 'info',
+      title: params.title || 'Info'
+    })
+  }
+
   return {
     toasts,
     addToast,
     removeToast,
     success,
     error,
+    warning,
+    info,
   }
 })

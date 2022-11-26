@@ -43,7 +43,7 @@ const classType = computed(() => {
     case 'error':
       return { 'border-t-red-600 dark:border-t-gray-600': true, 'error': true }
     case 'warning':
-      return { 'border-t-red-600 dark:border-t-gray-600': true }
+      return { 'border-t-yellow-600 dark:border-t-gray-600': true }
     default:
       return { 'border-t-green-600 dark:border-t-gray-600': true }
   }
@@ -72,6 +72,8 @@ const textColor = computed(() => {
       return 'text-sky-800'
     case 'error':
       return 'text-red-800'
+    case 'warning':
+      return 'text-yellow-800'
     default:
       return 'text-gray-800'
   }

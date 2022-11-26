@@ -2,19 +2,20 @@
 import { Toast } from '~~/interface/toast';
 import ToastVue from "./Index.vue"
 
+type Position = 'top-left' | 'top-right' | 'bottom-left' | 'bottom-right' | ''
 interface Props {
   toasts: Array<Toast>
-  position?: string
+  position?: Position
+  wrapperClass?: string
 }
 
 const props = withDefaults(defineProps<Props>(), {
-  position: 'bottom-right'
+  position: 'top-right'
 })
 
-const position = computed(() => {
-  if (props.position === 'bottom-center') {
-    return 'mx-auto bottom-4'
-  }
+const position = ref(props.position)
+
+const classPosition = computed(() => {
   if (props.position === 'bottom-left') {
     return 'mr-auto bottom-4 ml-4'
   }
@@ -22,20 +23,10 @@ const position = computed(() => {
     return 'ml-auto bottom-4 mr-4'
   }
   if (props.position === 'top-right') {
-    return 'ml-auto top-12 mr-4'
+    return 'ml-auto top-4 mr-4'
   }
-  if (props.position === 'top-center') {
-    return 'mx-auto top-2'
-  }
-  return ''
-})
-
-const enterClass = computed(() => {
-  if (props.position === 'top-right') {
-    return 'transform-[translateY(1rem)]'
-  }
-  if (props.position === 'top-center') {
-    return 'transform-[translateX(1rem)]'
+  if (props.position === 'top-left') {
+    return 'ml-auto top-4 ml-4'
   }
   return ''
 })
@@ -44,7 +35,7 @@ const enterClass = computed(() => {
 <template>
   <div>
     <transition-group tag="ul" name="list" class="w-80 fixed inset-x-0 z-50 grid gap-2 break-words pt-3"
-      :class="position" style="overflow-wrap: anywhere" appear>
+      :class="[classPosition, position, wrapperClass]" style="overflow-wrap: anywhere" appear>
       <toast-vue v-for="toast in props.toasts" :id="toast.id" :key="`toast-${toast.id}`" class="w-full"
         :message="toast.message" :type="toast.type" :lifetime="toast.lifetime" :json-message="toast.jsonMessage"
         :html="toast.html" :title="toast.title" />
@@ -53,22 +44,72 @@ const enterClass = computed(() => {
 </template>
 
 <style scoped>
-.list-move,
-/* apply transition to moving elements */
-.list-enter-active,
-.list-leave-active {
+/* Bottom Right */
+.bottom-right .list-move,
+.bottom-right .list-enter-active,
+.bottom-right .list-leave-active {
   transition: all 0.5s ease;
 }
 
-.list-enter-from,
-.list-leave-to {
+.bottom-right .list-enter-from,
+.bottom-right .list-leave-to {
   opacity: 0;
   transform: translateX(30px);
 }
 
-/* ensure leaving items are taken out of layout flow so that moving
-   animations can be calculated correctly. */
-.list-leave-active {
+.bottom-right .list-leave-active {
+  position: absolute;
+}
+
+/* Bottom Left */
+.bottom-left .list-move,
+.bottom-left .list-enter-active,
+.bottom-left .list-leave-active {
+  transition: all 0.5s ease;
+}
+
+.bottom-left .list-enter-from,
+.bottom-left .list-leave-to {
+  opacity: 0;
+  transform: translateX(-30px);
+}
+
+.bottom-left .list-leave-active {
+  position: absolute;
+}
+
+
+/* Top Right */
+.top-right .list-move,
+.top-right .list-enter-active,
+.top-right .list-leave-active {
+  transition: all 0.5s ease;
+}
+
+.top-right .list-enter-from,
+.top-right .list-leave-to {
+  opacity: 0;
+  transform: translateX(30px);
+}
+
+.top-right .list-leave-active {
+  position: absolute;
+}
+
+/* Top Left */
+.top-left .list-move,
+.top-left .list-enter-active,
+.top-left .list-leave-active {
+  transition: all 0.5s ease;
+}
+
+.top-left .list-enter-from,
+.top-left .list-leave-to {
+  opacity: 0;
+  transform: translateX(-30px);
+}
+
+.top-left .list-leave-active {
   position: absolute;
 }
 </style>
