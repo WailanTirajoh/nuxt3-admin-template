@@ -15,7 +15,7 @@ useHead({
     <hr class="my-2 border-sky-700" />
     <div class="grid grid-cols-12 gap-2">
       <div class="col-span-12">
-        <div class="flex gap-2">
+        <div class="grid md:flex gap-2">
           <Offcanvas position="left">
             <template #button>
               <BaseButton>

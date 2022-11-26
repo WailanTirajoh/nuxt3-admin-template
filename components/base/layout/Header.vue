@@ -5,7 +5,7 @@ const sidebarStore = useSidebarStore()
 const animationOpenClose = useAnimationOpenClose()
 </script>
 <template>
-  <div class="px-2 md:px-6 md:sticky md:top-0 md:z-10">
+  <div class="md:sticky md:top-0 md:z-10">
     <header
       class="md:flex w-full text-gray-200 border-spacing-1 border-t-0 shadow-xl border-[#1d152a7a] rounded-b-3xl bg-opacity-40 bg-gray-900 px-2"
       style="backdrop-filter: blur(7.5px)">
