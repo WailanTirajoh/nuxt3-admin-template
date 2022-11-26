@@ -1,6 +1,6 @@
 <script setup lang="ts">
 useHead({
-  title: 'Editors'
+  title: 'Quill Editor'
 })
 
 const test = ref('')
@@ -9,13 +9,11 @@ const test = ref('')
 <template>
   <div>
     <h1 class="text-3xl font-bold">
-      Editors
+      Quill Editor
     </h1>
     <hr class="my-2 border-sky-700" />
     <client-only>
-      {{ test }}
-      <KEditorQuill v-model="test" />
+      <KExampleEditorQuill></KExampleEditorQuill>
     </client-only>
-    <KOtherComingSoon />
   </div>
 </template>

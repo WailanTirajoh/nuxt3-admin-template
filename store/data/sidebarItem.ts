@@ -97,20 +97,35 @@ export default [
         "icon": "chevron-right",
         "submenu": []
       },
+      // {
+      //   "isTitle": false,
+      //   "name": "Advanced",
+      //   "url": "/form/advanced",
+      //   "icon": "chevron-right",
+      //   "submenu": []
+      // },
       {
         "isTitle": false,
-        "name": "Advanced",
-        "url": "/form/advanced",
-        "icon": "chevron-right",
-        "submenu": []
-      },
-      {
-        "isTitle": false,
-        "name": "Editors",
-        "url": "/form/editors",
-        "icon": "chevron-right",
-        "submenu": []
-      },
+        "name": "Editor",
+        "key": "editor",
+        "icon": "sidebar",
+        "submenu": [
+          {
+            "isTitle": false,
+            "name": "Tiptap",
+            "url": "/form/editor/tiptap",
+            "icon": "chevron-right",
+            "submenu": []
+          },
+          {
+            "isTitle": false,
+            "name": "Quill",
+            "url": "/form/editor/quill",
+            "icon": "chevron-right",
+            "submenu": []
+          },
+        ]
+      }
     ]
   },
   {
