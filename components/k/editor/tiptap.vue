@@ -7,6 +7,7 @@ import StarterKit from '@tiptap/starter-kit'
 import Text from '@tiptap/extension-text'
 import TextAlign from '@tiptap/extension-text-align'
 import VueFeather from 'vue-feather'
+import Image from '@tiptap/extension-image'
 
 const editor = useEditor({
   content: ``,
@@ -24,9 +25,40 @@ const editor = useEditor({
     TextAlign.configure({
       types: ['heading', 'paragraph'],
     }),
-
+    Image.configure({
+      allowBase64: true,
+      inline: true,
+    })
   ],
 })
+
+const chooseImage = async () => {
+  const fileList = await selectInputImage('image/*') as FileList | null
+  if (fileList === null) return
+  const reader = new FileReader();
+  reader.readAsDataURL(fileList[0]);
+  reader.onloadend = function () {
+    if (editor.value === undefined) return
+    editor.value.commands.setImage({
+      src: reader.result as string
+    })
+  }
+}
+
+const selectInputImage = (contentType: string) => {
+  return new Promise(resolve => {
+    let input = document.createElement('input');
+    input.type = 'file';
+    input.accept = contentType;
+
+    input.onchange = () => {
+      resolve(input.files);
+      input.remove()
+    };
+
+    input.click();
+  });
+}
 
 onBeforeUnmount(() => {
   editor.value?.destroy()
@@ -185,6 +217,11 @@ onBeforeUnmount(() => {
         class="border border-gray-300 mr-1 mt-1 rounded hover:bg-gray-50 duration-300 flex p-1 cursor-pointer h-8 items-center justify-center select-none"
         @click="editor?.chain().focus().redo().run()" :disabled="!editor.can().chain().focus().redo().run()">
         redo
+      </div>
+      <div
+        class="border border-gray-300 mr-1 mt-1 rounded hover:bg-gray-50 duration-300 flex p-1 cursor-pointer h-8 items-center justify-center select-none"
+        @click="chooseImage">
+        <vue-feather class="w-5 h-5" type="image" />
       </div>
     </div>
     <editor-content class="element" :editor="editor" />
