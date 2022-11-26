@@ -4,7 +4,7 @@
 @import url('./tooltip.css');
 @import url('./skeleton.css');
 @import url('./package.css');
-@import url('./typography.css');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
