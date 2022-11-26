@@ -1,12 +1,14 @@
 <script setup lang="ts">
 useHead({
-  title: 'Form Inputs'
+  title: 'General'
 })
 </script>
 
 <template>
-  <div class="">
-    <h1 class="text-3xl font-bold">Input</h1>
+  <div>
+    <h1 class="text-3xl font-bold">
+      General
+    </h1>
     <hr class="my-2 border-sky-700" />
     <BaseOtherComingSoon />
   </div>

@@ -92,43 +92,44 @@ export default [
     "submenu": [
       {
         "isTitle": false,
-        "name": "Input",
-        "url": "/form/input",
+        "name": "General",
+        "url": "/form/general",
         "icon": "chevron-right",
         "submenu": []
       },
       {
         "isTitle": false,
-        "name": "Input Group",
-        "url": "/form/input-group",
+        "name": "Advanced",
+        "url": "/form/advanced",
         "icon": "chevron-right",
         "submenu": []
       },
       {
         "isTitle": false,
-        "name": "Select",
-        "url": "/form/select",
+        "name": "Editors",
+        "url": "/form/editors",
+        "icon": "chevron-right",
+        "submenu": []
+      },
+    ]
+  },
+  {
+    "isTitle": false,
+    "name": "Table",
+    "key": "table",
+    "icon": "table",
+    "submenu": [
+      {
+        "isTitle": false,
+        "name": "Simple Table",
+        "url": "/table/simple",
         "icon": "chevron-right",
         "submenu": []
       },
       {
         "isTitle": false,
-        "name": "Radio",
-        "url": "/form/radio",
-        "icon": "chevron-right",
-        "submenu": []
-      },
-      {
-        "isTitle": false,
-        "name": "Checkbox",
-        "url": "/form/checkbox",
-        "icon": "chevron-right",
-        "submenu": []
-      },
-      {
-        "isTitle": false,
-        "name": "Textarea",
-        "url": "/form/textarea",
+        "name": "Datatable",
+        "url": "/table/datatable",
         "icon": "chevron-right",
         "submenu": []
       },
