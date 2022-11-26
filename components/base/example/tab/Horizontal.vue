@@ -22,7 +22,7 @@ const handleAfterMove = (newTab: string) => {
 /**
  * Example modal code
  */
-const exampleCode = `<KTab
+const exampleCode = `<BaseTab
   :tabs="tabs"
   :current-tab="currentTab"
   position="bottom"
@@ -41,7 +41,7 @@ const exampleCode = `<KTab
   <template #tab3>
     Tab 3 template
   </template>
-</KTab>
+</BaseTab>
 `
 </script>
 
@@ -51,7 +51,7 @@ const exampleCode = `<KTab
       <div class="text-lg font-bold mb-1">
         Horizontal Tab
       </div>
-      <KTab type="horizontal" :tabs="tabs" :current-tab="currentTab" @after-move="handleAfterMove" position="bottom"
+      <BaseTab type="horizontal" :tabs="tabs" :current-tab="currentTab" @after-move="handleAfterMove" position="bottom"
         nav-class="px-2 rounded-t gap-2 py-2" tab-class="p-2 text-gray-900 rounded" line-class="!bg-gray-700 rounded-t"
         tab-active-class="!font-bold">
         <template #tab1>
@@ -63,10 +63,10 @@ const exampleCode = `<KTab
         <template #tab3>
           Tab 3 template
         </template>
-      </KTab>
+      </BaseTab>
     </div>
     <div class="col-span-12 md:col-span-6">
-      <KUtilCodeView :text="exampleCode" />
+      <BaseUtilCodeView :text="exampleCode" />
     </div>
   </div>
 </template>

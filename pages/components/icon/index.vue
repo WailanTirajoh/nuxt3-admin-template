@@ -39,9 +39,9 @@ const copyText = (text: string) => {
     <div class="text-sm italic">*Click to copy the text</div>
     <TransitionGroup name="list" tag="ul" class="grid gap-2 grid-cols-[repeat(auto-fill,_minmax(14rem,_1fr))]">
       <li v-for="icon in filteredIcon" :key="icon" @click="copyText(icon)">
-        <KButton :icon="icon" type="light" class="w-full !text-sky-900" text-position="left" ripple>
+        <BaseButton :icon="icon" type="light" class="w-full !text-sky-900" text-position="left" ripple>
           {{ icon }}
-        </KButton>
+        </BaseButton>
         <!-- <vue-feather :type="icon"></vue-feather> -->
         <!-- <span>{{ icon }}</span> -->
       </li>

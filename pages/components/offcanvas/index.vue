@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import Offcanvas from "~/components/K/util/Offcanvas.vue"
+import Offcanvas from "~/components/Base/util/Offcanvas.vue"
 
 useHead({
   title: 'Offcanvas'
@@ -18,9 +18,9 @@ useHead({
         <div class="grid md:flex gap-2">
           <Offcanvas position="left">
             <template #button>
-              <KButton>
+              <BaseButton>
                 Left Offcanvas
-              </KButton>
+              </BaseButton>
             </template>
             <template #header>
               Left Offcanvas
@@ -31,9 +31,9 @@ useHead({
           </Offcanvas>
           <Offcanvas position="right">
             <template #button>
-              <KButton>
+              <BaseButton>
                 Right Offcanvas
-              </KButton>
+              </BaseButton>
             </template>
             <template #header>
               Right Offcanvas
@@ -44,9 +44,9 @@ useHead({
           </Offcanvas>
           <Offcanvas position="right" width="800px">
             <template #button>
-              <KButton>
+              <BaseButton>
                 Right Offcanvas with width 800px
-              </KButton>
+              </BaseButton>
             </template>
             <template #header>
               Right Offcanvas
@@ -57,9 +57,9 @@ useHead({
           </Offcanvas>
           <Offcanvas position="left" width="600px">
             <template #button>
-              <KButton>
+              <BaseButton>
                 Left Offcanvas with width 600px
-              </KButton>
+              </BaseButton>
             </template>
             <template #header>
               Right Offcanvas
@@ -71,11 +71,11 @@ useHead({
         </div>
       </div>
       <div class="col-span-12">
-        <KOtherComingSoon>
+        <BaseOtherComingSoon>
           <div>
             TODO: Top & Bottom offcanvas
           </div>
-        </KOtherComingSoon>
+        </BaseOtherComingSoon>
       </div>
     </div>
   </div>

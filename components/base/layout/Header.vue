@@ -22,7 +22,7 @@ const animationOpenClose = useAnimationOpenClose()
       <transition name="expand" @enter="animationOpenClose.animateEnter"
         @after-enter="animationOpenClose.animateAfterEnter" @leave="animationOpenClose.animateLeave">
         <div class="block md:hidden" v-show="sidebarStore.mobileOpen">
-          <KLayoutMobileNav />
+          <BaseLayoutMobileNav />
         </div>
       </transition>
       <div class="h-14 flex items-center w-full justify-between px-4 md:px-10">
@@ -30,7 +30,7 @@ const animationOpenClose = useAnimationOpenClose()
           <!-- TODO: Add searchbar -->
         </div>
         <div class="">
-          <KUtilDropdown align="right" width="48">
+          <BaseUtilDropdown align="right" width="48">
             <template #trigger>
               <button>
                 <img class="w-10 h-10 rounded-full border border-[#1d152a7a]" src="/images/profile.jpeg" alt="">
@@ -55,7 +55,7 @@ const animationOpenClose = useAnimationOpenClose()
                 </div>
               </button>
             </template>
-          </KUtilDropdown>
+          </BaseUtilDropdown>
         </div>
       </div>
     </header>

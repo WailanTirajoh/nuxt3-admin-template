@@ -10,6 +10,6 @@ useHead({
       Editors
     </h1>
     <hr class="my-2 border-sky-700" />
-    <KOtherComingSoon />
+    <BaseOtherComingSoon />
   </div>
 </template>

@@ -41,11 +41,11 @@ const modalCode = `<Modal :full-height="false">
     <hr class="my-2 border-sky-700" />
     <div class="grid grid-cols-12 gap-2">
       <div class="col-span-12 md:col-span-5 flex gap-2">
-        <KExampleModal />
-        <KExampleModal800px />
+        <BaseExampleModal />
+        <BaseExampleModal800px />
       </div>
       <div class="col-span-12 md:col-span-7">
-        <KUtilCodeView :text="modalCode" />
+        <BaseUtilCodeView :text="modalCode" />
       </div>
       <div class="col-span-12">
         <hr class="my-2" />

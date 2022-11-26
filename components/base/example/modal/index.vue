@@ -1,9 +1,9 @@
 <template>
-  <KUtilModal :full-height="false">
+  <BaseUtilModal :full-height="false">
     <template #button>
-      <KButton>
+      <BaseButton>
         Modal
-      </KButton>
+      </BaseButton>
     </template>
     <template #header>
       <div>
@@ -20,5 +20,5 @@
         Footer
       </div>
     </template>
-  </KUtilModal>
+  </BaseUtilModal>
 </template>

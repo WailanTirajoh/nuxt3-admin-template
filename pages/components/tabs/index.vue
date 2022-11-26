@@ -9,13 +9,13 @@
     <hr class="my-2 border-sky-700" />
     <div class="grid grid-cols-12 gap-2">
       <div class="col-span-12">
-        <KExampleTabHorizontal />
+        <BaseExampleTabHorizontal />
       </div>
       <div class="col-span-12 my-2">
         <hr />
       </div>
       <div class="col-span-12">
-        <KExampleTabVertical />
+        <BaseExampleTabVertical />
       </div>
     </div>
   </div>
