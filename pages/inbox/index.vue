@@ -10,6 +10,6 @@ useHead({
       Inbox
     </h1>
     <hr class="my-2 border-sky-700" />
-    <BaseOtherComingSoon />
+    <KOtherComingSoon />
   </div>
 </template>
