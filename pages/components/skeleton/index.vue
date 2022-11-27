@@ -7,12 +7,39 @@
       Skeleton
     </h1>
     <hr class="my-2 border-sky-700" />
-    <div class="flex">
-      <div class="p-2 flex flex-col md:flex-row gap-3 rounded border w-52 md:w-80">
-        <div class="skeleton w-full md:w-52 h-32 rounded bg-gray-300"></div>
-        <div class="w-full">
-          <div class="skeleton w-full h-4 rounded bg-gray-300"></div>
-          <div class="skeleton w-16 h-4 rounded bg-gray-300"></div>
+    <div class="grid grid-cols-12 gap-2">
+      <div class="col-span-12">
+        <p class="text-md font-medium">
+          Shimmer
+        </p>
+        <div class="flex">
+          <div class="p-2 flex flex-col md:flex-row gap-3 rounded border w-52 md:w-80">
+            <div class="skeleton w-full md:w-52 h-32 rounded bg-gray-300"></div>
+            <div class="w-full">
+              <div class="skeleton w-full h-4 rounded bg-gray-300"></div>
+              <div class="skeleton w-16 h-4 rounded bg-gray-300"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-span-12">
+        <p class="text-md font-medium">
+          Pulse
+        </p>
+        <div class="border rounded-md p-4 max-w-sm w-full">
+          <div class="animate-pulse flex space-x-4">
+            <div class="rounded-full bg-gray-300 h-10 w-10"></div>
+            <div class="flex-1 space-y-6 py-1">
+              <div class="h-2 bg-gray-300 rounded"></div>
+              <div class="space-y-3">
+                <div class="grid grid-cols-3 gap-4">
+                  <div class="h-2 bg-gray-300 rounded col-span-2"></div>
+                  <div class="h-2 bg-gray-300 rounded col-span-1"></div>
+                </div>
+                <div class="h-2 bg-gray-300 rounded"></div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
