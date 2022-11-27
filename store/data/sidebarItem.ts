@@ -173,6 +173,13 @@ export default [
       },
       {
         "isTitle": false,
+        "name": "Register",
+        "url": "/register",
+        "icon": "chevron-right",
+        "submenu": []
+      },
+      {
+        "isTitle": false,
         "name": "Profile",
         "url": "/profile",
         "icon": "chevron-right",
