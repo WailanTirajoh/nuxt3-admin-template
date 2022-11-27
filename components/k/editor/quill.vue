@@ -133,7 +133,7 @@ onBeforeUnmount(() => {
 </script>
 
 <template>
-  <div class="quill-editor">
+  <div class="quill-editor bg-white">
     <slot name="toolbar"></slot>
     <div ref="editor"></div>
   </div>
