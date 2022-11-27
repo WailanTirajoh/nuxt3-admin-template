@@ -1,26 +1,45 @@
 <script setup lang="ts">
 import VueFeather from "vue-feather";
 
+type Position = 'top' | 'left' | 'right' | 'bottom'
 interface Props {
-  position?: string,
+  position?: Position,
   width?: string,
+  height?: string,
 }
 
-const props = withDefaults(defineProps<Props>(), {
-  position: 'left',
-  width: '400px'
-});
+const props = defineProps<Props>();
+
+const position = computed(() => {
+  return props.position ?? 'right'
+})
+
+const height = computed(() => {
+  if (['right', 'left'].includes(position.value)) {
+    return props.height
+  }
+
+  return props.height ?? '500px'
+})
+
+const width = computed(() => {
+  if (['right', 'left'].includes(position.value)) {
+    return props.width ?? '400px'
+  }
+
+  return props.width ?? '100%'
+})
 
 const classPosition = computed(() => {
-  switch (props.position) {
+  switch (position.value) {
     case "right":
-      return 'right-0'
+      return 'top-0 right-0'
     case "top":
-      return 'top-0'
+      return 'left-0 top-0'
     case "bottom":
-      return 'bottom-0'
+      return 'left-0 bottom-0'
     default:
-      return 'left-0'
+      return 'top-0 left-0'
   }
 });
 
@@ -47,14 +66,14 @@ watch(isOpen, (newValue) => {
 </script>
 
 <template>
-  <div :class="props.position">
+  <div :class="position">
     <span @click="openOffCanvas()">
       <slot name="button"></slot>
     </span>
     <transition name="slide-fade">
       <div v-if="isOpen"
-        class="fixed bottom-0 z-40 flex flex-col max-w-full bg-white bg-clip-padding transition-all duration-300 ease-in-out h-full shadow-2xl"
-        :class="classPosition" :style="{ width: props.width }">
+        class="fixed z-40 flex flex-col max-w-full bg-white bg-clip-padding transition-all duration-300 ease-in-out h-full shadow-2xl"
+        :class="classPosition" :style="{ width: width, height: height }">
         <div class="flex justify-between p-4 border-b-2 border-b-gray-200 items-center">
           <h3 class="font-medium text-2xl" @click="closeOffCanvas()">
             <slot name="header"></slot>
@@ -65,7 +84,7 @@ watch(isOpen, (newValue) => {
             <vue-feather type="x" />
           </button>
         </div>
-        <div class="p-4 overflow-y-auto" style="max-height: 90vh">
+        <div class="p-4 overflow-y-auto">
           <slot />
         </div>
       </div>
@@ -112,5 +131,38 @@ watch(isOpen, (newValue) => {
 .right .slide-fade-enter,
 .right .slide-fade-leave-to {
   transform: translateX(100%);
+}
+.top .slide-fade-enter-from {
+  transform: translateY(-100%);
+}
+
+.top .slide-fade-enter-active {
+  transition: all 0.5s ease-in-out;
+}
+
+.top .slide-fade-leave-active-to {
+  transition: all 0.5s ease-in-out;
+}
+
+.top .slide-fade-enter,
+.top .slide-fade-leave-to {
+  transform: translateY(-100%);
+}
+
+.bottom .slide-fade-enter-from {
+  transform: translateY(100%);
+}
+
+.bottom .slide-fade-enter-active {
+  transition: all 0.5s ease-in-out;
+}
+
+.bottom .slide-fade-leave-active-to {
+  transition: all 0.5s ease-in-out;
+}
+
+.bottom .slide-fade-enter,
+.bottom .slide-fade-leave-to {
+  transform: translateY(100%);
 }
 </style>
