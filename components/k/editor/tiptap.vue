@@ -1,10 +1,6 @@
 <script setup lang="ts">
 import { useEditor, EditorContent } from '@tiptap/vue-3'
-import Document from '@tiptap/extension-document'
-import Heading from '@tiptap/extension-heading'
-import Paragraph from '@tiptap/extension-paragraph'
 import StarterKit from '@tiptap/starter-kit'
-import Text from '@tiptap/extension-text'
 import TextAlign from '@tiptap/extension-text-align'
 import VueFeather from 'vue-feather'
 import Image from '@tiptap/extension-image'
@@ -18,13 +14,7 @@ const editor = useEditor({
   },
   extensions: [
     StarterKit,
-    Document,
-    Paragraph,
-    Text,
-    Heading,
-    TextAlign.configure({
-      types: ['heading', 'paragraph'],
-    }),
+    TextAlign,
     Image.configure({
       allowBase64: true,
       inline: true,
@@ -33,19 +23,19 @@ const editor = useEditor({
 })
 
 const chooseImage = async () => {
-  const fileList = await selectInputImage('image/*') as FileList | null
-  if (fileList === null) return
+  const fileList = await selectInputImage('image/*')
+  if (!fileList) return
   const reader = new FileReader();
   reader.readAsDataURL(fileList[0]);
   reader.onloadend = function () {
-    if (editor.value === undefined) return
+    if (!editor.value) return
     editor.value.commands.setImage({
       src: reader.result as string
     })
   }
 }
 
-const selectInputImage = (contentType: string) => {
+const selectInputImage = (contentType: string): Promise<FileList | null> => {
   return new Promise(resolve => {
     let input = document.createElement('input');
     input.type = 'file';
@@ -60,7 +50,22 @@ const selectInputImage = (contentType: string) => {
   });
 }
 
+const imageClickHandler = (e: Event) => {
+  if ((e.target as HTMLInputElement).tagName === 'IMG') {
+    // TODO: handler for image click
+  }
+}
+
+onMounted(() => {
+  const editorEl = document.getElementById('editor')
+  if (!editorEl) return
+  editorEl.addEventListener("click", imageClickHandler);
+})
+
 onBeforeUnmount(() => {
+  const editorEl = document.getElementById('editor')
+  if (!editorEl) return
+  editorEl.removeEventListener("click", imageClickHandler)
   editor.value?.destroy()
 })
 </script>
@@ -84,13 +89,11 @@ onBeforeUnmount(() => {
         <vue-feather class="w-5 h-5" type="italic" />
       </div>
       <div
-        class="border border-gray-300 mr-1 mt-1 rounded hover:bg-gray-50 duration-300 flex p-1 cursor-pointer h-8 items-center justify-center select-none"
+        class="border border-gray-300 mr-1 mt-1 rounded hover:bg-gray-50 duration-300 flex p-1 cursor-pointer h-8 items-center justify-center select-none line-through"
         @click="editor?.chain().focus().toggleStrike().run()"
         :disabled="!editor.can().chain().focus().toggleStrike().run()"
         :class="{ 'bg-gray-800 text-white hover:bg-gray-700': editor.isActive('strike') }">
-        <strike>
-          strike
-        </strike>
+        strike
       </div>
       <div
         class="border border-gray-300 mr-1 mt-1 rounded hover:bg-gray-50 duration-300 flex p-1 cursor-pointer h-8 items-center justify-center select-none"
@@ -224,6 +227,6 @@ onBeforeUnmount(() => {
         <vue-feather class="w-5 h-5" type="image" />
       </div>
     </div>
-    <editor-content class="element" :editor="editor" />
+    <editor-content id="editor" class="element" :editor="editor" />
   </div>
 </template>
