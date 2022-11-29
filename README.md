@@ -8,11 +8,13 @@ git clone https://github.com/WailanTirajoh/nuxt3-admin-template.git
 # Go to directory
 cd nuxt3-admin-template
 
-# Install Dependency
+# Run with npm
 npm install
-
-# Development
 npm run dev
+
+# Or with pnpm
+pnpm install --shamefully-hoist
+pnpm dev
 ```
 
 ## Preview
