@@ -97,13 +97,6 @@ export default [
         "icon": "chevron-right",
         "submenu": []
       },
-      // {
-      //   "isTitle": false,
-      //   "name": "Advanced",
-      //   "url": "/form/advanced",
-      //   "icon": "chevron-right",
-      //   "submenu": []
-      // },
       {
         "isTitle": false,
         "name": "Editor",

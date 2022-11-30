@@ -13,7 +13,7 @@ const toastStore = useToastStore()
 <template>
   <div>
     <KToastGroup position="bottom-right" :toasts="toastStore.toasts" />
-    <div class="px-0 md:px-3 lg:px-4">
+    <div class="px-0 md:px-1 lg:px-2">
       <KLayoutHeader />
       <div class="py-4">
         <div class="flex min-h-screen text-sky-900 bg-opacity-40 bg-gray-900 rounded-3xl shadow-lg">

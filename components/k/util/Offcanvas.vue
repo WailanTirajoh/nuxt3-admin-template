@@ -10,26 +10,22 @@ interface Props {
 
 const props = defineProps<Props>();
 
+const isOpen = ref(false);
 const position = computed(() => {
   return props.position ?? 'right'
 })
-
 const height = computed(() => {
   if (['right', 'left'].includes(position.value)) {
     return props.height
   }
-
   return props.height ?? '500px'
 })
-
 const width = computed(() => {
   if (['right', 'left'].includes(position.value)) {
     return props.width ?? '400px'
   }
-
   return props.width ?? '100%'
 })
-
 const classPosition = computed(() => {
   switch (position.value) {
     case "right":
@@ -43,14 +39,12 @@ const classPosition = computed(() => {
   }
 });
 
-const isOpen = ref(false);
 const openOffCanvas = () => {
   isOpen.value = true;
 };
 const closeOffCanvas = () => {
   isOpen.value = false;
 };
-
 
 watch(isOpen, (newValue) => {
   if (process.client) {
@@ -73,7 +67,7 @@ watch(isOpen, (newValue) => {
     <transition name="slide-fade">
       <div v-if="isOpen"
         class="fixed z-40 flex flex-col max-w-full bg-white bg-clip-padding transition-all duration-300 ease-in-out h-full shadow-2xl"
-        :class="classPosition" :style="{ width: width, height: height }">
+        :class="classPosition" :style="{ width: width, height: height, maxWidth: '100vw', maxHeight: '100vh' }">
         <div class="flex justify-between p-4 border-b-2 border-b-gray-200 items-center">
           <h3 class="font-medium text-2xl" @click="closeOffCanvas()">
             <slot name="header"></slot>
@@ -132,6 +126,7 @@ watch(isOpen, (newValue) => {
 .right .slide-fade-leave-to {
   transform: translateX(100%);
 }
+
 .top .slide-fade-enter-from {
   transform: translateY(-100%);
 }

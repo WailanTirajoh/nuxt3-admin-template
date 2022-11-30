@@ -50,7 +50,8 @@ const data = ref({
   total: 1,
   currentPage: 1,
   limit: 10,
-  search: ''
+  search: '',
+  selected: []
 })
 
 const updateSort = (sortBy: string, sortType: string) => {
@@ -71,9 +72,12 @@ const search = () => {
     <hr class="my-2 border-sky-700" />
     <div class="row">
       <div class="col-span-12">
-        <KDatatable v-model:search="data.search" v-model:limit="data.limit" :is-loading="false" :data="data.data"
-          :header="data.header" :total-data="data.total" :current-page="data.currentPage" :sort-by="data.sortBy"
-          :sort-type="data.sortType" @on-sort-change="updateSort" @on-enter-search="search" />
+        <KDatatable v-model:search="data.search" v-model:limit="data.limit" v-model:selected="data.selected"
+          :is-loading="false" :data="data.data" :header="data.header" :total-data="data.total"
+          :current-page="data.currentPage" :sort-by="data.sortBy" :sort-type="data.sortType"
+          @on-sort-change="updateSort" @on-enter-search="search" :setting="{
+            checkbox: true
+          }" />
       </div>
     </div>
   </div>

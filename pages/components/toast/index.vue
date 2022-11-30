@@ -17,23 +17,23 @@ const toastStore = useToastStore()
     <div class="grid grid-cols-12 gap-2">
       <div class="col-span-12">
         <div class="flex gap-2">
-          <KButton type="success" @click="toastStore.success({
+          <KButton variant="success" @click="toastStore.success({
             message: 'Success toast'
           })">
             Success
           </KButton>
 
-          <KButton type="danger" @click="toastStore.error({
+          <KButton variant="danger" @click="toastStore.error({
             message: 'Error toast'
           })">
             Error
           </KButton>
-          <KButton type="warning" @click="toastStore.warning({
+          <KButton variant="warning" @click="toastStore.warning({
             message: 'Warning toast'
           })">
             Warning
           </KButton>
-          <KButton type="info" @click="toastStore.info({
+          <KButton variant="info" @click="toastStore.info({
             message: 'Info toast'
           })">
             Info

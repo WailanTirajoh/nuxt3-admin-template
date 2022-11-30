@@ -1,37 +1,48 @@
 <script setup lang="ts">
 import { Data, Header } from '~~/interface/datatable';
 
+type Setting = {
+  checkbox: boolean
+}
+
 interface Props {
+  // Required props
   data: Array<Data>
   header: Array<Header>
-  sortBy?: string
-  sortType: string
-  isLoading: boolean
   currentPage: number
   limit: number
   totalData: number
+  // Optional props
+  isLoading?: boolean
+  sortBy?: string
+  sortType?: string
   summary?: string
-  search: string
+  search?: string
+  setting?: Setting
+  selected?: Array<string | never>
 }
+
 const props = defineProps<Props>()
-const emit = defineEmits(['on-sort-change', 'on-enter-search', 'update:search', 'update:limit'])
+const emit = defineEmits([
+  'on-sort-change',
+  'on-enter-search',
+  'update:search',
+  'update:limit',
+  'update:selected',
+])
 
 const totalPage = computed(() => Math.ceil(props.totalData / props.limit))
 const showFrom = computed(() => (1 + props.currentPage * props.limit) - props.limit)
 const showTo = computed(() => props.currentPage * props.limit < props.totalData ? props.currentPage * props.limit : props.totalData)
-
-const clickSort = (key: string) => emit('on-sort-change', key, props.sortType === 'asc' ? 'desc' : 'asc')
-const enterSearch = () => emit('on-enter-search')
-
+// v-model props
 const search = computed({
   get() {
-    return props.search
+    return props.search ?? ''
   },
   set(value: string) {
     emit('update:search', value)
   }
 })
-
 const limit = computed({
   get() {
     return props.limit
@@ -40,7 +51,18 @@ const limit = computed({
     emit('update:limit', value)
   }
 })
+const selected = computed({
+  get() {
+    return props.selected ?? []
+  },
+  set(value: Array<string>) {
+    emit('update:selected', value)
+  }
+})
 
+const setting: Setting = props.setting ?? {
+  checkbox: false
+}
 const limitValues = [
   {
     key: 10,
@@ -60,13 +82,14 @@ const limitValues = [
   },
 ]
 
+const clickSort = (key: string) => emit('on-sort-change', key, props.sortType === 'asc' ? 'desc' : 'asc')
+const enterSearch = () => emit('on-enter-search')
 const thClick = (h: Header) => {
   clickSort(h.key)
   if (h.onHeaderClick) {
     h.onHeaderClick()
   }
 }
-
 const tdClick = (h: Header) => {
   if (h.onBodyClick) {
     h.onBodyClick()
@@ -99,6 +122,9 @@ const tdClick = (h: Header) => {
           <table class="w-full bg-white k-datatable resizable" :summary="summary">
             <thead class="bg-gray-100 dark:bg-gray-900 dark:border-b dark:border-gray-700 text-gray-800">
               <tr>
+                <th v-if="setting.checkbox"
+                  class="p-1 whitespace-nowrap select-none hover:bg-gray-200 dark:hover:bg-black border dark:border-gray-600 px-5 ">
+                </th>
                 <th
                   class="p-2 whitespace-nowrap select-none hover:bg-gray-200 dark:hover:bg-black border dark:border-gray-600 px-10 "
                   :class="{
@@ -114,6 +140,15 @@ const tdClick = (h: Header) => {
               <tr
                 class="duration-300 bg-white hover:bg-gray-50 dark:bg-gray-800 dark:hover:bg-gray-900 dark:border-gray-700"
                 v-for="d in props.data">
+                <td
+                  class="duration-300 p-1 hover:bg-gray-100 border dark:hover:bg-gray-900 relative dark:border-gray-600"
+                  v-if="setting.checkbox" :style="{
+                    width: '20px'
+                  }">
+                  <div class="flex justify-center items-center">
+                    <input type="checkbox" :value="d['id']" v-model="selected">
+                  </div>
+                </td>
                 <KDatatableTd
                   class="duration-300 p-1 hover:bg-gray-100 border dark:hover:bg-gray-900 relative dark:border-gray-600"
                   :copyText="d[h.key]" v-for="h, i in props.header">

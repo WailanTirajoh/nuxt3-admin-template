@@ -4,13 +4,13 @@ import VueFeather from "vue-feather"
 /**
  * Available type
  */
-type Type = 'primary' | 'secondary' | 'danger' | 'success' | 'light' | 'warning' | 'info'
+type Variant = 'primary' | 'secondary' | 'danger' | 'success' | 'light' | 'warning' | 'info'
 type IconPosition = 'left' | 'right'
 type TextPosition = 'left' | 'center' | 'right'
 
 interface Props {
   classes?: Array<string>
-  type?: Type
+  variant?: Variant
   icon?: string
   disabled?: boolean
   ripple?: boolean
@@ -22,7 +22,7 @@ const props = defineProps<Props>()
 
 const btnColor = computed(() => {
   let color = ''
-  switch (props.type) {
+  switch (props.variant) {
     case 'secondary':
       color = 'bg-gray-200 text-gray-800'
       if (!btnDisabled.value) color += ' active:bg-gray-200 hover:bg-gray-300'

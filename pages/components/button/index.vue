@@ -9,37 +9,37 @@ useHead({
     <h1 class="text-3xl font-bold">Button</h1>
     <hr class="my-2 border-sky-700" />
     <div class="grid gap-2 grid-cols-[repeat(auto-fill,_minmax(14rem,_1fr))] mb-2">
-      <KButton type="primary" :ripple="true">
+      <KButton variant="primary" :ripple="true">
         Primary Button with ripple
       </KButton>
-      <KButton type="secondary" :ripple="true">
+      <KButton variant="secondary" :ripple="true">
         Secondary Button with ripple
       </KButton>
-      <KButton type="danger" :ripple="true">
+      <KButton variant="danger" :ripple="true">
         Danger Button with ripple
       </KButton>
-      <KButton type="primary">
+      <KButton variant="primary">
         Primary Button
       </KButton>
-      <KButton type="secondary">
+      <KButton variant="secondary">
         Secondary Button
       </KButton>
-      <KButton type="danger">
+      <KButton variant="danger">
         Danger Button
       </KButton>
-      <KButton icon="smile" type="primary" icon-position="left">
+      <KButton icon="smile" variant="primary" icon-position="left">
         Button with Icon
       </KButton>
-      <KButton icon="smile" type="primary" icon-position="right">
+      <KButton icon="smile" variant="primary" icon-position="right">
         Button with Icon Right
       </KButton>
-      <KButton icon="smile" type="primary" :disabled="true">
+      <KButton icon="smile" variant="primary" :disabled="true">
         Disabled Button
       </KButton>
-      <KButton icon="smile" type="primary" :disabled="true" :loading="true">
+      <KButton icon="smile" variant="primary" :disabled="true" :loading="true">
         Loading Button
       </KButton>
-      <KButton icon="smile" type="primary" :disabled="true" :loading="true" text-position="left">
+      <KButton icon="smile" variant="primary" :disabled="true" :loading="true" text-position="left">
         Text Left
       </KButton>
     </div>
