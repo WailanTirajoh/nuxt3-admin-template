@@ -26,18 +26,19 @@ const isOpen = ref(false)
 const toggleOpen = () => {
   isOpen.value = !isOpen.value
 }
+
 </script>
 
 <template>
-  <li v-if="item.isTitle" :item="item">
+  <li class="my-2" v-if="item.isTitle" :item="item">
     <div class="font-bold my-2 text-lg text-[#b3b8c5] hidden lg:block">
       {{ item.name }}
     </div>
   </li>
-  <li v-else-if="item.submenu.length === 0">
+  <li class="my-2" v-else-if="item.submenu.length === 0">
     <div :data-tooltip-show="type === 'md'" data-tooltip-pos="right" :aria-label="item.name">
       <nuxt-link :to="item.url"
-        class="flex md:justify-center lg:justify-start duration-300 items-center gap-3 cursor-pointer px-5 py-3 mb-2 md:hover:bg-gray-900 md:hover:bg-opacity-40 border-transparent"
+        class="flex md:justify-center lg:justify-start duration-300 items-center gap-3 cursor-pointer px-5 py-3 md:hover:bg-gray-900 md:hover:bg-opacity-40 border-transparent"
         :class="{
           'rounded-lg': level === 1
         }"
@@ -50,10 +51,10 @@ const toggleOpen = () => {
       </nuxt-link>
     </div>
   </li>
-  <li v-else>
+  <li class="my-2" v-else>
     <div :data-tooltip-show="type === 'md'" data-tooltip-pos="right" :aria-label="item.name" @click="toggleOpen">
       <div
-        class="flex md:justify-center lg:justify-start duration-300 items-center rounded-lg gap-3 cursor-pointer px-5 py-3 mb-2 md:hover:bg-gray-900 md:hover:bg-opacity-40 border-transparent">
+        class="flex md:justify-center lg:justify-start duration-300 items-center rounded-lg gap-3 cursor-pointer px-5 py-3 md:hover:bg-gray-900 md:hover:bg-opacity-40 border-transparent">
         <vue-feather v-if="item.icon" :type="item.icon"></vue-feather>
         <div class="md:hidden lg:block select-none whitespace-nowrap overflow-hidden text-ellipsis">
           {{ item.name }}
@@ -65,7 +66,9 @@ const toggleOpen = () => {
     </div>
     <transition name="expand" @enter="animationOpenClose.animateEnter"
       @after-enter="animationOpenClose.animateAfterEnter" @leave="animationOpenClose.animateLeave">
-      <ul class="bg-[#1d152a9a] rounded-xl mb-2 py-1" v-show="isOpen">
+      <ul class="bg-[#1d152a9a] rounded-xl overflow-hidden mt-2 duration-500" :class="{
+        'mt-0': !isOpen
+      }" v-show="isOpen">
         <template v-for="sub in item.submenu" :key="item.key">
           <SidebarItem :item="sub" :level="level + 1" />
         </template>
