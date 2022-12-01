@@ -42,7 +42,7 @@ const toggleOpen = () => {
         :class="{
           'rounded-lg': level === 1
         }"
-        :exact-active-class="level === 1 ? 'bg-gray-900 bg-opacity-40 !md:hover:bg-opacity-60 border-b-4 !border-gray-900 !border-opacity-70 !text-[#f0f0f0] font-bold' : 'border-l-4 !border-gray-900 !border-opacity-70 font-bold bg-gray-900 bg-opacity-40 !text-[#f0f0f0]'"
+        :exact-active-class="level === 1 ? 'bg-gray-900 bg-opacity-40 !md:hover:bg-opacity-60 border-b-4 !border-gray-50 !border-opacity-50 !text-[#f0f0f0] font-bold' : 'border-l-4 !border-gray-50 !border-opacity-70 font-bold bg-gray-900 bg-opacity-40 !text-[#f0f0f0]'"
         @click="sidebarStore.mobileOpen = false">
         <vue-feather v-if="item.icon" :type="item.icon"></vue-feather>
         <div class="md:hidden lg:block select-none whitespace-nowrap overflow-hidden text-ellipsis">
@@ -66,7 +66,7 @@ const toggleOpen = () => {
     </div>
     <transition name="expand" @enter="animationOpenClose.animateEnter"
       @after-enter="animationOpenClose.animateAfterEnter" @leave="animationOpenClose.animateLeave">
-      <ul class="bg-[#1d152a9a] rounded-xl overflow-hidden mt-2 duration-500" :class="{
+      <ul class="bg-[#1d152ac0] rounded-lg overflow-hidden mt-2 duration-500 shadow-lg" :class="{
         'mt-0': !isOpen
       }" v-show="isOpen">
         <template v-for="sub in item.submenu" :key="item.key">

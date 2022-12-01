@@ -5,9 +5,9 @@ html {
 body {
   font-family: 'Roboto', sans-serif;
   background-color: #372948;
-  background-image: url(../svg/home.svg);
+  background-image: url(../svg/endless-constellation.svg);
   background-attachment: fixed;
-  background-repeat: no-repeat;
+  /* background-repeat: no-repeat; */
   padding-bottom: 1.25rem;
 }
 

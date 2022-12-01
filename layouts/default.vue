@@ -16,7 +16,7 @@ const toastStore = useToastStore()
     <div class="px-0 md:px-1 lg:px-2">
       <KLayoutHeader />
       <div class="py-4">
-        <div class="flex min-h-screen text-sky-900 bg-opacity-40 bg-gray-900 rounded-3xl shadow-lg">
+        <div class="flex min-h-screen text-sky-900 bg-opacity-40 bg-gray-900 rounded-3xl shadow-lg" style="backdrop-filter: blur(1.5px)">
           <KLayoutSidebar class="h-full" />
           <div class="w-full md:w-[calc(100%-8rem)] lg:w-[calc(100%-16rem)] sm:rounded-l-none">
             <div class="p-6 bg-gray-100 h-full rounded-3xl">
@@ -25,7 +25,7 @@ const toastStore = useToastStore()
           </div>
         </div>
         <div class="px-6 md:px-11">
-          <div class="w-full bg-gray-800 shadow-xl bg-opacity-70 rounded-b-2xl h-4">
+          <div class="w-full bg-gray-900 shadow-xl bg-opacity-60 rounded-b-2xl h-4">
           </div>
         </div>
       </div>
