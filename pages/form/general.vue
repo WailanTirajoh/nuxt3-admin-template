@@ -5,6 +5,7 @@ useHead({
 
 const dropdownExample = ref()
 const inputExample = ref()
+const textareaExample = ref()
 </script>
 
 <template>
@@ -21,7 +22,10 @@ const inputExample = ref()
         }]" label="Dropdown" placeholder="Choose dropdown" />
       </div>
       <div class="col-span-12">
-        <KFormInput v-model="inputExample" label="Description" placeholder="Input description" type="text" />
+        <KFormInput v-model="inputExample" label="Input" placeholder="Input Field" type="text" />
+      </div>
+      <div class="col-span-12">
+        <KFormTextarea v-model="textareaExample" label="Text Area" placeholder="Textarea Field" />
       </div>
     </div>
   </div>
