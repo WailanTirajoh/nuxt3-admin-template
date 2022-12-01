@@ -21,7 +21,6 @@ const inputExample = ref()
         }]" label="Dropdown" placeholder="Choose dropdown" />
       </div>
       <div class="col-span-12">
-      {{inputExample}}
         <KFormInput v-model="inputExample" label="Description" placeholder="Input description" type="text" />
       </div>
     </div>
