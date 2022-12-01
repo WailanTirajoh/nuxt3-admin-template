@@ -13,9 +13,9 @@ const toastStore = useToastStore()
 <template>
   <div>
     <KToastGroup position="bottom-right" :toasts="toastStore.toasts" />
-    <div class="px-0 md:px-1">
+    <div>
       <KLayoutHeader />
-      <div class="py-4">
+      <div class="py-4 px-0 md:px-1">
         <div class="flex min-h-screen text-sky-900 bg-opacity-40 bg-gray-900 rounded-3xl shadow-lg">
           <KLayoutSidebar class="h-full" />
           <div class="w-full md:w-[calc(100%-8rem)] lg:w-[calc(100%-16rem)] sm:rounded-l-none">
