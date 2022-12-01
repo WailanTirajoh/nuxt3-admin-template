@@ -3,7 +3,8 @@ useHead({
   title: 'General'
 })
 
-const test = ref()
+const dropdownExample = ref()
+const inputExample = ref()
 </script>
 
 <template>
@@ -14,10 +15,14 @@ const test = ref()
     <hr class="my-2 border-sky-700" />
     <div class="grid grid-cols-12 gap-2 p-2 bg-white rounded-lg">
       <div class="col-span-12">
-        <KFormSelect v-model="test" :items="[{
+        <KFormSelect v-model="dropdownExample" :items="[{
           name: 'test',
           value: 'test'
         }]" label="Dropdown" placeholder="Choose dropdown" />
+      </div>
+      <div class="col-span-12">
+      {{inputExample}}
+        <KFormInput v-model="inputExample" label="Description" placeholder="Input description" type="text" />
       </div>
     </div>
   </div>

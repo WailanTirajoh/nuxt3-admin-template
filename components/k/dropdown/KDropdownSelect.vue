@@ -4,17 +4,15 @@
       'shadow-lg dark:bg-gray-900': button.isShown,
       '': !borderNone,
     }">
-      <div class="flex items-center justify-between text-gray-700 w-full text-sm border-r-0 rounded-l" :class="{
+      <div class="flex items-center justify-between text-gray-700 w-full text-sm border-r-0 rounded-l h-10" :class="{
         'bg-white border dark:bg-gray-800 dark:border-gray-700':
           !button.isShown,
         'rounded-l-md': !borderNone,
-        'h-10': fixedHeight,
-        'min-h-10': !fixedHeight,
         'bg-gray-100': disabled
       }">
         <slot name="body" />
         <button v-show="showClearData"
-          class="flex items-center hover:bg-gray-200 dark:hover:bg-gray-900 rounded-full justify-center transition-all duration-300 ease-in-out p-3"
+          class="flex items-center hover:bg-gray-200 dark:hover:bg-gray-900 rounded-full justify-center transition-all duration-300 ease-in-out p-2"
           :disabled="disabled" @click="$emit('clear-data')">
           <svg width="8" height="8" viewBox="0 0 8 8" fill="none">
             <path

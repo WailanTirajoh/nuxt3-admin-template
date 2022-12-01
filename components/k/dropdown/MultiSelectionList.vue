@@ -1,9 +1,9 @@
 <template>
   <div>
-    <DropdownSelect ref="dropdownSelect" :border-none="true" :fixed-height="false" @clear-data="clearData">
+    <KDropdownSelect ref="dropdownSelect" :border-none="true" :fixed-height="false" @clear-data="clearData">
       <template #body>
         <div v-if="value" class="p-2 text-left flex gap-1">
-          <span v-for="v in value" :key="v" class="text-xs rounded bg-green-600 text-white p-1">
+          <span v-for="v in value" :key="v" class="text-xs rounded bg-green-600 text-white">
             {{ v }}
           </span>
         </div>
@@ -34,7 +34,7 @@
           </template>
         </ul>
       </template>
-    </DropdownSelect>
+    </KDropdownSelect>
   </div>
 </template>
 
