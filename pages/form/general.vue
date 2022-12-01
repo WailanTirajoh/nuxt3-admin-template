@@ -19,13 +19,13 @@ const textareaExample = ref()
         <KFormSelect v-model="dropdownExample" :items="[{
           name: 'test',
           value: 'test'
-        }]" label="Dropdown" placeholder="Choose dropdown" />
+        }]" label="Dropdown" placeholder="Choose dropdown" :disabled="true"/>
       </div>
       <div class="col-span-12">
-        <KFormInput v-model="inputExample" label="Input" placeholder="Input Field" type="text" />
+        <KFormInput v-model="inputExample" label="Input" placeholder="Input Field" type="text" :disabled="true"/>
       </div>
       <div class="col-span-12">
-        <KFormTextarea v-model="textareaExample" label="Text Area" placeholder="Textarea Field" />
+        <KFormTextarea v-model="textareaExample" label="Text Area" placeholder="Textarea Field" :disabled="true"/>
       </div>
     </div>
   </div>
