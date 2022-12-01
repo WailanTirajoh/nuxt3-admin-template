@@ -19,7 +19,7 @@ const toastStore = useToastStore()
         <div class="flex min-h-screen text-sky-900 bg-opacity-40 bg-gray-900 rounded-3xl shadow-lg">
           <KLayoutSidebar class="h-full" />
           <div class="w-full md:w-[calc(100%-8rem)] lg:w-[calc(100%-16rem)] sm:rounded-l-none">
-            <div class="p-6 bg-gray-100 h-full rounded-3xl">
+            <div class="p-4 bg-gray-100 h-full rounded-3xl">
               <slot />
             </div>
           </div>
