@@ -4,18 +4,6 @@ import StarterKit from '@tiptap/starter-kit'
 import TextAlign from '@tiptap/extension-text-align'
 import VueFeather from 'vue-feather'
 import Image from '@tiptap/extension-image'
-import Collaboration from '@tiptap/extension-collaboration'
-import CollaborationCursor from "@tiptap/extension-collaboration-cursor"
-import * as Y from 'yjs'
-import { WebrtcProvider } from 'y-webrtc'
-import { IndexeddbPersistence } from 'y-indexeddb'
-
-
-// A new Y document
-const ydoc = new Y.Doc()
-// Registered with a WebRTC provider
-const provider = new WebrtcProvider('wai-document', ydoc)
-new IndexeddbPersistence('wai-document', ydoc)
 
 const editor = useEditor({
   content: ``,
@@ -30,16 +18,6 @@ const editor = useEditor({
     Image.configure({
       allowBase64: true,
       inline: true,
-    }),
-    Collaboration.configure({
-      document: ydoc,
-    }),
-    CollaborationCursor.configure({
-      provider: provider,
-      user: {
-        name: "Wailan Tirajoh",
-        color: "#DDFD9B"
-      }
     })
   ],
 })
