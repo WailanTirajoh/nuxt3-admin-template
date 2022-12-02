@@ -1,12 +1,36 @@
+<script setup lang="ts">
+interface Props {
+  borderNone?: boolean
+  showClearData?: boolean
+  dropdownBg?: string
+  dropdownBorder?: string
+  fixedHeight?: boolean
+  disabled?: boolean
+}
+withDefaults(defineProps<Props>(), {
+  borderNone: false,
+  showClearData: true,
+  dropdownBg: 'bg-gray-100',
+  dropdownBorder: '',
+  fixedHeight: true,
+  disabled: false
+})
+
+const isShown = ref(false)
+const toggleDropdown = () => isShown.value = !isShown.value
+
+defineExpose({ toggleDropdown })
+</script>
+
 <template>
   <div class="relative h-full">
     <div class="flex h-full rounded-t dark:text-gray-300" :class="{
-      'shadow-lg dark:bg-gray-900': button.isShown,
+      'shadow-lg dark:bg-gray-900': isShown,
       '': !borderNone,
     }">
       <div class="flex items-center justify-between text-gray-700 w-full text-sm border-r-0 rounded-l h-10" :class="{
         'bg-white border dark:bg-gray-800 dark:border-gray-700':
-          !button.isShown,
+          !isShown,
         'rounded-l-md': !borderNone,
         'bg-gray-100': disabled
       }">
@@ -23,16 +47,16 @@
       </div>
       <button aria-label="dropdown-select-button"
         class="p-3 flex items-center justify-center cursor-pointer transition-colors duration-300 rounded-r" :class="[
-          !button.isShown ? dropdownBg : '',
+          !isShown ? dropdownBg : '',
           dropdownBorder,
           {
             'border hover:bg-gray-200 shadow-none bg-white dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-900':
-              !button.isShown,
+              !isShown,
             'rounded-r-md': !borderNone
           }
         ]" :disabled="disabled" @click="toggleDropdown">
         <div class="transition-all duration-300" :class="{
-          'cst-rotate-180': button.isShown
+          'cst-rotate-180': isShown
         }">
           <svg xmlns="http://www.w3.org/2000/svg" width="9" height="5" viewBox="0 0 10 6" fill="none">
             <path
@@ -46,72 +70,13 @@
       <transition enter-from-class="transform opacity-0 scale-95" enter-active-class="transition ease-out duration-200"
         enter-to-class="transform opacity-100 scale-100" leave-class="transform opacity-100 scale-100"
         leave-active-class="transition ease-in duration-75" leave-to-class="transform opacity-0 scale-95">
-        <div v-if="button.isShown"
-          class="absolute bg-white dark:bg-gray-900 w-full z-10 shadow-lg rounded-b overflow-hidden">
+        <div v-if="isShown" class="absolute bg-white dark:bg-gray-900 w-full z-10 shadow-lg rounded-b overflow-hidden">
           <slot name="list" />
         </div>
       </transition>
     </div>
   </div>
 </template>
-
-<script lang="ts">
-import { defineComponent } from 'vue'
-export default defineComponent({
-  name: 'ButtonDropdownSelect',
-  props: {
-    borderNone: {
-      type: Boolean,
-      required: false,
-      default: false
-    },
-    showClearData: {
-      type: Boolean,
-      required: false,
-      default: () => true
-    },
-    dropdownBg: {
-      type: String,
-      required: false,
-      default: () => {
-        return 'bg-gray-100'
-      }
-    },
-    dropdownBorder: {
-      type: String,
-      required: false,
-      default: () => {
-        return ''
-      }
-    },
-    fixedHeight: {
-      type: Boolean,
-      required: false,
-      defaul: () => true
-    },
-    disabled: {
-      type: Boolean,
-      required: false,
-      default: () => false
-    }
-  },
-  data() {
-    return {
-      button: {
-        isShown: false
-      }
-    }
-  },
-  methods: {
-    toggleDropdown() {
-      this.button.isShown = !this.button.isShown
-    },
-    hideDropdown() {
-      this.button.isShown = false
-    }
-  }
-})
-</script>
 
 <style scoped>
 .cst-rotate-180 {

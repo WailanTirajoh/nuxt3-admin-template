@@ -1,3 +1,55 @@
+<script setup lang="ts">
+type ItemValue = any
+interface Props {
+  placeholder?: string
+  items: Array<{
+    name: string
+    value: ItemValue
+  }>
+  modelValue: Array<ItemValue>
+  closeOnSelect?: boolean
+}
+const props = withDefaults(defineProps<Props>(), {
+  placeholder: '',
+  closeOnSelect: false,
+})
+
+const emit = defineEmits([
+  'update:modelValue'
+])
+
+const dropdownSelect = ref()
+const search = ref()
+const value = ref(props.modelValue)
+
+const filterredItems = computed(() => {
+  return props.items.filter((item) => {
+    if (!search.value) return true
+    return item.name.toLowerCase().includes(search.value.toLowerCase())
+  })
+})
+
+const updateValue = (value: ItemValue) => {
+  const tempValue: Array<ItemValue> = []
+  value.value.forEach((v: ItemValue) => tempValue.push(v))
+
+  if (tempValue.includes(value.value)) {
+    const index = tempValue.indexOf(value.value)
+    tempValue.splice(index, 1)
+  } else {
+    tempValue.push(value)
+  }
+
+  emit('update:modelValue', tempValue)
+
+  if (props.closeOnSelect === true) dropdownSelect.value.toggleDropdown()
+}
+
+const clearData = () => {
+  emit('update:modelValue', [])
+}
+</script>
+
 <template>
   <div>
     <KDropdownSelect ref="dropdownSelect" :border-none="true" :fixed-height="false" @clear-data="clearData">
@@ -37,72 +89,3 @@
     </KDropdownSelect>
   </div>
 </template>
-
-<script>
-export default {
-  props: {
-    placeholder: {
-      type: String,
-      required: false,
-      default: () => '',
-    },
-    items: {
-      type: Array,
-      required: true,
-    },
-    value: {
-      type: [Array],
-      required: false,
-      default: () => [],
-    },
-    closeOnSelect: {
-      type: Boolean,
-      required: false,
-      default: () => false,
-    },
-  },
-  data() {
-    return {
-      search: null,
-      thevalue: this.value,
-    }
-  },
-  computed: {
-    filterredItems() {
-      const vm = this
-      return this.items.filter((item) => {
-        if (!vm.search) return true
-        return item.name.toLowerCase().includes(vm.search.toLowerCase())
-      })
-    },
-    valueText() {
-      const index = this.items.findIndex((item) => item.value === this.value)
-      if (index > -1) {
-        return this.items[index].name
-      }
-      return ''
-    },
-  },
-  methods: {
-    updateValue(value) {
-      const tempValue = []
-      this.value.forEach((v) => tempValue.push(v))
-      if (tempValue.includes(value)) {
-        const index = tempValue.indexOf(value)
-
-        tempValue.splice(index, 1)
-      } else {
-        tempValue.push(value)
-      }
-
-      this.$emit('input', tempValue)
-      if (this.closeOnSelect === true) {
-        this.$refs.dropdownSelect.hideDropdown()
-      }
-    },
-    clearData() {
-      this.$emit('input', [])
-    },
-  },
-}
-</script>

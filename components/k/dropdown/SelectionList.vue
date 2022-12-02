@@ -1,3 +1,50 @@
+<script setup lang="ts">
+interface Props {
+  placeholder?: string
+  items: Array<{
+    name: string
+    value: any
+  }>
+  modelValue: string | number | null
+  closeOnSelect?: boolean
+  disabled?: boolean
+}
+
+const props = withDefaults(defineProps<Props>(), {
+  placeholder: '',
+  closeOnSelect: false,
+  disabled: false,
+})
+
+const emit = defineEmits([
+  'click',
+  'update:modelValue'
+])
+
+const search = ref()
+const dropdownSelect = ref()
+
+const filterredItems = computed(() => {
+  return props.items.filter((item) => {
+    if (!search.value) return true
+    return item.name.toLowerCase().includes(search.value.toLowerCase())
+  })
+})
+const valueText = computed(() => {
+  const index = props.items.findIndex((item) => item.value === props.modelValue)
+  if (index > -1) {
+    return props.items[index].name
+  }
+  return ''
+})
+
+const updateValue = (value: any) => {
+  emit('click')
+  emit('update:modelValue', value)
+  if (props.closeOnSelect) dropdownSelect.value.toggleDropdown()
+}
+</script>
+
 <template>
   <div>
     <KDropdownSelect ref="dropdownSelect" :border-none="true" :disabled="disabled" @clear-data="updateValue(null)">
@@ -41,64 +88,3 @@
     </KDropdownSelect>
   </div>
 </template>
-
-<script>
-export default {
-  props: {
-    placeholder: {
-      type: String,
-      required: false,
-      default: () => ''
-    },
-    items: {
-      type: Array,
-      required: true
-    },
-    modelValue: {
-      type: [String, Number],
-      required: false,
-      default: () => null
-    },
-    closeOnSelect: {
-      type: Boolean,
-      required: false,
-      default: () => false
-    },
-    disabled: {
-      type: Boolean,
-      required: false,
-      default: () => false
-    }
-  },
-  data() {
-    return {
-      search: null
-    }
-  },
-  computed: {
-    filterredItems() {
-      const vm = this
-      return this.items.filter((item) => {
-        if (!vm.search) return true
-        return item.name.toLowerCase().includes(vm.search.toLowerCase())
-      })
-    },
-    valueText() {
-      const index = this.items.findIndex((item) => item.value === this.modelValue)
-      if (index > -1) {
-        return this.items[index].name
-      }
-      return ''
-    }
-  },
-  methods: {
-    updateValue(value) {
-      this.$emit('click')
-      this.$emit('update:modelValue', value)
-      if (this.closeOnSelect === true) {
-        this.$refs.dropdownSelect.hideDropdown()
-      }
-    }
-  }
-}
-</script>
