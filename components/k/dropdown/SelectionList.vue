@@ -5,7 +5,7 @@ interface Props {
     name: string
     value: any
   }>
-  modelValue: string | number | null
+  modelValue?: string | number | null
   closeOnSelect?: boolean
   disabled?: boolean
 }

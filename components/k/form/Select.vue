@@ -1,7 +1,7 @@
 
 <script setup lang="ts">
 interface Props {
-  modelValue: string | number
+  modelValue?: string | number
   label?: string
   placeholder?: string
   items: Array<{
