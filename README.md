@@ -15,6 +15,9 @@ npm run dev
 # Or with pnpm
 pnpm install --shamefully-hoist
 pnpm dev
+
+# Install Husky
+npx husky install
 ```
 
 ## Preview
