@@ -3,11 +3,27 @@ useHead({
   title: 'General'
 })
 
-const dropdownExample = ref()
+const selectExample = ref()
 const inputExample = ref()
 const textareaExample = ref()
 const toggleExample = ref()
 const imageExample = ref()
+const multiSelectExample = ref([])
+
+const selectionList = [
+  {
+    name: 'test',
+    value: 'test'
+  },
+  {
+    name: 'test2',
+    value: 'test2'
+  },
+  {
+    name: 'test3',
+    value: 'test3'
+  },
+]
 </script>
 
 <template>
@@ -21,10 +37,11 @@ const imageExample = ref()
         <KFormImage v-model="imageExample" label="Image" />
       </div>
       <div class="col-span-12">
-        <KFormSelect v-model="dropdownExample" :items="[{
-          name: 'test',
-          value: 'test'
-        }]" label="Dropdown" placeholder="Choose dropdown" />
+        <KFormSelect v-model="selectExample" :items="selectionList" label="Single Select" placeholder="Choose select" />
+      </div>
+      <div class="col-span-12">
+        <KFormMultiSelect v-model="multiSelectExample" :items="selectionList" label="Multi Select"
+          placeholder="Choose select" />
       </div>
       <div class="col-span-12">
         <KFormInput v-model="inputExample" label="Input" placeholder="Input Field" type="text" />

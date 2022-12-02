@@ -1,30 +1,18 @@
 
 <script setup lang="ts">
-const props = defineProps({
-  modelValue: {
-    type: [String, Number],
-    required: false,
-    default: () => null
-  },
-  label: {
-    type: String,
-    required: false,
-    default: () => null
-  },
-  placeholder: {
-    type: String,
-    required: false,
-    default: () => ''
-  },
-  items: {
-    type: [Array],
-    required: true
-  },
-  disabled: {
-    type: Boolean,
-    required: false,
-    default: () => false
-  }
+interface Props {
+  modelValue: string | number
+  label?: string
+  placeholder?: string
+  items: Array<{
+    name: string
+    value: any
+  }>
+  disabled?: boolean
+}
+const props = withDefaults(defineProps<Props>(), {
+  disabled: false,
+  placeholder: ''
 })
 
 const inputData = ref(props.modelValue)

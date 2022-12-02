@@ -20,7 +20,6 @@ const emit = defineEmits([
 
 const dropdownSelect = ref()
 const search = ref()
-const value = ref(props.modelValue)
 
 const filterredItems = computed(() => {
   return props.items.filter((item) => {
@@ -31,10 +30,10 @@ const filterredItems = computed(() => {
 
 const updateValue = (value: ItemValue) => {
   const tempValue: Array<ItemValue> = []
-  value.value.forEach((v: ItemValue) => tempValue.push(v))
 
-  if (tempValue.includes(value.value)) {
-    const index = tempValue.indexOf(value.value)
+  props.modelValue.forEach((v: ItemValue) => tempValue.push(v))
+  if (tempValue.includes(value)) {
+    const index = tempValue.indexOf(value)
     tempValue.splice(index, 1)
   } else {
     tempValue.push(value)
@@ -43,6 +42,10 @@ const updateValue = (value: ItemValue) => {
   emit('update:modelValue', tempValue)
 
   if (props.closeOnSelect === true) dropdownSelect.value.toggleDropdown()
+}
+
+const removeSelectedValue = (v: ItemValue) => {
+  updateValue(v)
 }
 
 const clearData = () => {
@@ -54,10 +57,11 @@ const clearData = () => {
   <div>
     <KDropdownSelect ref="dropdownSelect" :border-none="true" :fixed-height="false" @clear-data="clearData">
       <template #body>
-        <div v-if="value" class="p-2 text-left flex gap-1">
-          <span v-for="v in value" :key="v" class="text-xs rounded bg-green-600 text-white">
+        <div v-if="modelValue.length > 0" class="p-2 text-left flex gap-1">
+          <div v-for="v in modelValue" :key="v" class="inline-block text-xs rounded bg-green-600 text-white p-1 cursor-pointer"
+            @click="removeSelectedValue(v)">
             {{ v }}
-          </span>
+          </div>
         </div>
         <div v-else class="p-2 text-gray-400 italic text-left">
           {{ placeholder }}
@@ -73,8 +77,8 @@ const clearData = () => {
           <template v-if="filterredItems.length > 0">
             <li v-for="item in filterredItems" :key="'dropdown-' + item.value"
               class="p-3 cursor-pointer w-full text-sm select-none transition-all duration-300 ease-in-out" :class="{
-                'bg-red-500 text-white': value.includes(item.value),
-                'hover:bg-gray-100 text-gray-700': !value.includes(item.value),
+                'bg-gray-800 text-white': modelValue.includes(item.value),
+                'hover:bg-gray-100 text-gray-700': !modelValue.includes(item.value),
               }" @click="updateValue(item.value)">
               {{ item.name }}
             </li>
