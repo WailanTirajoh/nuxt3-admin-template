@@ -1,44 +1,76 @@
 <script setup lang="ts">
-import { Data, Header } from '~~/interface/datatable';
+import { Data, Column } from '~~/interface/datatable';
 
 type Setting = {
   checkbox: boolean
+  limitOption: Array<{
+    label: string
+    value: number
+  }>
 }
 
 interface Props {
   // Required props
   data: Array<Data>
-  header: Array<Header>
+  column: Array<Column>
   limit: number
+
   // Optional props
   currentPage?: number
   totalData?: number
   isLoading?: boolean
-  sortBy?: string
-  sortType?: string
-  summary?: string
   search?: string
   setting?: Setting
   selected?: Array<string | never>
   serverSide?: boolean
+  sortBy?: string
+  sortType?: string
+  summary?: string
 }
 
 const props = defineProps<Props>()
 const emit = defineEmits([
-  'on-sort-change',
+  'on-change-sort',
   'on-enter-search',
   'update:search',
   'update:limit',
   'update:selected',
   'update:sortBy',
   'update:sortType',
-  'datatable:header-hook',
+  'datatable:column-hook',
 ])
+
+const setting: Setting = props.setting ?? {
+  checkbox: false,
+  limitOption: [
+    {
+      label: "5",
+      value: 5
+    },
+    {
+      label: "10",
+      value: 10
+    },
+    {
+      label: "50",
+      value: 50
+    },
+    {
+      label: "100",
+      value: 100
+    },
+    {
+      label: "200",
+      value: 200
+    },
+  ]
+}
 
 const search = ref(props.search ?? '')
 const currentPage = ref(props.currentPage ?? 1)
-const sortBy = ref(props.sortBy ?? Object.keys(props.header[0])[0])
+const sortBy = ref(props.sortBy ?? Object.keys(props.column[0])[0])
 const sortType = ref(props.sortType ?? "asc")
+
 const filteredData = computed(() => {
   return props.data.map((data) => data)
     .filter(function (obj) {
@@ -49,37 +81,37 @@ const filteredData = computed(() => {
       })
     })
 })
-const totalData = computed(() => {
-  return filteredData.value.length
-})
+const totalData = computed(() => filteredData.value.length)
 const totalPage = computed(() => Math.ceil(totalData.value / props.limit))
 const showFrom = computed(() => (1 + currentPage.value * props.limit) - props.limit)
 const showTo = computed(() => currentPage.value * props.limit < totalData.value ? currentPage.value * props.limit : totalData.value)
+
 const data = computed(() => {
-  let d = filteredData.value;
+  let d = filteredData.value
   d = d.map((data) => data)
     .filter(function (obj) {
       return Object.keys(obj).some(function (key) {
         if (typeof obj[key] === 'string') {
-          return obj[key].toLowerCase().includes(search.value.toLowerCase());
+          return obj[key]
+            .toLowerCase()
+            .includes(search.value.toLowerCase())
         }
       })
     })
     .sort((a, b) => {
       let computedA, computedB
-      if (typeof a[sortBy.value] === 'string') {
-        computedA = a[sortBy.value].toUpperCase(); // ignore upper and lowercase
-        computedB = b[sortBy.value].toUpperCase(); // ignore upper and lowercase
+      switch (typeof a[sortBy.value]) {
+        case 'string':
+          computedA = a[sortBy.value].toLowerCase()
+          computedB = b[sortBy.value].toLowerCase()
+          break
+        default:
+          computedA = a[sortBy.value]
+          computedB = b[sortBy.value]
       }
-      if (computedA < computedB) {
-        return -1;
-      }
-      if (computedA > computedB) {
-        return 1;
-      }
-
-      // names must be equal
-      return 0;
+      if (computedA < computedB) return -1
+      if (computedA > computedB) return 1
+      return 0
     })
 
   if (sortType.value === 'desc') d = d.reverse()
@@ -104,67 +136,41 @@ const selected = computed({
   }
 })
 
+// update v-model values
 watch(sortBy, (value) => {
   emit('update:sortBy', value)
 })
-
 watch(sortType, (value) => {
   emit('update:sortType', value)
 })
-
 watch(search, (value) => {
   emit('update:search', value)
 })
 
-const setting: Setting = props.setting ?? {
-  checkbox: false
-}
-const limitValues = [
-  {
-    key: 5,
-    value: 5
-  },
-  {
-    key: 10,
-    value: 10
-  },
-  {
-    key: 50,
-    value: 50
-  },
-  {
-    key: 100,
-    value: 100
-  },
-  {
-    key: 200,
-    value: 200
-  },
-]
-
-const clickSort = (key: string) => emit('on-sort-change', key, props.sortType === 'asc' ? 'desc' : 'asc')
+// Event's
+const clickSort = (key: string) => emit('on-change-sort', key, props.sortType === 'asc' ? 'desc' : 'asc')
 const enterSearch = () => emit('on-enter-search')
-const thClick = (h: Header) => {
-  if (h.onHeaderClick) h.onHeaderClick()
-  if (h.sortable) {
-    clickSort(h.key)
-    updateSort(h)
+const columnClick = (column: Column) => {
+  if (column.onColumnClick) column.onColumnClick()
+  if (column.sortable) {
+    clickSort(column.field)
+    updateSort(column)
   }
+}
+const cellClick = (cellClick: Column) => {
+  if (cellClick.onCellClick) cellClick.onCellClick()
+}
+const columnHook = (arg: any) => {
+  emit('datatable:column-hook', arg)
+}
 
-}
-const tdClick = (h: Header) => {
-  if (h.onBodyClick) h.onBodyClick()
-}
-const changeCurrentPage = (page: number) => {
-  currentPage.value = page
-}
-const updateSort = (h: Header) => {
-  sortBy.value = h.key
+// Method's
+const updateSort = (h: Column) => {
+  sortBy.value = h.field
   sortType.value = sortType.value === 'asc' ? 'desc' : 'asc'
 }
-
-const headerHook = (arg: any) => {
-  emit('datatable:header-hook', arg)
+const updateCurrentPage = (page: number) => {
+  currentPage.value = page
 }
 </script>
 
@@ -176,7 +182,7 @@ const headerHook = (arg: any) => {
         <div>
           <select v-model="limit"
             class="p-2 rounded bg-white border dark:bg-gray-900 appearance-none focus:border focus:ring-0 focus:outline-none custor-pointer">
-            <option :value="v.value" v-for="v in limitValues">{{ v.key }}</option>
+            <option :value="v.value" v-for="v in setting.limitOption">{{ v.label }}</option>
           </select>
         </div>
         <div>entries</div>
@@ -202,11 +208,11 @@ const headerHook = (arg: any) => {
                 <th
                   class="p-2 whitespace-nowrap select-none hover:bg-gray-200 dark:hover:bg-black border dark:border-gray-600 "
                   :class="{
-                    asc: sortBy == h.key && sortType == 'asc',
-                    desc: sortBy == h.key && sortType == 'desc',
+                    asc: sortBy == h.field && sortType == 'asc',
+                    desc: sortBy == h.field && sortType == 'desc',
                     sorting: h.sortable
-                  }" :style="{ width: h.width }" @click="thClick(h)" v-for="h in props.header">
-                  {{ h.name }}
+                  }" :style="{ width: h.width }" @click="columnClick(h)" v-for="h in props.column">
+                  {{ h.label }}
                 </th>
               </tr>
             </thead>
@@ -225,15 +231,18 @@ const headerHook = (arg: any) => {
                 </td>
                 <KDatatableTd
                   class="duration-300 p-1 hover:bg-gray-100 border dark:hover:bg-gray-900 relative dark:border-gray-600"
-                  :copyText="d[h.key]" v-for="h in props.header">
-                  <div v-if="h.component" @click="tdClick(h)">
+                  :copyText="d[h.field]" v-for="h in props.column">
+                  <slot name="row" :column="h" :data="d" :index="i">
+                  </slot>
+                  <div v-if="h.component" @click="cellClick(h)">
                     <!-- {{h.component(d,i)}} -->
-                    <component :is="h.component(d, i).component" :props="h.component(d, i).props" @header-hook="headerHook"></component>
+                    <component :is="h.component(d, i).component" :props="h.component(d, i).props"
+                      @column-hook="columnHook"></component>
                   </div>
-                  <div v-else-if="h.template" v-html="h.template(d, i)" @click="tdClick(h)">
+                  <div v-else-if="h.template" v-html="h.template(d, i)" @click="cellClick(h)">
                   </div>
-                  <div v-else @click="tdClick(h)">
-                    {{ d[h.key] }}
+                  <div v-else @click="cellClick(h)">
+                    {{ d[h.field] }}
                   </div>
                 </KDatatableTd>
               </tr>
@@ -241,14 +250,32 @@ const headerHook = (arg: any) => {
             <tbody class="text-sm" v-else>
               <tr
                 class="duration-300 bg-white hover:bg-gray-50 dark:bg-gray-800 dark:hover:bg-gray-900 dark:border-gray-700">
-
                 <td
-                  class="duration-300 p-1 hover:bg-gray-100 border dark:hover:bg-gray-900 relative dark:border-gray-600 text-center"
-                  :colspan="props.header.length + (setting.checkbox ? 1 : 0)">
-                  No Data
+                  class="duration-300 p-1 hover:bg-gray-100 border dark:hover:bg-gray-900 relative dark:border-gray-600"
+                  :colspan="props.column.length + (setting.checkbox ? 1 : 0)">
+                  <slot name="empty"></slot>
                 </td>
               </tr>
             </tbody>
+            <tfoot class="bg-gray-100 dark:bg-gray-900 dark:border-b dark:border-gray-700 text-gray-800">
+              <tr>
+                <th v-if="setting.checkbox"
+                  class="p-1 whitespace-nowrap select-none hover:bg-gray-200 dark:hover:bg-black border dark:border-gray-600 px-5"
+                  :style="{
+                    width: '20px'
+                  }">
+                </th>
+                <th
+                  class="p-2 whitespace-nowrap select-none hover:bg-gray-200 dark:hover:bg-black border dark:border-gray-600 "
+                  :class="{
+                    asc: sortBy == h.field && sortType == 'asc',
+                    desc: sortBy == h.field && sortType == 'desc',
+                    sorting: h.sortable
+                  }" :style="{ width: h.width }" @click="columnClick(h)" v-for="h in props.column">
+                  {{ h.label }}
+                </th>
+              </tr>
+            </tfoot>
           </table>
         </div>
         <KDatatableLoading :show="isLoading" />
@@ -261,7 +288,7 @@ const headerHook = (arg: any) => {
         </div>
         <div>
           <KDatatablePagination :current-page="currentPage" :total-data="totalData" :total-page="totalPage"
-            :is-loading="isLoading" :per-page="limit" @change-current-page="changeCurrentPage"
+            :is-loading="isLoading" :per-page="limit" @change-current-page="updateCurrentPage"
             class="text-xs shadow-sm" />
         </div>
       </div>

@@ -1,35 +1,20 @@
 <script setup lang="ts">
-import { Data, Header } from '~~/interface/datatable';
+import { Data, Column } from '~~/interface/datatable';
 import ClientAction from "./ClientAction.vue"
 const data = ref({
-  header: [
+  column: [
     {
-      name: 'No',
-      sortable: false,
-      key: '',
-      width: '15px',
-      template: (data: Data, i: number): string => `
-        <div class="text-center">${i + 1}</div>
-      `,
+      label: 'Name',
+      field: 'name',
+      width: '400px',
+      sortable: true,
     },
     {
-      name: 'id',
+      label: 'Status',
+      field: 'status',
+      width: '400px',
       sortable: true,
-      key: 'id',
-      width: '75px',
-      template: (data: Data, i: number): string => `
-        <div class="text-center">${data.id}</div>
-      `,
-    },
-    {
-      name: 'Name',
-      sortable: true,
-      key: 'name',
-    },
-    {
-      name: 'Status',
-      sortable: true,
-      key: 'status',
+      // Template string example
       template: (data: Data, i: number): string => `
         <div class="flex justify-center">
           <span class="${data.status.toLowerCase() === 'active' ? 'bg-green-600' : 'bg-red-600'} p-2 rounded text-white">
@@ -39,9 +24,16 @@ const data = ref({
       `,
     },
     {
-      name: 'Action',
+      label: 'Row Data',
+      field: 'rowData',
+      width: '400px',
       sortable: false,
-      width: '105px',
+    },
+    {
+      label: 'Action',
+      sortable: false,
+      width: '100px',
+      // Component inject example
       component: (data: Data, i: number) => {
         return {
           component: ClientAction,
@@ -51,7 +43,7 @@ const data = ref({
         }
       }
     },
-  ] as Array<Header>,
+  ] as Array<Column>,
   data: [
     {
       id: 1,
@@ -106,7 +98,32 @@ const data = ref({
   search: '',
   selected: [],
   sortBy: 'status',
-  sortType: 'asc'
+  sortType: 'asc',
+  setting: {
+    checkbox: true,
+    limitOption: [
+      {
+        label: "5",
+        value: 5
+      },
+      {
+        label: "10",
+        value: 10
+      },
+      {
+        label: "50",
+        value: 50
+      },
+      {
+        label: "100",
+        value: 100
+      },
+      {
+        label: "200",
+        value: 200
+      },
+    ],
+  }
 })
 
 const datatableHook = (arg: any) => {
@@ -121,9 +138,22 @@ const datatableHook = (arg: any) => {
     </h5>
     <hr class="my-2">
     <KDatatableClient v-model:search="data.search" v-model:limit="data.limit" v-model:selected="data.selected"
-      v-model:sort-by="data.sortBy" v-model:sort-type="data.sortType" :header="data.header" :data="data.data" :setting="{
-        checkbox: true
-      }" @datatable:header-hook="datatableHook" />
+      v-model:sort-by="data.sortBy" v-model:sort-type="data.sortType" :column="data.column" :data="data.data"
+      :setting="data.setting" @datatable:column-hook="datatableHook">
+      <template #row="props">
+        <template v-if="props.column.field === 'rowData'">
+          <div class="">
+            Cell Slots Example
+          </div>
+          <div class="bg-gray-900 rounded p-2 text-gray-100">
+            <pre>{{ props.data }}</pre>
+          </div>
+        </template>
+      </template>
+      <template #empty>
+        No Data
+      </template>
+    </KDatatableClient>
     <hr class="my-2">
     <div>
       <div class="flex gap-2">
@@ -159,6 +189,5 @@ const datatableHook = (arg: any) => {
         </div>
       </div>
     </div>
-
   </div>
 </template>

@@ -1,8 +1,8 @@
 import { Component } from "nuxt/dist/app/compat/capi"
 
-export interface Header {
-  name: string
-  key: string
+export interface Column {
+  label: string
+  field: string
   sortable: boolean
   width?: string
   template?: (data: Data, index: number) => string
@@ -11,8 +11,8 @@ export interface Header {
     props: [key: any],
     hook: () => {}
   }
-  onHeaderClick?: () => void
-  onBodyClick?: () => void
+  onColumnClick?: () => void
+  onCellClick?: () => void
 }
 
 export interface Data {
