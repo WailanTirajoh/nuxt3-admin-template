@@ -1,3 +1,30 @@
+<script setup lang="ts">
+interface Props {
+  label?: string
+  imgUrl?: string | null
+}
+const props = withDefaults(defineProps<Props>(), {
+  imgUrl: null
+})
+const emit = defineEmits(['update:modelValue', 'imageChanged'])
+
+const dataImgUrl = ref(props.imgUrl)
+const file = ref()
+
+const handleFileUpload = () => {
+  const f = file.value.files[0]
+  emit('update:modelValue', f)
+  dataImgUrl.value = URL.createObjectURL(f)
+  emit('imageChanged', dataImgUrl.value)
+}
+
+const removeImage = () => {
+  emit('update:modelValue', null)
+  dataImgUrl.value = null
+  emit('imageChanged', null)
+}
+</script>
+
 <template>
   <div class="">
     <label v-if="label" class="font-bold text-gray-700 dark:text-gray-400">
@@ -30,30 +57,3 @@
     </div>
   </div>
 </template>
-
-<script setup lang="ts">
-interface Props {
-  label?: string
-  imgUrl?: string | null
-}
-const props = withDefaults(defineProps<Props>(), {
-  imgUrl: null
-})
-const emit = defineEmits(['update:modelValue', 'imageChanged'])
-
-const dataImgUrl = ref(props.imgUrl)
-const file = ref()
-
-const handleFileUpload = () => {
-  const f = file.value.files[0]
-  emit('update:modelValue', f)
-  dataImgUrl.value = URL.createObjectURL(f)
-  emit('imageChanged', dataImgUrl.value)
-}
-
-const removeImage = () => {
-  emit('update:modelValue', null)
-  dataImgUrl.value = null
-  emit('imageChanged', null)
-}
-</script>
