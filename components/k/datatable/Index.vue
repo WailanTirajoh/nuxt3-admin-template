@@ -152,7 +152,7 @@ const tdClick = (h: Header) => {
                 <KDatatableTd
                   class="duration-300 p-1 hover:bg-gray-100 border dark:hover:bg-gray-900 relative dark:border-gray-600"
                   :copyText="d[h.key]" v-for="h, i in props.header">
-                  <div v-if="h.bodyValue" v-html="h.bodyValue(d, i)" @click="tdClick(h)">
+                  <div v-if="h.template" v-html="h.template(d, i)" @click="tdClick(h)">
                   </div>
                   <div v-else @click="tdClick(h)">
                     {{ d[h.key] }}

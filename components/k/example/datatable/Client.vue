@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { Data, Header } from '~~/interface/datatable';
+import ClientAction from "./ClientAction.vue"
 const data = ref({
   header: [
     {
@@ -7,7 +8,7 @@ const data = ref({
       sortable: false,
       key: '',
       width: '15px',
-      bodyValue: (data: Data, i: number): string => `
+      template: (data: Data, i: number): string => `
         <div class="text-center">${i + 1}</div>
       `,
     },
@@ -16,7 +17,7 @@ const data = ref({
       sortable: true,
       key: 'id',
       width: '75px',
-      bodyValue: (data: Data, i: number): string => `
+      template: (data: Data, i: number): string => `
         <div class="text-center">${data.id}</div>
       `,
     },
@@ -29,7 +30,7 @@ const data = ref({
       name: 'Status',
       sortable: true,
       key: 'status',
-      bodyValue: (data: Data, i: number): string => `
+      template: (data: Data, i: number): string => `
         <div class="flex justify-center">
           <span class="${data.status.toLowerCase() === 'active' ? 'bg-green-600' : 'bg-red-600'} p-2 rounded text-white">
             ${data.status}
@@ -38,9 +39,17 @@ const data = ref({
       `,
     },
     {
-      name: 'Test',
-      sortable: true,
-      key: 'test'
+      name: 'Action',
+      sortable: false,
+      width: '105px',
+      component: (data: Data, i: number) => {
+        return {
+          component: ClientAction,
+          props: {
+            name: data.name
+          }
+        }
+      }
     },
   ] as Array<Header>,
   data: [
@@ -99,6 +108,10 @@ const data = ref({
   sortBy: 'status',
   sortType: 'asc'
 })
+
+const datatableHook = (arg: any) => {
+  arg()
+}
 </script>
 
 <template>
@@ -110,42 +123,42 @@ const data = ref({
     <KDatatableClient v-model:search="data.search" v-model:limit="data.limit" v-model:selected="data.selected"
       v-model:sort-by="data.sortBy" v-model:sort-type="data.sortType" :header="data.header" :data="data.data" :setting="{
         checkbox: true
-      }" />
+      }" @datatable:header-hook="datatableHook" />
     <hr class="my-2">
-    <table>
-      <tr>
-        <td>
+    <div>
+      <div class="flex gap-2">
+        <div class="w-32">
           Selected Data
-        </td>
-        <td>
+        </div>
+        <div>
           : {{ data.selected }}
-        </td>
-      </tr>
-      <tr>
-        <td>
+        </div>
+      </div>
+      <div class="flex gap-2">
+        <div class="w-32">
           Order By
-        </td>
-        <td>
+        </div>
+        <div>
           : {{ data.sortBy }}
-        </td>
-      </tr>
-      <tr>
-        <td>
+        </div>
+      </div>
+      <div class="flex gap-2">
+        <div class="w-32">
           Order Type
-        </td>
-        <td>
+        </div>
+        <div>
           : {{ data.sortType }}
-        </td>
-      </tr>
-      <tr>
-        <td>
+        </div>
+      </div>
+      <div class="flex gap-2">
+        <div class="w-32">
           Search
-        </td>
-        <td>
+        </div>
+        <div>
           : {{ data.search }}
-        </td>
-      </tr>
-    </table>
+        </div>
+      </div>
+    </div>
 
   </div>
 </template>

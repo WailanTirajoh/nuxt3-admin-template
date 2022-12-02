@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { serve } from 'esbuild';
 import { Data, Header } from '~~/interface/datatable';
 
 type Setting = {
@@ -33,6 +32,7 @@ const emit = defineEmits([
   'update:selected',
   'update:sortBy',
   'update:sortType',
+  'datatable:header-hook',
 ])
 
 const search = ref(props.search ?? '')
@@ -162,6 +162,10 @@ const updateSort = (h: Header) => {
   sortBy.value = h.key
   sortType.value = sortType.value === 'asc' ? 'desc' : 'asc'
 }
+
+const headerHook = (arg: any) => {
+  emit('datatable:header-hook', arg)
+}
 </script>
 
 <template>
@@ -190,7 +194,8 @@ const updateSort = (h: Header) => {
             <thead class="bg-gray-100 dark:bg-gray-900 dark:border-b dark:border-gray-700 text-gray-800">
               <tr>
                 <th v-if="setting.checkbox"
-                  class="p-1 whitespace-nowrap select-none hover:bg-gray-200 dark:hover:bg-black border dark:border-gray-600 px-5" :style="{
+                  class="p-1 whitespace-nowrap select-none hover:bg-gray-200 dark:hover:bg-black border dark:border-gray-600 px-5"
+                  :style="{
                     width: '20px'
                   }">
                 </th>
@@ -221,7 +226,11 @@ const updateSort = (h: Header) => {
                 <KDatatableTd
                   class="duration-300 p-1 hover:bg-gray-100 border dark:hover:bg-gray-900 relative dark:border-gray-600"
                   :copyText="d[h.key]" v-for="h in props.header">
-                  <div v-if="h.bodyValue" v-html="h.bodyValue(d, i)" @click="tdClick(h)">
+                  <div v-if="h.component" @click="tdClick(h)">
+                    <!-- {{h.component(d,i)}} -->
+                    <component :is="h.component(d, i).component" :props="h.component(d, i).props" @header-hook="headerHook"></component>
+                  </div>
+                  <div v-else-if="h.template" v-html="h.template(d, i)" @click="tdClick(h)">
                   </div>
                   <div v-else @click="tdClick(h)">
                     {{ d[h.key] }}

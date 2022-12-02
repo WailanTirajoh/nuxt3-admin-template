@@ -7,7 +7,7 @@ const dataServer = ref({
       sortable: false,
       key: '',
       width: '25px',
-      bodyValue: (data: Data, i: number): string => `<div class="text-center">${i + 1}</div>`,
+      template: (data: Data, i: number): string => `<div class="text-center">${i + 1}</div>`,
     },
     {
       name: 'Name',
@@ -18,7 +18,7 @@ const dataServer = ref({
       name: 'Status',
       sortable: true,
       key: 'status',
-      bodyValue: (data: Data, i: number): string => `
+      template: (data: Data, i: number): string => `
       <div class="flex justify-center">
         <span class="${data.status.toLowerCase() === 'active' ? 'bg-green-600' : 'bg-red-600'} p-2 rounded text-white">
           ${data.status}
