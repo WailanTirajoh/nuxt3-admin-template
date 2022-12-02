@@ -1,4 +1,12 @@
 <script setup lang="ts">
+/**
+ * Uncomplete
+ * TODO:
+ * - create ajax callback
+ * - show / hide column
+ * - sort column
+ * - filter on each column
+ */
 import { Data, Column } from '~~/interface/datatable';
 
 type Setting = {
@@ -85,14 +93,14 @@ const limitValues = [
 const clickSort = (key: string) => emit('on-sort-change', key, props.sortType === 'asc' ? 'desc' : 'asc')
 const enterSearch = () => emit('on-enter-search')
 const thClick = (h: Column) => {
-  clickSort(h.key)
+  clickSort(h.field)
   if (h.onColumnClick) {
     h.onColumnClick()
   }
 }
 const tdClick = (h: Column) => {
-  if (h.onBodyClick) {
-    h.onBodyClick()
+  if (h.onCellClick) {
+    h.onCellClick()
   }
 }
 </script>
@@ -128,11 +136,11 @@ const tdClick = (h: Column) => {
                 <th
                   class="p-2 whitespace-nowrap select-none hover:bg-gray-200 dark:hover:bg-black border dark:border-gray-600 px-10 "
                   :class="{
-                    asc: sortBy == h.key && sortType == 'asc',
-                    desc: sortBy == h.key && sortType == 'desc',
+                    asc: sortBy == h.field && sortType == 'asc',
+                    desc: sortBy == h.field && sortType == 'desc',
                     sorting: h.sortable
                   }" :style="{ width: h.width }" @click="thClick(h)" v-for="h in props.column">
-                  {{ h.name }}
+                  {{ h.label }}
                 </th>
               </tr>
             </thead>
@@ -151,11 +159,11 @@ const tdClick = (h: Column) => {
                 </td>
                 <KDatatableTd
                   class="duration-300 p-1 hover:bg-gray-100 border dark:hover:bg-gray-900 relative dark:border-gray-600"
-                  :copyText="d[h.key]" v-for="h, i in props.column">
+                  :copyText="d[h.field]" v-for="h, i in props.column">
                   <div v-if="h.template" v-html="h.template(d, i)" @click="tdClick(h)">
                   </div>
                   <div v-else @click="tdClick(h)">
-                    {{ d[h.key] }}
+                    {{ d[h.field] }}
                   </div>
                 </KDatatableTd>
               </tr>

@@ -1,4 +1,9 @@
 <script setup lang="ts">
+/**
+ * TODO:
+ * - filter on each column
+ * - column type (string / number / date / money / etc...)
+ */
 import { Data, Column } from '~~/interface/datatable';
 
 type Setting = {
