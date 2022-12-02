@@ -1,4 +1,5 @@
 <script setup lang="ts">
+/*
 import { useEditor, EditorContent } from '@tiptap/vue-3'
 import StarterKit from '@tiptap/starter-kit'
 import TextAlign from '@tiptap/extension-text-align'
@@ -68,10 +69,11 @@ onBeforeUnmount(() => {
   editorEl.removeEventListener("click", imageClickHandler)
   editor.value?.destroy()
 })
+*/
 </script>
 
 <template>
-  <div class="bg-white">
+  <!-- <div class="bg-white">
     <div class="bg-gray-200 pt-0 p-1 rounded-t flex flex-wrap" v-if="editor">
       <div
         class="border border-gray-300 mr-1 mt-1 rounded hover:bg-gray-50 duration-300 flex p-1 cursor-pointer h-8 items-center justify-center select-none"
@@ -228,5 +230,5 @@ onBeforeUnmount(() => {
       </div>
     </div>
     <editor-content id="editor" class="element" :editor="editor" />
-  </div>
+  </div> -->
 </template>
