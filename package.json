@@ -8,6 +8,8 @@
     "postinstall": "nuxt prepare"
   },
   "devDependencies": {
+    "@commitlint/cli": "^17.3.0",
+    "@commitlint/config-conventional": "^17.3.0",
     "@pinia/nuxt": "^0.4.4",
     "@tailwindcss/typography": "^0.5.8",
     "@types/feather-icons": "^4.29.0",
