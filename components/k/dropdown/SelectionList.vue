@@ -47,7 +47,7 @@ const updateValue = (value: any) => {
 
 <template>
   <div>
-    <KDropdownSelect ref="dropdownSelect" :border-none="true" :disabled="disabled" @clear-data="updateValue(null)">
+    <KDropdownSelect ref="dropdownSelect" :rounded="true" :disabled="disabled" @clear-data="updateValue(null)">
       <template #body>
         <div v-if="modelValue" class="p-2 text-left dark:text-gray-200">
           {{ valueText }}

@@ -1,6 +1,6 @@
 <script setup lang="ts">
 interface Props {
-  borderNone?: boolean
+  rounded?: boolean
   showClearData?: boolean
   dropdownBg?: string
   dropdownBorder?: string
@@ -8,7 +8,7 @@ interface Props {
   disabled?: boolean
 }
 withDefaults(defineProps<Props>(), {
-  borderNone: false,
+  rounded: false,
   showClearData: true,
   dropdownBg: 'bg-gray-100',
   dropdownBorder: '',
@@ -25,13 +25,13 @@ defineExpose({ toggleDropdown })
 <template>
   <div class="relative h-full">
     <div class="flex h-full rounded-t dark:text-gray-300" :class="{
-      'shadow-lg dark:bg-gray-900': isShown,
-      '': !borderNone,
+      'shadow-lg dark:bg-gray-900 border border-b-0 border-gray-100': isShown,
+      '': !rounded,
     }">
       <div class="flex items-center justify-between text-gray-700 w-full text-sm border-r-0 rounded-l h-10" :class="{
         'bg-white border dark:bg-gray-800 dark:border-gray-700':
           !isShown,
-        'rounded-l-md': !borderNone,
+        'rounded-l-md': !rounded,
         'bg-gray-100': disabled
       }">
         <slot name="body" />
@@ -52,7 +52,7 @@ defineExpose({ toggleDropdown })
           {
             'border hover:bg-gray-200 shadow-none bg-white dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-900':
               !isShown,
-            'rounded-r-md': !borderNone
+            'rounded-r-md': !rounded
           }
         ]" :disabled="disabled" @click="toggleDropdown">
         <div class="transition-all duration-300" :class="{
@@ -70,7 +70,8 @@ defineExpose({ toggleDropdown })
       <transition enter-from-class="transform opacity-0 scale-95" enter-active-class="transition ease-out duration-200"
         enter-to-class="transform opacity-100 scale-100" leave-class="transform opacity-100 scale-100"
         leave-active-class="transition ease-in duration-75" leave-to-class="transform opacity-0 scale-95">
-        <div v-if="isShown" class="absolute bg-white dark:bg-gray-900 w-full z-10 shadow-lg rounded-b overflow-hidden">
+        <div v-if="isShown"
+          class="absolute bg-white dark:bg-gray-900 w-full z-10 shadow-lg rounded-b overflow-hidden border border-t-0 border-gray-100">
           <slot name="list" />
         </div>
       </transition>
