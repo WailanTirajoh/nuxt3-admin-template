@@ -55,12 +55,18 @@ const clearData = () => {
 
 <template>
   <div>
-    <KDropdownSelect ref="dropdownSelect" :border-none="true" :fixed-height="false" @clear-data="clearData">
+    <KDropdownSelect ref="dropdownSelect" :rounded="true" :fixed-height="false" @clear-data="clearData">
       <template #body>
         <div v-if="modelValue.length > 0" class="p-2 text-left flex gap-1">
-          <div v-for="v in modelValue" :key="v" class="inline-block text-xs rounded bg-green-600 text-white p-1 cursor-pointer"
-            @click="removeSelectedValue(v)">
-            {{ v }}
+          <div v-for="v in modelValue" :key="v" class="inline-block border rounded">
+            <div class="flex items-center gap-2">
+              <div class="text-xs rounded text-gray-800 p-1 bg-white h-full w-full">
+                {{ v }}
+              </div>
+              <div class="cursor-pointer bg-gray-200 p-1 w-5 h-full" @click="removeSelectedValue(v)">
+                &#10005;
+              </div>
+            </div>
           </div>
         </div>
         <div v-else class="p-2 text-gray-400 italic text-left">
