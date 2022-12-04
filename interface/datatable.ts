@@ -18,3 +18,11 @@ export interface Column {
 export interface Data {
   [key: string]: any
 }
+
+export type Setting = {
+  checkbox: boolean
+  limitOption?: Array<{
+    label: string
+    value: number
+  }>
+}

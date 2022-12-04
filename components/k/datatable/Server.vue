@@ -7,11 +7,7 @@
  * - sort column
  * - filter on each column
  */
-import { Data, Column } from '~~/interface/datatable';
-
-type Setting = {
-  checkbox: boolean
-}
+import { Data, Column, Setting } from '~~/interface/datatable';
 
 interface Props {
   // Required props
@@ -69,26 +65,30 @@ const selected = computed({
 })
 
 const setting: Setting = props.setting ?? {
-  checkbox: false
+  checkbox: false,
+  limitOption: [
+    {
+      label: "5",
+      value: 5
+    },
+    {
+      label: "10",
+      value: 10
+    },
+    {
+      label: "50",
+      value: 50
+    },
+    {
+      label: "100",
+      value: 100
+    },
+    {
+      label: "200",
+      value: 200
+    },
+  ]
 }
-const limitValues = [
-  {
-    key: 10,
-    value: 10
-  },
-  {
-    key: 50,
-    value: 50
-  },
-  {
-    key: 100,
-    value: 100
-  },
-  {
-    key: 200,
-    value: 200
-  },
-]
 
 const clickSort = (key: string) => emit('on-sort-change', key, props.sortType === 'asc' ? 'desc' : 'asc')
 const enterSearch = () => emit('on-enter-search')
@@ -98,10 +98,9 @@ const thClick = (h: Column) => {
     h.onColumnClick()
   }
 }
-const tdClick = (h: Column) => {
-  if (h.onCellClick) {
-    h.onCellClick()
-  }
+
+const cellClick = (c: Column) => {
+  if (c.onCellClick) c.onCellClick()
 }
 </script>
 
@@ -113,7 +112,7 @@ const tdClick = (h: Column) => {
         <div>
           <select v-model="limit"
             class="p-2 rounded bg-white dark:bg-gray-900 appearance-none focus:border-transparent focus:ring-0 focus:outline-none custor-pointer">
-            <option :value="v.value" v-for="v in limitValues">{{ v.key }}</option>
+            <option :value="v.value" v-for="v in setting.limitOption">{{ v.label }}</option>
           </select>
         </div>
         <div>entries</div>
@@ -144,7 +143,7 @@ const tdClick = (h: Column) => {
                 </th>
               </tr>
             </thead>
-            <tbody class="text-sm">
+            <tbody class="text-sm" v-if="(data.length > 0)">
               <tr
                 class="duration-300 bg-white hover:bg-gray-50 dark:bg-gray-800 dark:hover:bg-gray-900 dark:border-gray-700"
                 v-for="d in props.data">
@@ -160,14 +159,45 @@ const tdClick = (h: Column) => {
                 <KDatatableTd
                   class="duration-300 p-1 hover:bg-gray-100 border dark:hover:bg-gray-900 relative dark:border-gray-600"
                   :copyText="d[h.field]" v-for="h, i in props.column">
-                  <div v-if="h.template" v-html="h.template(d, i)" @click="tdClick(h)">
+                  <slot name="row" :column="h" :data="d" :index="i">
+                  </slot>
+                  <div v-if="h.template" v-html="h.template(d, i)" @click="cellClick(h)">
                   </div>
-                  <div v-else @click="tdClick(h)">
+                  <div v-else @click="cellClick(h)">
                     {{ d[h.field] }}
                   </div>
                 </KDatatableTd>
               </tr>
             </tbody>
+            <tbody class="text-sm" v-else>
+              <tr
+                class="duration-300 bg-white hover:bg-gray-50 dark:bg-gray-800 dark:hover:bg-gray-900 dark:border-gray-700">
+                <td
+                  class="duration-300 p-1 hover:bg-gray-100 border dark:hover:bg-gray-900 relative dark:border-gray-600"
+                  :colspan="props.column.length + (setting.checkbox ? 1 : 0)">
+                  <slot name="empty"></slot>
+                </td>
+              </tr>
+            </tbody>
+            <tfoot class="bg-gray-100 dark:bg-gray-900 dark:border-b dark:border-gray-700 text-gray-800">
+              <tr>
+                <th v-if="setting.checkbox"
+                  class="p-1 whitespace-nowrap select-none hover:bg-gray-200 dark:hover:bg-black border dark:border-gray-600 px-5"
+                  :style="{
+                    width: '20px'
+                  }">
+                </th>
+                <th
+                  class="p-2 whitespace-nowrap select-none hover:bg-gray-200 dark:hover:bg-black border dark:border-gray-600 "
+                  :class="{
+                    asc: sortBy == h.field && sortType == 'asc',
+                    desc: sortBy == h.field && sortType == 'desc',
+                    sorting: h.sortable
+                  }" :style="{ width: h.width }" @click="cellClick(h)" v-for="h in props.column">
+                  {{ h.label }}
+                </th>
+              </tr>
+            </tfoot>
           </table>
         </div>
         <KDatatableLoading :show="isLoading" />

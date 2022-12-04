@@ -4,15 +4,7 @@
  * - filter on each column
  * - column type (string / number / date / money / etc...)
  */
-import { Data, Column } from '~~/interface/datatable';
-
-type Setting = {
-  checkbox: boolean
-  limitOption: Array<{
-    label: string
-    value: number
-  }>
-}
+import { Data, Column, Setting } from '~~/interface/datatable';
 
 interface Props {
   // Required props

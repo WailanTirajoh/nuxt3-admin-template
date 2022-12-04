@@ -1,23 +1,16 @@
 <script setup lang="ts">
-import { Data, Header } from '~~/interface/datatable';
+import { Data, Column } from '~~/interface/datatable';
 const dataServer = ref({
-  header: [
+  column: [
     {
-      name: 'No',
-      sortable: false,
-      key: '',
-      width: '25px',
-      template: (data: Data, i: number): string => `<div class="text-center">${i + 1}</div>`,
+      label: 'Name',
+      field: 'name',
+      sortable: true,
     },
     {
-      name: 'Name',
+      label: 'Status',
+      field: 'status',
       sortable: true,
-      key: 'name',
-    },
-    {
-      name: 'Status',
-      sortable: true,
-      key: 'status',
       template: (data: Data, i: number): string => `
       <div class="flex justify-center">
         <span class="${data.status.toLowerCase() === 'active' ? 'bg-green-600' : 'bg-red-600'} p-2 rounded text-white">
@@ -27,11 +20,11 @@ const dataServer = ref({
       `,
     },
     {
-      name: 'Test',
+      label: 'Test',
       sortable: true,
       key: 'test'
     },
-  ] as Array<Header>,
+  ] as Array<Column>,
   data: [
     {
       id: 1,
@@ -103,10 +96,15 @@ const search = () => {
 </script>
 
 <template>
-  <KDatatable v-model:search="dataServer.search" v-model:limit="dataServer.limit" v-model:selected="dataServer.selected"
-    :is-loading="false" :data="dataServer.data" :header="dataServer.header" :total-data="dataServer.total"
-    :current-page="dataServer.currentPage" :sort-by="dataServer.sortBy" :sort-type="dataServer.sortType"
-    :server-side="true" @on-sort-change="updateSort" @on-enter-search="search" :setting="{
+  <h5 class="text-lg font-semibold">
+    Server side
+  </h5>
+  <hr class="my-2">
+  <KDatatableServer v-model:search="dataServer.search" v-model:limit="dataServer.limit"
+    v-model:selected="dataServer.selected" :is-loading="false" :data="dataServer.data" :column="dataServer.column"
+    :total-data="dataServer.total" :current-page="dataServer.currentPage" :sort-by="dataServer.sortBy"
+    :sort-type="dataServer.sortType" :server-side="true" @on-sort-change="updateSort" @on-enter-search="search"
+    :setting="{
       checkbox: true
     }" />
 </template>

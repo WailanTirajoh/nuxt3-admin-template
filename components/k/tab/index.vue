@@ -3,7 +3,7 @@ type Position = 'bottom' | 'top' | 'left' | 'right'
 type Type = 'horizontal' | 'vertical'
 interface Props {
   type?: Type
-  currentTab: string
+  currentTab?: string
   tabs: Array<{
     name: string
     ref: string
@@ -21,7 +21,7 @@ interface TabRefs {
   [key: string]: HTMLElement;
 }
 const tabRefs = ref<TabRefs>({})
-const currentTab = ref(props.currentTab)
+const currentTab = ref(props.currentTab ?? props.tabs[0].ref)
 const newTab = ref()
 const hlineWidth = ref(0)
 const hlineOffset = ref(0)

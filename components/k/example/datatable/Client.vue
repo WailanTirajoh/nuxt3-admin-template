@@ -132,7 +132,7 @@ const datatableHook = (arg: any) => {
 </script>
 
 <template>
-  <div class="bg-white p-2 rounded-lg shadow">
+  <div>
     <h5 class="text-lg font-semibold">
       Client side
     </h5>
