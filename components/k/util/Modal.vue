@@ -1,8 +1,4 @@
-
-
 <script setup lang="ts">
-import VueFeather from "vue-feather";
-
 interface Props {
   fullHeight?: boolean
   width?: string
@@ -55,7 +51,7 @@ watch(isOpen, (newValue) => {
         class="overflow-x-hidden overflow-y-auto fixed inset-0 z-40 outline-none focus:outline-none justify-center pt-12 flex w-100">
         <div class="relative max-w-7xl mx-auto px-2 sm:px-6 lg:px-8" :style="{ width: props.width }">
           <div
-            class="border-0 rounded-2xl shadow-lg relative flex flex-col w-full bg-white dark:bg-gray-800 outline-none focus:outline-none">
+            class="border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-white dark:bg-gray-800 outline-none focus:outline-none">
             <div
               class="flex items-center justify-between p-5 border-b border-solid border-slate-200 dark:border-gray-700 rounded-t px-6">
               <div class="text-3xl font-semibold">
@@ -64,7 +60,7 @@ watch(isOpen, (newValue) => {
               <button
                 class="duration-200 p-1 ml-auto transition-opacity bg-transparent border-0 text-black opacity-30 hover:opacity-60 float-right text-3xl leading-none font-semibold outline-none focus:outline-none"
                 @click="toggleModal()">
-                <vue-feather type="x" />
+                <KIconFeather type="x" />
               </button>
             </div>
             <div class="relative p-6 flex-auto overflow-y-auto" :style="{ height: bodyHeight }">

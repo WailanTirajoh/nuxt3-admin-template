@@ -11,7 +11,7 @@ const test = ref('')
     <h1 class="text-3xl font-bold">
       Tiptap Editor
     </h1>
-    <hr class="my-2 border-sky-700" />
+    <hr class="my-2 border" />
     <client-only>
       <KExampleEditorTiptap></KExampleEditorTiptap>
     </client-only>

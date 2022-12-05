@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import VueFeather from "vue-feather";
 import { useToastStore } from "~~/store/toast";
 
 const toastStore = useToastStore()
@@ -22,7 +21,7 @@ const copyText = (text: string) => {
     <button
       class="border border-gray-700 text-gray-300 p-2 flex items-center justify-center rounded absolute right-1 top-1 bg-[#1407471f] hover:bg-[#16323b1f] hover:scale-110 duration-100"
       @click="copyText(props.text)">
-      <vue-feather type="copy" />
+      <KIconFeather type="copy" />
     </button>
     <pre
       class="bg-gray-900 text-gray-300 px-4 py-2 rounded-lg overflow-auto max-h-[600px] scrollbar text-xs">{{ props.text }}</pre>

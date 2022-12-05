@@ -1,18 +1,17 @@
 <script setup lang="ts">
-import VueFeather from "vue-feather"
 import { useSidebarStore } from "~~/store/sidebar";
 const sidebarStore = useSidebarStore()
 const animationOpenClose = useAnimationOpenClose()
 </script>
 <template>
-  <header class="md:flex w-full text-gray-200 border-spacing-1 border-t-0 shadow-xl border-[#343434] bg-gray-800 px-2">
+  <header class="md:flex w-full text-gray-200 border-spacing-1 border-t-0 shadow-xl border-[#343434] bg-gray-800 px-2 md:sticky md:top-0 z-10">
     <div class="h-14 flex justify-between md:justify-center items-center w-full md:w-52 px-4">
       <div class="font-bold">
         NuxiAdmin
       </div>
       <button class="block md:hidden float-right" @click="sidebarStore.mobileOpen = !sidebarStore.mobileOpen">
         <div class="-rotate-90">
-          <vue-feather type="bar-chart-2"></vue-feather>
+          <KIconFeather type="bar-chart-2"></KIconFeather>
         </div>
       </button>
     </div>
@@ -39,7 +38,7 @@ const animationOpenClose = useAnimationOpenClose()
               <button
                 class="block w-full px-4 py-2 text-sm leading-5 text-gray-700 dark:text-gray-200 text-left hover:bg-gray-100 dark:hover:bg-gray-900 focus:outline-none focus:bg-gray-100 dark:focus:bg-gray-800 transition">
                 <div class="flex gap-2 items-center">
-                  <vue-feather type="user" />
+                  <KIconFeather type="user" />
                   <div class="">Profile</div>
                 </div>
               </button>
@@ -47,7 +46,7 @@ const animationOpenClose = useAnimationOpenClose()
             <button
               class="block w-full px-4 py-2 text-sm leading-5 text-gray-700 dark:text-gray-200 text-left hover:bg-gray-100 dark:hover:bg-gray-900 focus:outline-none focus:bg-gray-100 dark:focus:bg-gray-800 transition">
               <div class="flex gap-2 items-center">
-                <vue-feather type="log-out" />
+                <KIconFeather type="log-out" />
                 <div class="">Logout</div>
               </div>
             </button>

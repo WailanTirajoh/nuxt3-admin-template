@@ -31,7 +31,7 @@ const selectionList = [
     <h1 class="text-3xl font-bold">
       General
     </h1>
-    <hr class="my-2 border-sky-700" />
+    <hr class="my-2 border" />
     <div class="grid grid-cols-12 gap-2 p-2 bg-white rounded-lg">
       <div class="col-span-12">
         <KFormImage v-model="imageExample" label="Image" />

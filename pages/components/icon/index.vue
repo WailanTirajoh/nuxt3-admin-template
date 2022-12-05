@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import VueFeather from "vue-feather";
 import feather from "feather-icons";
 import { useToastStore } from "~/store/toast"
 
@@ -31,7 +30,7 @@ const copyText = (text: string) => {
 <template>
   <div class="">
     <h1 class="text-3xl font-bold">Icons</h1>
-    <hr class="my-2 border-sky-700" />
+    <hr class="my-2 border" />
     <div class="mb-2">
       <input class="bg-white rounded w-full p-2 focus:outline focus:outline-offset-2 focus:outline-sky-800" type="text"
         v-model="search" placeholder="Type to search icon . . ." />
@@ -42,7 +41,7 @@ const copyText = (text: string) => {
         <KButton :icon="icon" variant="light" class="w-full !text-sky-900" text-position="left" ripple>
           {{ icon }}
         </KButton>
-        <!-- <vue-feather :type="icon"></vue-feather> -->
+        <!-- <KIconFeather :type="icon"></KIconFeather> -->
         <!-- <span>{{ icon }}</span> -->
       </li>
     </TransitionGroup>

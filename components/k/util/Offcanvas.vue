@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import VueFeather from "vue-feather";
-
 type Position = 'top' | 'left' | 'right' | 'bottom'
 interface Props {
   position?: Position,
@@ -75,7 +73,7 @@ watch(isOpen, (newValue) => {
           <button
             class="duration-200 p-1 ml-auto bg-transparent border-0 text-black opacity-30 hover:opacity-80 float-right text-3xl leading-none font-semibold outline-none focus:outline-none"
             @click="closeOffCanvas()">
-            <vue-feather type="x" />
+            <KIconFeather type="x" />
           </button>
         </div>
         <div class="p-4 overflow-y-auto">

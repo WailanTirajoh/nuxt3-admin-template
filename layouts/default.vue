@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import VueFeather from "vue-feather"
 import { useToastStore } from "~/store/toast"
 
 useHead({
@@ -31,7 +30,7 @@ const toastStore = useToastStore()
       </div>
       <div class="text-center flex items-center gap-1 justify-center text-gray-200">
         Developed with
-        <vue-feather class="text-red-500" type="heart" /> By <a class="text-blue-300"
+        <KIconFeather class="text-red-500" type="heart" /> By <a class="text-blue-300"
           href="https://github.com/WailanTirajoh" target="_blank">Wailan</a>
       </div>
     </div>

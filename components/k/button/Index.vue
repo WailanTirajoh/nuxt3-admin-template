@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import VueFeather from "vue-feather"
-
 /**
  * Available type
  */
@@ -115,12 +113,9 @@ const btnRipple = computed(() => {
         v-if="btnDisabled">
       </div>
     </transition>
-    <vue-feather class="mr-2" :class="[
+    <KIconFeather class="mr-2" :class="[
       btnIconPosition,
-      {
-        'animate-[spin_2s_linear_infinite]': btnLoading
-      }
-    ]" v-if="icon" :type="btnIcon" />
+    ]" v-if="icon" :type="btnIcon" :animation="btnLoading ? 'spin' : ''" />
     <slot />
   </button>
 </template>

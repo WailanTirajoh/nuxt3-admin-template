@@ -1,7 +1,6 @@
 
 
 <script setup lang="ts">
-import VueFeather from "vue-feather"
 import { useToastStore } from "~/store/toast"
 import { Type } from "~~/interface/toast"
 
@@ -107,11 +106,11 @@ const removeToast = () => {
         <div class="py-3 pt-1 px-2 shadow bg-opacity-95 rounded relative max-h-60 overflow-y-auto bg-white border-t-8"
           :class="classType">
           <div class="text-black opacity-50 cursor-pointer rounded-full absolute top-2 right-2" @click="removeToast()">
-            <vue-feather class="text-gray-900" type="x" />
+            <KIconFeather class="text-gray-900" type="x" />
           </div>
           <div class="flex items-center gap-3 text-left">
             <template v-if="iconType">
-              <vue-feather class="font-bold text-lg" :class="textColor" :type="iconType" />
+              <KIconFeather class="font-bold text-lg" :class="textColor" :type="iconType" />
             </template>
             <div class="text-left pr-4">
               <template v-if="title">

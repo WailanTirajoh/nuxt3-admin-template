@@ -7,7 +7,7 @@ useHead({
 <template>
   <div class="">
     <h1 class="text-3xl font-bold">Button</h1>
-    <hr class="my-2 border-sky-700" />
+    <hr class="my-2 border" />
     <div class="grid gap-2 grid-cols-[repeat(auto-fill,_minmax(14rem,_1fr))] mb-2">
       <KButton variant="primary" :ripple="true">
         Primary Button with ripple

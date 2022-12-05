@@ -13,7 +13,7 @@ const toastStore = useToastStore()
     <h1 class="text-3xl font-bold">
       Toast
     </h1>
-    <hr class="my-2 border-sky-700" />
+    <hr class="my-2 border" />
     <div class="grid grid-cols-12 gap-2">
       <div class="col-span-12">
         <div class="flex gap-2">
