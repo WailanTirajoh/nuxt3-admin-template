@@ -28,7 +28,8 @@ export default defineNuxtConfig({
   ],
   pwa: {
     workbox: {
-      enabled: true
+      enabled: true,
+      templatePath: '~/services/worker.js'
     }
   }
 })

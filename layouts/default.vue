@@ -2,6 +2,9 @@
 import { useToastStore } from "~/store/toast"
 
 useHead({
+  link: [
+    { rel: 'icon', type: 'image/x-icon', href: '/icon.png' },
+  ],
   htmlAttrs: {
     lang: 'en',
   }
