@@ -24,12 +24,12 @@ export default defineNuxtConfig({
   },
   modules: [
     '@pinia/nuxt',
-    '@kevinmarrec/nuxt-pwa',
+    // '@kevinmarrec/nuxt-pwa',
   ],
-  pwa: {
-    workbox: {
-      enabled: true,
-      templatePath: '~/services/worker.js'
-    }
-  }
+  // pwa: {
+  //   workbox: {
+  //     enabled: true,
+  //     templatePath: '~/services/worker.js'
+  //   }
+  // }
 })

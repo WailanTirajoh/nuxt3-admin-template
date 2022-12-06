@@ -24,7 +24,9 @@
   },
   "dependencies": {
     "@pinia/nuxt": "^0.4.6",
+    "chart.js": "^4.0.1",
     "feather-icons": "^4.29.0",
-    "quill": "^1.3.7"
+    "quill": "^1.3.7",
+    "vue-chartjs": "^5.0.0"
   }
 }
