@@ -67,6 +67,7 @@ const search = ref(props.search ?? '')
 const currentPage = ref(props.currentPage ?? 1)
 const sortBy = ref(props.sortBy ?? Object.keys(props.column[0])[0])
 const sortType = ref(props.sortType ?? "asc")
+const checkAll = ref(false)
 
 const filteredData = computed(() => {
   return props.data.map((data) => data)
@@ -134,15 +135,14 @@ const selected = computed({
 })
 
 // update v-model values
-watch(sortBy, (value) => {
-  emit('update:sortBy', value)
+watch(sortBy, (value) => emit('update:sortBy', value))
+watch(sortType, (value) => emit('update:sortType', value))
+watch(search, (value) => emit('update:search', value))
+watch(selected, (value) => {
+  if (value.length === props.data.length) checkAll.value = true
+  else checkAll.value = false
 })
-watch(sortType, (value) => {
-  emit('update:sortType', value)
-})
-watch(search, (value) => {
-  emit('update:search', value)
-})
+
 
 // Event's
 const clickSort = (key: string) => emit('on-change-sort', key, props.sortType === 'asc' ? 'desc' : 'asc')
@@ -169,6 +169,10 @@ const updateSort = (h: Column) => {
 const updateCurrentPage = (page: number) => {
   currentPage.value = page
 }
+const checkAllClick = () => {
+  if (checkAll.value) selected.value = []
+  else selected.value = props.data.map((data) => data.id)
+}
 </script>
 
 <template>
@@ -178,7 +182,7 @@ const updateCurrentPage = (page: number) => {
         <div>Show</div>
         <div>
           <select v-model="limit"
-            class="p-2 rounded bg-white border dark:bg-gray-900 appearance-none focus:border focus:ring-0 focus:outline-none custor-pointer">
+            class="p-2 rounded border dark:bg-gray-900 appearance-none focus:border focus:ring-0 focus:outline-none custor-pointer">
             <option :value="v.value" v-for="v in setting.limitOption">{{ v.label }}</option>
           </select>
         </div>
@@ -186,49 +190,47 @@ const updateCurrentPage = (page: number) => {
       </div>
       <div class="w-full md:w-48 flex items-center">
         <input v-model="search" type="text"
-          class="block w-full rounded text-gray-600 border dark:border-gray-700 focus:ring-0 focus:outline-none p-2 bg-white dark:bg-gray-900 font-normal"
+          class="block w-full rounded text-gray-600 border dark:border-gray-700 focus:ring-0 focus:outline-none p-2 dark:bg-gray-900 font-normal"
           placeholder="Type something and press enter . . ." @keyup.enter="enterSearch()" />
       </div>
     </div>
     <div class="col-span-12">
       <div class="relative">
-        <div class="overflow-auto table-fix-head shadow-sm dark:border dark:border-gray-700">
-          <table class="w-full bg-white k-datatable resizable rounded-lg" :summary="summary">
-            <thead class="bg-gray-100 dark:bg-gray-900 dark:border-b dark:border-gray-700 text-gray-800">
+        <div class="overflow-auto table-fix-head dark:border dark:border-gray-700">
+          <table class="w-full k-datatable resizable rounded-lg border-separate border-spacing-y-4" :summary="summary">
+            <thead>
               <tr>
-                <th v-if="setting.checkbox"
-                  class="p-1 whitespace-nowrap select-none hover:bg-gray-200 dark:hover:bg-black border dark:border-gray-600 px-5"
-                  :style="{
-                    width: '20px'
-                  }">
+                <th v-if="setting.checkbox" :style="{
+                  width: '20px'
+                }">
+                  <div class="flex justify-center items-center px-2">
+                    <input type="checkbox" v-model="checkAll" @click="checkAllClick">
+                  </div>
                 </th>
-                <th
-                  class="p-2 whitespace-nowrap select-none hover:bg-gray-200 dark:hover:bg-black border dark:border-gray-600 "
-                  :class="{
-                    asc: sortBy == h.field && sortType == 'asc',
-                    desc: sortBy == h.field && sortType == 'desc',
-                    sorting: h.sortable
-                  }" :style="{ width: h.width }" @click="columnClick(h)" v-for="h in props.column">
+                <th class="select-none" :class="{
+                  asc: sortBy == h.field && sortType == 'asc',
+                  desc: sortBy == h.field && sortType == 'desc',
+                  sorting: h.sortable
+                }" :style="{ width: h.width }" @click="columnClick(h)" v-for="h in props.column">
                   {{ h.label }}
                 </th>
               </tr>
             </thead>
             <tbody class="text-sm" v-if="(data.length > 0)">
-              <tr
-                class="duration-300 bg-white hover:bg-gray-50 dark:bg-gray-800 dark:hover:bg-gray-900 dark:border-gray-700"
+              <tr class="duration-300 hover:bg-gray-50 dark:bg-gray-800 dark:hover:bg-gray-900 dark:border-gray-700"
                 v-for="d, i in data">
                 <td
-                  class="duration-300 p-1 hover:bg-gray-100 border dark:hover:bg-gray-900 relative dark:border-gray-600"
-                  v-if="setting.checkbox" :style="{
+                  class="duration-300 p-1 bg-white dark:hover:bg-gray-900 relative dark:border-gray-600 first:rounded-l-lg last:rounded-r-lg py-4"
+                  style="box-shadow: 20px 3px 20px #0000000b;" v-if="setting.checkbox" :style="{
                     width: '20px'
                   }">
-                  <div class="flex justify-center items-center">
+                  <div class="flex justify-center items-center px-2">
                     <input type="checkbox" :value="d['id']" v-model="selected">
                   </div>
                 </td>
                 <KDatatableTd
-                  class="duration-300 p-1 hover:bg-gray-100 border dark:hover:bg-gray-900 relative dark:border-gray-600"
-                  :copyText="d[h.field]" v-for="h in props.column">
+                  class="duration-300 p-1 bg-white dark:hover:bg-gray-900 relative dark:border-gray-600 first:rounded-l-lg last:rounded-r-lg py-4"
+                  style="box-shadow: 20px 3px 20px #0000000b;" :copyText="d[h.field]" v-for="h in props.column">
                   <slot name="row" :column="h" :data="d" :index="i">
                   </slot>
                   <div v-if="h.component" @click="cellClick(h)">
@@ -245,8 +247,7 @@ const updateCurrentPage = (page: number) => {
               </tr>
             </tbody>
             <tbody class="text-sm" v-else>
-              <tr
-                class="duration-300 bg-white hover:bg-gray-50 dark:bg-gray-800 dark:hover:bg-gray-900 dark:border-gray-700">
+              <tr class="duration-300 hover:bg-gray-50 dark:bg-gray-800 dark:hover:bg-gray-900 dark:border-gray-700">
                 <td
                   class="duration-300 p-1 hover:bg-gray-100 border dark:hover:bg-gray-900 relative dark:border-gray-600"
                   :colspan="props.column.length + (setting.checkbox ? 1 : 0)">
@@ -254,25 +255,6 @@ const updateCurrentPage = (page: number) => {
                 </td>
               </tr>
             </tbody>
-            <tfoot class="bg-gray-100 dark:bg-gray-900 dark:border-b dark:border-gray-700 text-gray-800">
-              <tr>
-                <th v-if="setting.checkbox"
-                  class="p-1 whitespace-nowrap select-none hover:bg-gray-200 dark:hover:bg-black border dark:border-gray-600 px-5"
-                  :style="{
-                    width: '20px'
-                  }">
-                </th>
-                <th
-                  class="p-2 whitespace-nowrap select-none hover:bg-gray-200 dark:hover:bg-black border dark:border-gray-600 "
-                  :class="{
-                    asc: sortBy == h.field && sortType == 'asc',
-                    desc: sortBy == h.field && sortType == 'desc',
-                    sorting: h.sortable
-                  }" :style="{ width: h.width }" @click="columnClick(h)" v-for="h in props.column">
-                  {{ h.label }}
-                </th>
-              </tr>
-            </tfoot>
           </table>
         </div>
         <KDatatableLoading :show="isLoading" />
@@ -285,8 +267,7 @@ const updateCurrentPage = (page: number) => {
         </div>
         <div>
           <KDatatablePagination :current-page="currentPage" :total-data="totalData" :total-page="totalPage"
-            :is-loading="isLoading" :per-page="limit" @change-current-page="updateCurrentPage"
-            class="text-xs shadow-sm" />
+            :is-loading="isLoading" :per-page="limit" @change-current-page="updateCurrentPage" class="text-xs" />
         </div>
       </div>
     </div>

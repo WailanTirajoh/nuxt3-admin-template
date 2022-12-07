@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import { Data, Column } from '~~/interface/datatable';
-import ClientAction from "./ClientAction.vue"
 const data = ref({
   column: [
     {
@@ -22,26 +21,6 @@ const data = ref({
           </span>
         </div>
       `,
-    },
-    {
-      label: 'Row Data',
-      field: 'rowData',
-      width: '400px',
-      sortable: false,
-    },
-    {
-      label: 'Action',
-      sortable: false,
-      width: '100px',
-      // Component inject example
-      component: (data: Data, i: number) => {
-        return {
-          component: ClientAction,
-          props: {
-            name: data.name
-          }
-        }
-      }
     },
   ] as Array<Column>,
   data: [
@@ -140,16 +119,6 @@ const datatableHook = (arg: any) => {
     <KDatatableClient v-model:search="data.search" v-model:limit="data.limit" v-model:selected="data.selected"
       v-model:sort-by="data.sortBy" v-model:sort-type="data.sortType" :column="data.column" :data="data.data"
       :setting="data.setting" @datatable:column-hook="datatableHook">
-      <template #row="props">
-        <template v-if="props.column.field === 'rowData'">
-          <div class="">
-            Cell Slots Example
-          </div>
-          <div class="bg-gray-900 rounded p-2 text-gray-100">
-            <pre>{{ props.data }}</pre>
-          </div>
-        </template>
-      </template>
       <template #empty>
         No Data
       </template>

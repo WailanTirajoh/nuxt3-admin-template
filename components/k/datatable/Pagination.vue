@@ -1,10 +1,8 @@
 <template>
-  <div class="flex">
+  <div class="flex gap-2">
     <button aria-label="pagination-prev-button"
-      class="hover:bg-gray-100 border dark:border-gray-700 p-1 flex justify-center items-center w-8 h-8 transition-all duration-300 ease-in-out"
-      :class="{
-        'bg-gray-200 cursor-not-allowed dark:bg-gray-900 dark:hover:bg-gray-800':
-          currentPage - 1 < 1,
+      class="p-1 flex justify-center items-center w-8 h-8 transition-all duration-300 ease-in-out" :class="{
+        'cursor-not-allowed': currentPage - 1 < 1,
         'cursor-wait': isLoading,
       }" :disabled="currentPage - 1 < 1 || isLoading" @click="changeCurrentPage(currentPage - 1)">
       <svg width="6" height="10" viewBox="0 0 6 10" fill="none">
@@ -14,11 +12,11 @@
       </svg>
     </button>
     <button
-      class="border dark:border-gray-700 p-1 flex justify-center items-center w-8 h-8 transition-all duration-300 ease-in-out overflow-hidden"
+      class="p-1 flex justify-center items-center w-8 h-8 transition-all duration-300 ease-in-out overflow-hidden"
       :class="{
-        'bg-white text-red-cst hover:bg-gray-100 dark:bg-gray-800 dark:hover:bg-gray-900':
+        '':
           currentPage != 1,
-        'bg-gray-800 text-white hover:bg-gray-900 dark:bg-gray-800 dark:hover:bg-gray-900':
+        'bg-white rounded-lg':
           currentPage == 1,
         'cursor-wait': isLoading,
       }" :disabled="isLoading" @click="changeCurrentPage(1)">
@@ -28,11 +26,11 @@
       <template v-if="totalPage - eachSide <= currentPage">
         <div v-for="index in arrEachSide" :key="index">
           <button v-if="totalPage - index > 1"
-            class="border dark:border-gray-700 p-1 flex justify-center items-center w-8 h-8 transition-all duration-300 ease-in-out overflow-hidden"
+            class="p-1 flex justify-center items-center w-8 h-8 transition-all duration-300 ease-in-out overflow-hidden"
             :class="{
-              'bg-white text-red-cst hover:bg-gray-100 dark:bg-gray-800 dark:hover:bg-gray-900':
+              '':
                 currentPage != totalPage - index,
-              'bg-gray-800 text-white hover:bg-gray-900 dark:bg-gray-800 dark:hover:bg-gray-900':
+              'bg-white rounded-lg':
                 currentPage == totalPage - index,
               'cursor-wait': isLoading,
             }" :disabled="isLoading" @click="changeCurrentPage(totalPage - index)">
@@ -43,11 +41,11 @@
       <template v-else>
         <div v-for="index in eachSide" :key="index">
           <button v-if="index - 2 + currentPage > 1"
-            class="border dark:border-gray-700 p-1 flex justify-center items-center w-8 h-8 transition-all duration-300 ease-in-out overflow-hidden"
+            class="p-1 flex justify-center items-center w-8 h-8 transition-all duration-300 ease-in-out overflow-hidden"
             :class="{
-              'bg-white text-red-cst hover:bg-gray-100 dark:bg-gray-800 dark:hover:bg-gray-900':
+              '':
                 currentPage != index - 2 + currentPage,
-              'bg-gray-800 text-white hover:bg-gray-900 dark:bg-gray-800 dark:hover:bg-gray-900':
+              'bg-white rounded-lg':
                 currentPage == index - 2 + currentPage,
               'cursor-wait': isLoading,
             }" :disabled="isLoading" @click="changeCurrentPage(index - 2 + currentPage)">
@@ -55,22 +53,22 @@
           </button>
         </div>
         <button v-if="currentPage === 1"
-          class="border dark:border-gray-700 p-2 flex justify-center items-center w-8 h-8 transition-all duration-300 ease-in-out"
+          class="p-2 flex justify-center items-center w-8 h-8 transition-all duration-300 ease-in-out"
           :class="{
-            'bg-white text-red-cst hover:bg-gray-100 dark:bg-gray-800 dark:hover:bg-gray-900':
+            '':
               currentPage != 3,
-            'bg-gray-800 text-white hover:bg-gray-900 dark:bg-gray-800 dark:hover:bg-gray-900':
+            'bg-white rounded-lg':
               currentPage == 3,
             'cursor-wait': isLoading,
           }" :disabled="isLoading" @click="changeCurrentPage(3)">
           3
         </button>
         <button v-if="currentPage === 2 || currentPage === 1"
-          class="border dark:border-gray-700 p-2 flex justify-center items-center w-8 h-8 transition-all duration-300 ease-in-out"
+          class="p-2 flex justify-center items-center w-8 h-8 transition-all duration-300 ease-in-out"
           :class="{
-            'bg-white text-red-cst hover:bg-gray-100 dark:bg-gray-800 dark:hover:bg-gray-900':
+            '':
               currentPage != 4,
-            'bg-gray-800 text-white hover:bg-gray-900 dark:bg-gray-800 dark:hover:bg-gray-900':
+            'bg-white rounded-lg':
               currentPage == 4,
             'cursor-wait': isLoading,
           }" :disabled="isLoading" @click="changeCurrentPage(4)">
@@ -79,20 +77,19 @@
       </template>
     </template>
     <button v-if="totalPage - 1 > 0"
-      class="border dark:border-gray-700 p-1 flex justify-center items-center w-8 h-8 transition-all duration-300 ease-in-out overflow-hidden"
+      class="p-1 flex justify-center items-center w-8 h-8 transition-all duration-300 ease-in-out overflow-hidden"
       :class="{
-        'bg-white text-red-cst hover:bg-gray-100 dark:bg-gray-800 dark:hover:bg-gray-900':
+        '':
           currentPage != totalPage,
-        'bg-gray-800 text-white hover:bg-gray-900 dark:bg-gray-800 dark:hover:bg-gray-900':
+        'bg-white rounded-lg':
           currentPage == totalPage,
         'cursor-wait': isLoading,
       }" :disabled="isLoading" @click="changeCurrentPage(totalPage)">
       {{ totalPage }}
     </button>
     <button aria-label="pagination-next-button"
-      class="hover:bg-gray-100 border dark:border-gray-700 p-1 flex justify-center items-center w-8 h-8 transition-all duration-300 ease-in-out"
-      :class="{
-        'bg-gray-200 cursor-not-allowed dark:bg-gray-900 dark:hover:bg-gray-800':
+      class="p-1 flex justify-center items-center w-8 h-8 transition-all duration-300 ease-in-out" :class="{
+        'cursor-not-allowed':
           currentPage + 1 > totalPage,
         'cursor-wait': isLoading,
       }" :disabled="currentPage + 1 > totalPage || isLoading" @click="changeCurrentPage(currentPage + 1)">
