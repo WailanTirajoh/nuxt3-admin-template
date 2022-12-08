@@ -24,7 +24,7 @@ const COLORS: Record<Variant, string> = {
 }
 
 const btnColor = computed(() => {
-  let color = COLORS[props.variant ?? 'primary']
+  let color = COLORS[props.variant ?? Variant.PRIMARY]
   if (!btnDisabled.value) {
     color += ' active:bg-opacity-90 hover:bg-opacity-90'
   }
@@ -46,10 +46,13 @@ const btnLoading = computed(() => {
 const btnIcon = computed(() => {
   return btnLoading.value ? 'loader' : props.icon
 })
+
+const ICON_POSITIONS: Record<IconPosition, string> = {
+  [IconPosition.LEFT]: 'float-left mr-2',
+  [IconPosition.RIGHT]: 'float-right ml-2',
+}
 const btnIconPosition = computed(() => {
-  return props.iconPosition === IconPosition.RIGHT
-    ? 'float-right ml-2'
-    : 'float-left mr-2'
+  return ICON_POSITIONS[props.iconPosition ?? IconPosition.LEFT]
 })
 const btnClasses = computed(() => {
   if (!props.classes) return []
