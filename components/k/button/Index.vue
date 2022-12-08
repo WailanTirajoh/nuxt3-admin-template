@@ -1,10 +1,5 @@
 <script setup lang="ts">
-/**
- * Available type
- */
-type Variant = 'primary' | 'secondary' | 'danger' | 'success' | 'light' | 'warning' | 'info'
-type IconPosition = 'left' | 'right'
-type TextPosition = 'left' | 'center' | 'right'
+import { IconPosition, TextPosition, Variant } from './types';
 
 interface Props {
   classes?: Array<string>
@@ -18,55 +13,30 @@ interface Props {
 }
 const props = defineProps<Props>()
 
-const btnColor = computed(() => {
-  let color = ''
-  switch (props.variant) {
-    case 'secondary':
-      color = 'bg-gray-200 text-gray-800'
-      if (!btnDisabled.value) color += ' active:bg-gray-200 hover:bg-gray-300'
-      break;
-    case 'danger':
-      color = 'bg-red-800 text-white'
-      if (!btnDisabled.value) color += ' active:bg-red-900 hover:bg-red-700'
-      break;
-    case 'success':
-      color = 'bg-green-800 text-white'
-      if (!btnDisabled.value) color += ' active:bg-green-900 hover:bg-green-700'
-      break;
-    case 'light':
-      color = 'bg-white text-gray-800'
-      if (!btnDisabled.value) color += ' active:bg-white hover:bg-gray-50'
-      break;
-    case 'warning':
-      color = 'bg-yellow-800 text-white'
-      if (!btnDisabled.value) color += ' active:bg-yellow-900 hover:bg-yellow-700'
-      break;
-    case 'info':
-      color = 'bg-gray-800 text-white'
-      if (!btnDisabled.value) color += ' active:bg-gray-800 hover:bg-gray-700'
-      break;
-    default:
-      color = 'bg-gray-800 text-white'
-      if (!btnDisabled.value) color += ' active:bg-gray-900 hover:bg-gray-700'
-  }
+const COLORS: Record<Variant, string> = {
+  [Variant.PRIMARY]: 'bg-gray-800 text-white',
+  [Variant.SECONDARY]: 'bg-gray-200 text-gray-800',
+  [Variant.DANGER]: 'bg-red-800 text-white',
+  [Variant.SUCCESS]: 'bg-green-800 text-white',
+  [Variant.LIGHT]: 'bg-white text-gray-800',
+  [Variant.WARNING]: 'bg-yellow-800 text-white',
+  [Variant.INFO]: 'bg-gray-800 text-white',
+}
 
+const btnColor = computed(() => {
+  let color = COLORS[props.variant ?? 'primary']
+  if (!btnDisabled.value) {
+    color += ' active:bg-opacity-90 hover:bg-opacity-90'
+  }
   return color
 })
 
 const btnTextPosition = computed(() => {
-  let textPosition = ''
-  switch (props.textPosition) {
-    case 'left':
-      textPosition = 'text-left'
-      break
-    case 'right':
-      textPosition = 'text-right'
-      break
-    default:
-      textPosition = 'text-center'
-      break
-  }
-  return textPosition
+  return props.textPosition === TextPosition.LEFT
+    ? 'text-left'
+    : props.textPosition === TextPosition.RIGHT
+      ? 'text-right'
+      : 'text-center'
 })
 
 const btnLoading = computed(() => {
@@ -76,18 +46,10 @@ const btnLoading = computed(() => {
 const btnIcon = computed(() => {
   return btnLoading.value ? 'loader' : props.icon
 })
-
 const btnIconPosition = computed(() => {
-  let position = ''
-  switch (props.iconPosition) {
-    case 'right':
-      position = 'float-right ml-2'
-      break
-    default:
-      position = 'float-left mr-2'
-  }
-
-  return position
+  return props.iconPosition === IconPosition.RIGHT
+    ? 'float-right ml-2'
+    : 'float-left mr-2'
 })
 const btnClasses = computed(() => {
   if (!props.classes) return []
