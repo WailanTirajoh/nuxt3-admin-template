@@ -23,6 +23,17 @@ const COLORS: Record<Variant, string> = {
   [Variant.INFO]: 'bg-gray-800 text-white',
 }
 
+const ICON_POSITIONS: Record<IconPosition, string> = {
+  [IconPosition.LEFT]: 'float-left mr-2',
+  [IconPosition.RIGHT]: 'float-right ml-2',
+}
+
+const TEXT_POSITIONS: Record<TextPosition, string> = {
+  [TextPosition.LEFT]: 'text-left',
+  [TextPosition.RIGHT]: 'text-right',
+  [TextPosition.CENTER]: 'text-center',
+}
+
 const btnColor = computed(() => {
   let color = COLORS[props.variant ?? Variant.PRIMARY]
   if (!btnDisabled.value) {
@@ -32,11 +43,7 @@ const btnColor = computed(() => {
 })
 
 const btnTextPosition = computed(() => {
-  return props.textPosition === TextPosition.LEFT
-    ? 'text-left'
-    : props.textPosition === TextPosition.RIGHT
-      ? 'text-right'
-      : 'text-center'
+  return TEXT_POSITIONS[props.textPosition ?? TextPosition.LEFT]
 })
 
 const btnLoading = computed(() => {
@@ -46,11 +53,6 @@ const btnLoading = computed(() => {
 const btnIcon = computed(() => {
   return btnLoading.value ? 'loader' : props.icon
 })
-
-const ICON_POSITIONS: Record<IconPosition, string> = {
-  [IconPosition.LEFT]: 'float-left mr-2',
-  [IconPosition.RIGHT]: 'float-right ml-2',
-}
 const btnIconPosition = computed(() => {
   return ICON_POSITIONS[props.iconPosition ?? IconPosition.LEFT]
 })
@@ -67,11 +69,12 @@ const btnRipple = computed(() => {
 </script>
 
 <template>
-  <button v-ripple="btnRipple" v-bind="$attrs" class="p-2 rounded-md relative duration-200" :class="[
-    btnColor,
-    ...btnClasses,
-    btnTextPosition
-  ]" :disabled="btnDisabled">
+  <button v-ripple="btnRipple" v-bind="$attrs" :disabled="btnDisabled" class="p-2 rounded-md relative duration-200"
+    :class="[
+      btnColor,
+      ...btnClasses,
+      btnTextPosition
+    ]">
     <transition enter-active-class="ease-out duration-300" enter-from-class="opacity-0" enter-to-class="opacity-100"
       leave-active-class="ease-in duration-200" leave-from-class="opacity-100" leave-to-class="opacity-0">
       <div class="absolute w-full h-full cursor-not-allowed bg-white -mt-2 -ml-2 rounded bg-opacity-10"
