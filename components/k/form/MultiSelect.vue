@@ -1,12 +1,9 @@
-
 <script setup lang="ts">
-type ItemValue = any
+import { Item, ItemValue } from "../dropdown/types-selection"
+
 interface Props {
   modelValue: Array<ItemValue>
-  items: Array<{
-    name: string
-    value: ItemValue
-  }>
+  items: Array<Item>
   label?: string
   placeholder?: string
   disabled?: boolean

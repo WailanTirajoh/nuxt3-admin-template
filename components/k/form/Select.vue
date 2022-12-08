@@ -1,13 +1,12 @@
 
 <script setup lang="ts">
+import { Item } from '../dropdown/types-selection';
+
 interface Props {
   modelValue?: string | number
   label?: string
   placeholder?: string
-  items: Array<{
-    name: string
-    value: any
-  }>
+  items: Array<Item>
   disabled?: boolean
 }
 const props = withDefaults(defineProps<Props>(), {

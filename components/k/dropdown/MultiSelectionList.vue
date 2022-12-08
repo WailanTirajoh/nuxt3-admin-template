@@ -1,56 +1,47 @@
 <script setup lang="ts">
-type ItemValue = any
+import { Item, ItemValue } from "./types-selection"
+
 interface Props {
-  placeholder?: string
-  items: Array<{
-    name: string
-    value: ItemValue
-  }>
-  modelValue: Array<ItemValue>
-  closeOnSelect?: boolean
+  placeholder?: string;
+  items: Array<Item>;
+  modelValue: readonly ItemValue[];
+  closeOnSelect?: boolean;
 }
 const props = withDefaults(defineProps<Props>(), {
   placeholder: '',
   closeOnSelect: false,
-})
+});
 
 const emit = defineEmits([
-  'update:modelValue'
-])
+  'update:modelValue',
+]);
 
-const dropdownSelect = ref()
-const search = ref()
+const dropdownSelect = ref();
+const search = ref();
 
 const filterredItems = computed(() => {
-  return props.items.filter((item) => {
-    if (!search.value) return true
-    return item.name.toLowerCase().includes(search.value.toLowerCase())
-  })
-})
+  return props.items.filter(({ label }) => {
+    if (!search.value) return true;
+    return label.toLowerCase().includes(search.value.toLowerCase());
+  });
+});
 
 const updateValue = (value: ItemValue) => {
-  const tempValue: Array<ItemValue> = []
+  const tempValue: ItemValue[] = [];
+  props.modelValue.forEach((v: ItemValue) => tempValue.push(v));
+  if (tempValue.includes(value)) tempValue.splice(tempValue.indexOf(value), 1);
+  else tempValue.push(value);
+  emit('update:modelValue', tempValue);
+  if (props.closeOnSelect === true) dropdownSelect.value.toggleDropdown();
+};
 
-  props.modelValue.forEach((v: ItemValue) => tempValue.push(v))
-  if (tempValue.includes(value)) {
-    const index = tempValue.indexOf(value)
-    tempValue.splice(index, 1)
-  } else {
-    tempValue.push(value)
-  }
-
-  emit('update:modelValue', tempValue)
-
-  if (props.closeOnSelect === true) dropdownSelect.value.toggleDropdown()
-}
-
-const removeSelectedValue = (v: ItemValue) => {
-  updateValue(v)
-}
+const removeSelectedValue = (value: ItemValue) => {
+  updateValue(value);
+};
 
 const clearData = () => {
-  emit('update:modelValue', [])
-}
+  emit('update:modelValue', []);
+};
 </script>
 
 <template>
@@ -86,7 +77,7 @@ const clearData = () => {
                 'bg-gray-800 text-white': modelValue.includes(item.value),
                 'hover:bg-gray-100 text-gray-700': !modelValue.includes(item.value),
               }" @click="updateValue(item.value)">
-              {{ item.name }}
+              {{ item.label }}
             </li>
           </template>
           <template v-else>

@@ -1,10 +1,9 @@
 <script setup lang="ts">
+import { Item } from './types-selection';
+
 interface Props {
   placeholder?: string
-  items: Array<{
-    name: string
-    value: any
-  }>
+  items: Array<Item>
   modelValue?: string | number | null
   closeOnSelect?: boolean
   disabled?: boolean
@@ -27,13 +26,13 @@ const dropdownSelect = ref()
 const filterredItems = computed(() => {
   return props.items.filter((item) => {
     if (!search.value) return true
-    return item.name.toLowerCase().includes(search.value.toLowerCase())
+    return item.label.toLowerCase().includes(search.value.toLowerCase())
   })
 })
 const valueText = computed(() => {
   const index = props.items.findIndex((item) => item.value === props.modelValue)
   if (index > -1) {
-    return props.items[index].name
+    return props.items[index].label
   }
   return ''
 })
@@ -75,7 +74,7 @@ const updateValue = (value: any) => {
                 'hover:bg-gray-100 dark:hover:bg-gray-800 text-gray-700 dark:text-gray-400':
                   modelValue !== item.value
               }" @click="updateValue(item.value)">
-              {{ item.name }}
+              {{ item.label }}
             </li>
           </template>
           <template v-else>

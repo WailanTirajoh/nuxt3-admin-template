@@ -12,15 +12,15 @@ const multiSelectExample = ref([])
 
 const selectionList = [
   {
-    name: 'test',
+    label: 'test',
     value: 'test'
   },
   {
-    name: 'test2',
+    label: 'test2',
     value: 'test2'
   },
   {
-    name: 'test3',
+    label: 'test3',
     value: 'test3'
   },
 ]
