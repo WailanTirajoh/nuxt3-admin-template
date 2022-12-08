@@ -1,36 +1,30 @@
 <script setup lang="ts">
+import { Align } from './types';
+
 interface Props {
-  align: string
+  align: Align
   width: string
   contentClasses: Array<string>
 }
 const props = defineProps<Props>()
 
-const isOpen = ref(false)
+const ALIGN_CLASSES: Record<Align, string> = {
+  [Align.LEFT]: 'origin-top-left left-0',
+  [Align.RIGHT]: 'origin-top-right right-0',
+}
+const alignmentClasses = computed(() => {
+  return ALIGN_CLASSES[props.align ?? Align.LEFT]
+})
 const widthClass = computed(() => {
   return {
     48: 'w-48'
   }[props.width]
 })
-const alignmentClasses = computed(() => {
-  if (props.align === 'left') return 'origin-top-left left-0'
-  if (props.align === 'right') return 'origin-top-right right-0'
-  return 'origin-top'
-})
+const isOpen = ref(false)
 
-const closeOnEscape = (e: KeyboardEvent) => {
-  if (isOpen.value && e.key === 'Escape') {
-    isOpen.value = false
-  }
-}
-
-onMounted(() => {
-  document.addEventListener('keydown', closeOnEscape)
-})
-
-onUnmounted(() => {
-  document.removeEventListener('keydown', closeOnEscape)
-})
+const closeOnEscape = (e: KeyboardEvent) => { if (isOpen.value && e.key === 'Escape') isOpen.value = false }
+onMounted(() => { document.addEventListener('keydown', closeOnEscape) })
+onUnmounted(() => { document.removeEventListener('keydown', closeOnEscape) })
 </script>
 
 <template>
