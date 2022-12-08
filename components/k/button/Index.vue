@@ -21,6 +21,7 @@ const COLORS: Record<Variant, string> = {
   [Variant.LIGHT]: 'bg-white text-gray-800',
   [Variant.WARNING]: 'bg-yellow-800 text-white',
   [Variant.INFO]: 'bg-gray-800 text-white',
+  [Variant.NONE]: '',
 }
 
 const ICON_POSITIONS: Record<IconPosition, string> = {

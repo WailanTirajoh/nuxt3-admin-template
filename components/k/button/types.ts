@@ -5,16 +5,17 @@ export enum Variant {
   SUCCESS = 'success',
   LIGHT = 'light',
   WARNING = 'warning',
-  INFO = 'info'
+  INFO = 'info',
+  NONE = 'none',
 }
 
 export enum IconPosition {
   LEFT = 'left',
-  RIGHT = 'right'
+  RIGHT = 'right',
 }
 
 export enum TextPosition {
   LEFT = 'left',
   RIGHT = 'right',
-  CENTER = 'center'
+  CENTER = 'center',
 }
