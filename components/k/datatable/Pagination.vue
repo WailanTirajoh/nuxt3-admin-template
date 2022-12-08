@@ -1,3 +1,33 @@
+<script setup lang="ts">
+interface Props {
+  currentPage: number
+  totalData: number
+  totalPage: number
+  isLoading?: boolean
+  eachSide?: number
+}
+const props = withDefaults(defineProps<Props>(), {
+  isLoading: false,
+  eachSide: 3,
+})
+
+const emit = defineEmits(['change-current-page'])
+
+const arrEachSide = computed(() => {
+  const each = []
+  let eachSide = props.eachSide
+  while (eachSide > 0) {
+    each.push(eachSide)
+    eachSide--
+  }
+  return each
+})
+
+const changeCurrentPage = (page: number) => {
+  emit('change-current-page', page)
+}
+</script>
+
 <template>
   <div class="flex gap-2">
     <button aria-label="pagination-prev-button"
@@ -11,8 +41,7 @@
           fill="#757575" />
       </svg>
     </button>
-    <button
-      class="p-1 flex justify-center items-center w-8 h-8 transition-all duration-300 ease-in-out overflow-hidden"
+    <button class="p-1 flex justify-center items-center w-8 h-8 transition-all duration-300 ease-in-out overflow-hidden"
       :class="{
         '':
           currentPage != 1,
@@ -53,23 +82,13 @@
           </button>
         </div>
         <button v-if="currentPage === 1"
-          class="p-2 flex justify-center items-center w-8 h-8 transition-all duration-300 ease-in-out"
-          :class="{
-            '':
-              currentPage != 3,
-            'bg-white rounded-lg':
-              currentPage == 3,
+          class="p-2 flex justify-center items-center w-8 h-8 transition-all duration-300 ease-in-out" :class="{
             'cursor-wait': isLoading,
           }" :disabled="isLoading" @click="changeCurrentPage(3)">
           3
         </button>
         <button v-if="currentPage === 2 || currentPage === 1"
-          class="p-2 flex justify-center items-center w-8 h-8 transition-all duration-300 ease-in-out"
-          :class="{
-            '':
-              currentPage != 4,
-            'bg-white rounded-lg':
-              currentPage == 4,
+          class="p-2 flex justify-center items-center w-8 h-8 transition-all duration-300 ease-in-out" :class="{
             'cursor-wait': isLoading,
           }" :disabled="isLoading" @click="changeCurrentPage(4)">
           4
@@ -101,55 +120,6 @@
     </button>
   </div>
 </template>
-
-<script>
-export default {
-  props: {
-    currentPage: {
-      type: Number,
-      required: true,
-    },
-    totalData: {
-      type: Number,
-      required: true,
-    },
-    totalPage: {
-      type: Number,
-      required: true,
-    },
-    isLoading: {
-      type: Boolean,
-      required: false,
-      default: () => {
-        return false
-      },
-    },
-    eachSide: {
-      type: Number,
-      required: false,
-      default: () => {
-        return 3
-      },
-    },
-  },
-  computed: {
-    arrEachSide() {
-      const arrEachSide = []
-      let eachSide = this.eachSide
-      while (eachSide > 0) {
-        arrEachSide.push(eachSide)
-        eachSide--
-      }
-      return arrEachSide
-    },
-  },
-  methods: {
-    changeCurrentPage(page) {
-      this.$emit('change-current-page', page)
-    },
-  },
-}
-</script>
 
 <style scoped>
 .text-red-cst {
