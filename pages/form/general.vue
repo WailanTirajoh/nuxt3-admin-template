@@ -34,7 +34,7 @@ const selectionList = [
     <hr class="my-2 border" />
     <div class="grid grid-cols-12 gap-2 p-2 bg-white rounded-lg">
       <div class="col-span-12">
-        <KFormImage v-model="imageExample" label="Image" />
+        <KFormImage v-model="imageExample" label="Image" :multiple="false" />
       </div>
       <div class="col-span-12">
         <KFormSelect v-model="selectExample" :items="selectionList" label="Single Select" placeholder="Choose select" />
