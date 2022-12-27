@@ -1,12 +1,13 @@
 <script setup lang="ts">
 import feather from "feather-icons";
-import { useToastStore } from "~/store/toast"
+import { TwButton } from "vue3-tailwind";
+import { useToastStore } from "~/store/toast";
 
 useHead({
-  title: 'Icons'
-})
+  title: "Icons",
+});
 
-const toastStore = useToastStore()
+const toastStore = useToastStore();
 const icons = Object.keys(feather.icons);
 const search = ref("");
 
@@ -17,12 +18,12 @@ const filteredIcon = computed(() => {
   });
 });
 
-const composableText = useText()
+const composableText = useText();
 const copyText = (text: string) => {
   if (composableText.copy(text)) {
     toastStore.success({
-      message: `${text} copied to clipboard!`
-    })
+      message: `${text} copied to clipboard!`,
+    });
   }
 };
 </script>
@@ -32,17 +33,29 @@ const copyText = (text: string) => {
     <h1 class="text-3xl font-bold">Icons</h1>
     <hr class="my-2 border" />
     <div class="mb-2">
-      <input class="bg-white rounded w-full p-2 focus:outline focus:outline-offset-2 focus:outline-sky-800" type="text"
-        v-model="search" placeholder="Type to search icon . . ." />
+      <input
+        class="bg-white rounded w-full p-2 focus:outline focus:outline-offset-2 focus:outline-sky-800"
+        type="text"
+        v-model="search"
+        placeholder="Type to search icon . . ."
+      />
     </div>
     <div class="text-sm italic">*Click to copy the text</div>
-    <TransitionGroup name="list" tag="ul" class="grid gap-2 grid-cols-[repeat(auto-fill,_minmax(14rem,_1fr))]">
+    <TransitionGroup
+      name="list"
+      tag="ul"
+      class="grid gap-2 grid-cols-[repeat(auto-fill,_minmax(14rem,_1fr))]"
+    >
       <li v-for="icon in filteredIcon" :key="icon" @click="copyText(icon)">
-        <KButton :icon="icon" variant="light" class="w-full !text-sky-900" text-position="left" ripple>
+        <TwButton
+          :icon="icon"
+          variant="light"
+          class="w-full !text-sky-900"
+          text-position="left"
+          ripple
+        >
           {{ icon }}
-        </KButton>
-        <!-- <KIconFeather :type="icon"></KIconFeather> -->
-        <!-- <span>{{ icon }}</span> -->
+        </TwButton>
       </li>
     </TransitionGroup>
   </div>

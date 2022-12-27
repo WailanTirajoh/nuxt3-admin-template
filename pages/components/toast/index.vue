@@ -1,45 +1,63 @@
 <script setup lang="ts">
-import { useToastStore } from "~/store/toast"
+import { Toast, TwButton, TwToast } from "vue3-tailwind";
 
 useHead({
-  title: 'Toasts'
-})
+  title: "Toasts",
+});
 
-const toastStore = useToastStore()
+const { toasts, success, error, warning, info } = Toast();
 </script>
 
 <template>
   <div class="">
-    <h1 class="text-3xl font-bold">
-      Toast
-    </h1>
-    <hr class="my-2 border" />
-    <div class="grid grid-cols-12 gap-2">
-      <div class="col-span-12">
-        <div class="flex gap-2">
-          <KButton variant="success" @click="toastStore.success({
-            message: 'Success toast'
-          })">
-            Success
-          </KButton>
-
-          <KButton variant="danger" @click="toastStore.error({
-            message: 'Error toast'
-          })">
-            Error
-          </KButton>
-          <KButton variant="warning" @click="toastStore.warning({
-            message: 'Warning toast'
-          })">
-            Warning
-          </KButton>
-          <KButton variant="info" @click="toastStore.info({
-            message: 'Info toast'
-          })">
-            Info
-          </KButton>
-        </div>
-      </div>
+    <TwToast position="bottom-right" :toasts="toasts" />
+    <div class="grid gap-2">
+      <h2 class="text-2xl font-bold">Toasts</h2>
+      <hr class="my-2 border dark:border-gray-700" />
+      <TwButton
+        variant="success"
+        @click="
+          success({
+            message: 'test',
+            lifetime: 5000,
+          })
+        "
+      >
+        Success Toast
+      </TwButton>
+      <TwButton
+      variant="danger"
+        @click="
+          error({
+            message: 'test',
+            lifetime: 5000,
+          })
+        "
+      >
+        Error Toast
+      </TwButton>
+      <TwButton
+        variant="warning"
+        @click="
+          warning({
+            message: 'test',
+            lifetime: 5000,
+          })
+        "
+      >
+        Warning Toast
+      </TwButton>
+      <TwButton
+        variant="info"
+        @click="
+          info({
+            message: 'test',
+            lifetime: 5000,
+          })
+        "
+      >
+        Info Toast
+      </TwButton>
     </div>
   </div>
 </template>

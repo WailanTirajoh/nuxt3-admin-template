@@ -1,11 +1,9 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   app: {
-    pageTransition: { name: 'page', mode: 'out-in' }
+    pageTransition: { name: "page", mode: "out-in" },
   },
-  css: [
-    '~/assets/css/main.css'
-  ],
+  css: ["~/assets/css/main.css"],
   postcss: {
     plugins: {
       tailwindcss: {},
@@ -14,22 +12,18 @@ export default defineNuxtConfig({
   },
   typescript: {
     shim: false,
-    strict: true
+    strict: true,
   },
   runtimeConfig: {
-    apiSecret: '',
+    apiSecret: "",
     public: {
-      apiBase: '/api'
-    }
+      apiBase: "/api",
+    },
   },
-  modules: [
-    '@pinia/nuxt',
-    '@kevinmarrec/nuxt-pwa',
-  ],
+  modules: ["@pinia/nuxt", "@kevinmarrec/nuxt-pwa"],
   pwa: {
     workbox: {
-      enabled: true,
-      templatePath: '~/services/worker.js'
-    }
-  }
-})
+      enabled: false,
+    },
+  },
+});

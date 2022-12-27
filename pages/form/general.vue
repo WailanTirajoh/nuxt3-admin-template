@@ -1,56 +1,69 @@
 <script setup lang="ts">
-useHead({
-  title: 'General'
-})
+import { ref } from "vue";
+import {
+  TwFile,
+  TwInput,
+  TwMultiSelect,
+  TwSelect,
+  TwToggle,
+} from "vue3-tailwind";
 
-const selectExample = ref()
-const inputExample = ref()
-const textareaExample = ref()
-const toggleExample = ref()
-const imageExample = ref()
-const multiSelectExample = ref([])
+const fileModel = ref([]);
+const selectExample = ref();
+const multiSelectExample = ref([]);
+const inputExample = ref();
+const toggleExample = ref();
 
 const selectionList = [
   {
-    label: 'test',
-    value: 'test'
+    label: "test",
+    value: "test",
   },
   {
-    label: 'test2',
-    value: 'test2'
+    label: "test2",
+    value: "test2",
   },
   {
-    label: 'test3',
-    value: 'test3'
+    label: "test3",
+    value: "test3",
   },
-]
+];
 </script>
 
 <template>
   <div>
-    <h1 class="text-3xl font-bold">
-      General
-    </h1>
-    <hr class="my-2 border" />
-    <div class="grid grid-cols-12 gap-2 p-2 bg-white rounded-lg">
+    <h2 class="text-2xl font-bold">Form</h2>
+    <hr class="my-2 border dark:border-gray-700" />
+    <div class="grid grid-cols-12 gap-2">
       <div class="col-span-12">
-        <KFormImage v-model="imageExample" label="Image" :multiple="false" />
+        <TwFile v-model="fileModel" />
       </div>
       <div class="col-span-12">
-        <KFormSelect v-model="selectExample" :items="selectionList" label="Single Select" placeholder="Choose select" />
+        <TwInput
+          v-model="inputExample"
+          label="Input"
+          placeholder="Input Field"
+          type="text"
+        />
       </div>
       <div class="col-span-12">
-        <KFormMultiSelect v-model="multiSelectExample" :items="selectionList" label="Multi Select"
-          placeholder="Choose select" />
+        <TwSelect
+          v-model="selectExample"
+          :items="selectionList"
+          label="Single Select"
+          placeholder="Choose select"
+        />
       </div>
       <div class="col-span-12">
-        <KFormInput v-model="inputExample" label="Input" placeholder="Input Field" type="text" />
+        <TwMultiSelect
+          v-model="multiSelectExample"
+          :items="selectionList"
+          label="Multi Select"
+          placeholder="Choose select"
+        />
       </div>
       <div class="col-span-12">
-        <KFormTextarea v-model="textareaExample" label="Text Area" placeholder="Textarea Field" />
-      </div>
-      <div class="col-span-12">
-        <KFormToggle v-model="toggleExample" label="Toggle" />
+        <TwToggle id="toggle" v-model="toggleExample" label="Toggle" />
       </div>
     </div>
   </div>

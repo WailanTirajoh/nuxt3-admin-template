@@ -9,6 +9,7 @@ import {
   LinearScale
 } from 'chart.js'
 import { Bar } from 'vue-chartjs'
+import { TwFeather } from 'vue3-tailwind';
 
 useHead({
   title: 'Dashboard'
@@ -48,7 +49,7 @@ onMounted(() => {
           </div>
           <div
             class="bg-gradient-to-tl from-gray-600 to-gray-900 rounded-lg text-white p-2 flex items-center justify-center px-4">
-            <k-icon-feather type="dollar-sign"></k-icon-feather>
+            <TwFeather type="dollar-sign"></TwFeather>
           </div>
         </div>
       </div>
@@ -65,7 +66,7 @@ onMounted(() => {
           </div>
           <div
             class="bg-gradient-to-tl from-gray-600 to-gray-900 rounded-lg text-white p-2 flex items-center justify-center px-4">
-            <k-icon-feather type="aperture"></k-icon-feather>
+            <TwFeather type="aperture"></TwFeather>
           </div>
         </div>
       </div>
@@ -82,7 +83,7 @@ onMounted(() => {
           </div>
           <div
             class="bg-gradient-to-tl from-gray-600 to-gray-900 rounded-lg text-white p-2 flex items-center justify-center px-4">
-            <k-icon-feather type="users"></k-icon-feather>
+            <TwFeather type="users"></TwFeather>
           </div>
         </div>
       </div>
@@ -99,7 +100,7 @@ onMounted(() => {
           </div>
           <div
             class="bg-gradient-to-tl from-gray-600 to-gray-900 rounded-lg text-white p-2 flex items-center justify-center px-4">
-            <k-icon-feather type="shopping-cart"></k-icon-feather>
+            <TwFeather type="shopping-cart"></TwFeather>
           </div>
         </div>
       </div>

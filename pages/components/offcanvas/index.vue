@@ -1,8 +1,9 @@
 <script setup lang="ts">
+import { TwButton, TwOffcanvas } from 'vue3-tailwind';
 
 useHead({
-  title: 'Offcanvas'
-})
+  title: "Offcanvas",
+});
 
 const example = ref(`
 Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sequi pariatur maxime, obcaecati doloremque ea
@@ -44,97 +45,70 @@ consequatur culpa, eaque ab ipsa iste facilis laudantium! Non aut dolorem obcaec
 dolores ipsum sint sequi porro corporis odit suscipit nulla vitae! Rem, incidunt laboriosam consequuntur
 magni omnis illo doloremque sed? Ipsum optio dolore delectus distinctio voluptatibus. Sed expedita
 officiis debitis fuga repellendus? Quam!
-`)
-
+`);
 </script>
 
 <template>
   <div class="">
-    <h1 class="text-3xl font-bold">
-      Offcanvas
-    </h1>
+    <h1 class="text-3xl font-bold">Offcanvas</h1>
     <hr class="my-2 border" />
     <div class="grid grid-cols-12 gap-2">
       <div class="col-span-12">
         <div class="grid md:flex gap-2">
-          <KUtilOffcanvas position="left">
-            <template #button>
-              <KButton>
-                Left Offcanvas
-              </KButton>
+          <TwOffcanvas position="left">
+            <template #trigger>
+              <TwButton> Left Offcanvas </TwButton>
             </template>
-            <template #header>
-              Left Offcanvas
-            </template>
-            <div class="">
+            <template #header> Left Offcanvas </template>
+            <div>
               {{ example }}
             </div>
-          </KUtilOffcanvas>
-          <KUtilOffcanvas position="right">
-            <template #button>
-              <KButton>
-                Right Offcanvas
-              </KButton>
+          </TwOffcanvas>
+          <TwOffcanvas position="right">
+            <template #trigger>
+              <TwButton> Right Offcanvas </TwButton>
             </template>
-            <template #header>
-              Right Offcanvas
-            </template>
-            <div class="">
+            <template #header> Right Offcanvas </template>
+            <div>
               {{ example }}
             </div>
-          </KUtilOffcanvas>
-          <KUtilOffcanvas position="right" width="800px">
-            <template #button>
-              <KButton>
-                Right Offcanvas with width 800px
-              </KButton>
+          </TwOffcanvas>
+          <TwOffcanvas position="right" width="800px">
+            <template #trigger>
+              <TwButton> Right Offcanvas with width 800px </TwButton>
             </template>
-            <template #header>
-              Right Offcanvas
-            </template>
-            <div class="">
+            <template #header> Right Offcanvas </template>
+            <div>
               {{ example }}
             </div>
-          </KUtilOffcanvas>
-          <KUtilOffcanvas position="left" width="600px">
-            <template #button>
-              <KButton>
-                Left Offcanvas with width 600px
-              </KButton>
+          </TwOffcanvas>
+          <TwOffcanvas position="left" width="600px">
+            <template #trigger>
+              <TwButton> Left Offcanvas with width 600px </TwButton>
             </template>
-            <template #header>
-              Right Offcanvas
-            </template>
-            <div class="">
+            <template #header> Right Offcanvas </template>
+            <div>
               {{ example }}
             </div>
-          </KUtilOffcanvas>
-          <KUtilOffcanvas position="top">
-            <template #button>
-              <KButton>
-                Top Offcanvas
-              </KButton>
+          </TwOffcanvas>
+          <TwOffcanvas position="top">
+            <template #trigger>
+              <TwButton> Top Offcanvas </TwButton>
             </template>
-            <template #header>
-              Top Offcanvas
-            </template>
-            <div class="">
+            <template #header> Top Offcanvas </template>
+            <div>
               {{ example }}
             </div>
-          </KUtilOffcanvas>
-          <KUtilOffcanvas position="bottom">
-            <template #button>
-              <KButton>
-                Bottom Offcanvas
-              </KButton>
+          </TwOffcanvas>
+          <TwOffcanvas position="bottom">
+            <template #trigger>
+              <TwButton> Bottom Offcanvas </TwButton>
             </template>
-            <template #header>
-              Bottom Offcanvas
-            </template>
-            <div class="">
+            <template #header> Bottom Offcanvas </template>
+            <div>
               {{ example }}
             </div>
-          </KUtilOffcanvas>
+          </TwOffcanvas>
         </div>
       </div>
     </div>

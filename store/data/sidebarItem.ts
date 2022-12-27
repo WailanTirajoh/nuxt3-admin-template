@@ -42,6 +42,13 @@ export default [
       },
       {
         "isTitle": false,
+        "name": "Dropdown",
+        "url": "/components/dropdown",
+        "icon": "chevron-right",
+        "submenu": []
+      },
+      {
+        "isTitle": false,
         "name": "Toast",
         "url": "/components/toast",
         "icon": "chevron-right",
@@ -129,14 +136,14 @@ export default [
     "submenu": [
       {
         "isTitle": false,
-        "name": "Simple Table",
+        "name": "Datatable Clientside",
         "url": "/table/simple",
         "icon": "chevron-right",
         "submenu": []
       },
       {
         "isTitle": false,
-        "name": "Datatable",
+        "name": "Datatable Serverside",
         "url": "/table/datatable",
         "icon": "chevron-right",
         "submenu": []
