@@ -28,6 +28,6 @@
     "feather-icons": "^4.29.0",
     "quill": "^1.3.7",
     "vue-chartjs": "^5.0.0",
-    "vue3-tailwind": "^0.1.43"
+    "vue3-tailwind": "^0.1.44"
   }
 }
