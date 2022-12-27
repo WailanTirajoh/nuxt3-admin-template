@@ -22,3 +22,4 @@ npx husky install
 
 ## Preview
 url: https://nuxt3-admin-template.vercel.app
+vue3-tailwind docs: https://vue3-tailwind-docs.vercel.app/guide/getting-started.html
