@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { TwButton, TwOffcanvas } from 'vue3-tailwind';
+import { TwButton, TwOffcanvas } from "vue3-tailwind";
 
 useHead({
   title: "Offcanvas",
