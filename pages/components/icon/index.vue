@@ -1,13 +1,12 @@
 <script setup lang="ts">
 import feather from "feather-icons";
-import { TwButton } from "vue3-tailwind";
-import { useToastStore } from "~/store/toast";
+import { Toast, TwButton } from "vue3-tailwind";
 
 useHead({
   title: "Icons",
 });
 
-const toastStore = useToastStore();
+const toast = Toast();
 const icons = Object.keys(feather.icons);
 const search = ref("");
 
@@ -21,7 +20,7 @@ const filteredIcon = computed(() => {
 const composableText = useText();
 const copyText = (text: string) => {
   if (composableText.copy(text)) {
-    toastStore.success({
+    toast.success({
       message: `${text} copied to clipboard!`,
     });
   }

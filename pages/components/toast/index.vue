@@ -5,12 +5,11 @@ useHead({
   title: "Toasts",
 });
 
-const { toasts, success, error, warning, info } = Toast();
+const { success, error, warning, info } = Toast();
 </script>
 
 <template>
   <div class="">
-    <TwToast position="bottom-right" :toasts="toasts" />
     <div class="grid gap-2">
       <h2 class="text-2xl font-bold">Toasts</h2>
       <hr class="my-2 border dark:border-gray-700" />
