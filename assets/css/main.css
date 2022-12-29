@@ -3,9 +3,8 @@
 @import url('./sidebar.css');
 @import url('./tooltip.css');
 @import url('./skeleton.css');
-@import url('./package.css');
 @import url('./scrollbar.css');
-@import "vue3-tailwind/dist/style.css";
+@import url('./package.css');
 
 @tailwind base;
 @tailwind components;
