@@ -22,10 +22,10 @@ const accordion = [
     <div class="grid gap-2">
       <div class="col-span-12">
         <h2 class="mb-2 text-lg font-bold">Example 1:</h2>
-        <TwAccordion class="bg-white rounded overflow-hidden" :data="accordion">
+        <TwAccordion class="bg-white rounded overflow-hidden shadow" :data="accordion">
           <template #header_example1="{ toggleAccordion, ref, isActive }">
             <div
-              class="bg-sky-100 text-sky-600 p-4 flex justify-between items-center cursor-pointer"
+              class="bg-gray-200 text-gray-700 p-4 flex justify-between items-center cursor-pointer border-b-2 border-gray-300"
               @click="toggleAccordion(ref)"
             >
               <div>Header</div>
@@ -45,7 +45,7 @@ const accordion = [
           </template>
           <template #header_example2="{ toggleAccordion, ref, isActive }">
             <div
-              class="bg-sky-100 text-sky-600 p-4 flex justify-between items-center cursor-pointer"
+              class="bg-gray-200 text-gray-700 p-4 flex justify-between items-center cursor-pointer"
               @click="toggleAccordion(ref)"
             >
               <div>Header 2</div>
@@ -75,7 +75,7 @@ const accordion = [
         >
           <template #header_example1="{ toggleAccordion, ref, isActive }">
             <div
-              class="bg-sky-100 text-sky-600 p-4 flex justify-between items-center cursor-pointer"
+              class="bg-gray-200 text-gray-700 p-4 flex justify-between items-center cursor-pointer"
               @click="toggleAccordion(ref)"
             >
               <div>Header</div>
@@ -95,7 +95,7 @@ const accordion = [
           </template>
           <template #header_example2="{ toggleAccordion, ref, isActive }">
             <div
-              class="bg-sky-100 text-sky-600 p-4 flex justify-between items-center cursor-pointer"
+              class="bg-gray-200 text-gray-700 p-4 flex justify-between items-center cursor-pointer"
               @click="toggleAccordion(ref)"
             >
               <div>Header 2</div>
