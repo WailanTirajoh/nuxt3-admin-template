@@ -59,8 +59,8 @@ officiis debitis fuga repellendus? Quam!
             <template #trigger>
               <TwButton> Left Offcanvas </TwButton>
             </template>
-            <template #header> Left Offcanvas </template>
-            <div>
+            <template #headerTitle> Left Offcanvas </template>
+            <div class="p-4 overflow-auto">
               {{ example }}
             </div>
           </TwOffcanvas>
@@ -68,8 +68,8 @@ officiis debitis fuga repellendus? Quam!
             <template #trigger>
               <TwButton> Right Offcanvas </TwButton>
             </template>
-            <template #header> Right Offcanvas </template>
-            <div>
+            <template #headerTitle> Right Offcanvas </template>
+            <div class="p-4 overflow-auto">
               {{ example }}
             </div>
           </TwOffcanvas>
@@ -77,8 +77,8 @@ officiis debitis fuga repellendus? Quam!
             <template #trigger>
               <TwButton> Right Offcanvas with width 800px </TwButton>
             </template>
-            <template #header> Right Offcanvas </template>
-            <div>
+            <template #headerTitle> Right Offcanvas </template>
+            <div class="p-4 overflow-auto">
               {{ example }}
             </div>
           </TwOffcanvas>
@@ -86,8 +86,8 @@ officiis debitis fuga repellendus? Quam!
             <template #trigger>
               <TwButton> Left Offcanvas with width 600px </TwButton>
             </template>
-            <template #header> Right Offcanvas </template>
-            <div>
+            <template #headerTitle> Right Offcanvas </template>
+            <div class="p-4 overflow-auto">
               {{ example }}
             </div>
           </TwOffcanvas>
@@ -95,8 +95,8 @@ officiis debitis fuga repellendus? Quam!
             <template #trigger>
               <TwButton> Top Offcanvas </TwButton>
             </template>
-            <template #header> Top Offcanvas </template>
-            <div>
+            <template #headerTitle> Top Offcanvas </template>
+            <div class="p-4 overflow-auto">
               {{ example }}
             </div>
           </TwOffcanvas>
@@ -104,8 +104,8 @@ officiis debitis fuga repellendus? Quam!
             <template #trigger>
               <TwButton> Bottom Offcanvas </TwButton>
             </template>
-            <template #header> Bottom Offcanvas </template>
-            <div>
+            <template #headerTitle> Bottom Offcanvas </template>
+            <div class="p-4 overflow-auto">
               {{ example }}
             </div>
           </TwOffcanvas>
