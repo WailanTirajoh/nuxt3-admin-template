@@ -1,5 +1,9 @@
 # Nuxt 3 admin template
 
+---
+Since its still on development phase, many breaking changes will happen. 
+---
+
 ## Installation
 ```
 # Clone this repository
