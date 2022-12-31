@@ -30,6 +30,6 @@
     "js-formdata-validator": "^0.0.4",
     "quill": "^1.3.7",
     "vue-chartjs": "^5.0.0",
-    "vue3-tailwind": "^0.1.55"
+    "vue3-tailwind": "^0.1.61"
   }
 }
