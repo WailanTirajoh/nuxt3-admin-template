@@ -81,6 +81,16 @@ const ruleSchemaFormA = {
       if (!value || value.length < 3) return "Min length is 3";
     },
   ],
+  selectExample: [
+    "required",
+  ],
+  toggleExample: [
+    "required",
+    "boolean",
+    (value: string) => {
+      if (!value) return "Value must be true";
+    },
+  ],
 };
 </script>
 
