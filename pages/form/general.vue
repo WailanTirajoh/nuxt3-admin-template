@@ -40,7 +40,9 @@ const selectionList = [
 ];
 
 const formError = ref(false);
+
 const formA = ref();
+
 const submit = async () => {
   const validator = formA.value.validator();
   validator.clearErrors();
@@ -57,6 +59,29 @@ const submit = async () => {
     }, 1000);
   }
 };
+
+const clear = () => {
+  formData.fileModel = null;
+  formData.selectExample = null;
+  formData.multiSelectExample = null;
+  formData.inputExample = null;
+  formData.textAreaExample = null;
+  formData.toggleExample = null;
+
+  const validator = formA.value.validator();
+  validator.clearErrors();
+};
+
+const ruleSchemaFormA = {
+  inputExample: ["required", "string"],
+  textAreaExample: [
+    "required",
+    "string",
+    (value: string) => {
+      if (!value || value.length < 3) return "Min length is 3";
+    },
+  ],
+};
 </script>
 
 <template>
@@ -65,23 +90,14 @@ const submit = async () => {
     <hr class="my-2 border dark:border-gray-700" />
     <div>
       <TwForm
+        ref="formA"
+        name="formA"
         class="grid grid-cols-12 gap-2 bg-white rounded-lg p-2 shadow"
         :class="{
           'tw-shake': formError,
         }"
-        name="formA"
-        ref="formA"
+        :rules="ruleSchemaFormA"
         @submit="submit"
-        :rules="{
-          inputExample: ['required', 'string'],
-          textAreaExample: [
-            'required',
-            'string',
-            (value: string) => {
-              if (!value || value.length < 3) return 'Min length is 3';
-            },
-          ],
-        }"
       >
         <div class="col-span-12">
           <TwFile v-model="formData.fileModel" />
@@ -94,7 +110,7 @@ const submit = async () => {
             placeholder="Input Field"
             type="text"
           />
-          <TwErrorMessage name="inputExample"></TwErrorMessage>
+          <TwErrorMessage name="inputExample" />
         </div>
         <div class="col-span-12">
           <TwTextarea
@@ -104,33 +120,45 @@ const submit = async () => {
             placeholder="Textarea Field"
             type="text"
           />
-          <TwErrorMessage name="textAreaExample"></TwErrorMessage>
+          <TwErrorMessage name="textAreaExample" />
         </div>
         <div class="col-span-12">
           <TwSelect
+            name="selectExample"
             v-model="formData.selectExample"
             :items="selectionList"
             label="Single Select"
             placeholder="Choose select"
           />
+          <TwErrorMessage name="selectExample" />
         </div>
         <div class="col-span-12">
           <TwMultiSelect
+            name="multiSelectExample"
             v-model="formData.multiSelectExample"
             :items="selectionList"
             label="Multi Select"
             placeholder="Choose select"
           />
+          <TwErrorMessage name="multiSelectExample" />
         </div>
         <div class="col-span-12">
           <TwToggle
+            name="toggleExample"
             id="toggle"
             v-model="formData.toggleExample"
             label="Toggle"
           />
+          <TwErrorMessage name="toggleExample" />
         </div>
         <div class="col-span-12 flex justify-end gap-1">
-          <TwButton ripple variant="secondary" type="button" class="px-4">
+          <TwButton
+            ripple
+            variant="secondary"
+            type="button"
+            class="px-4"
+            @click="clear"
+          >
             Reset
           </TwButton>
           <TwButton ripple type="submit" class="px-4"> Submit </TwButton>
