@@ -26,6 +26,6 @@
     "@pinia/nuxt": "^0.4.6",
     "@vercel/analytics": "^0.1.6",
     "feather-icons": "^4.29.0",
-    "vue3-tailwind": "^0.1.67"
+    "vue3-tailwind": "^0.2.0"
   }
 }
