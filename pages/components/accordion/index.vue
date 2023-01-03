@@ -25,7 +25,10 @@ const accordion = [
         <TwAccordion class="bg-white rounded overflow-hidden shadow" :data="accordion">
           <template #header_example1="{ toggleAccordion, ref, isActive }">
             <div
-              class="bg-gray-200 text-gray-700 p-4 flex justify-between items-center cursor-pointer border-b-2 border-gray-300"
+              class="duration-300 bg-gray-100 text-gray-700 p-4 flex justify-between items-center cursor-pointer border-b-2 border-gray-300"
+              :class="{
+                '!bg-gray-800 text-gray-100': isActive
+              }"
               @click="toggleAccordion(ref)"
             >
               <div>Header</div>
@@ -45,7 +48,10 @@ const accordion = [
           </template>
           <template #header_example2="{ toggleAccordion, ref, isActive }">
             <div
-              class="bg-gray-200 text-gray-700 p-4 flex justify-between items-center cursor-pointer"
+              class="duration-300 bg-gray-100 text-gray-700 p-4 flex justify-between items-center cursor-pointer border-b-2 border-gray-300"
+              :class="{
+                '!bg-gray-800 text-gray-100': isActive
+              }"
               @click="toggleAccordion(ref)"
             >
               <div>Header 2</div>
@@ -75,7 +81,10 @@ const accordion = [
         >
           <template #header_example1="{ toggleAccordion, ref, isActive }">
             <div
-              class="bg-gray-200 text-gray-700 p-4 flex justify-between items-center cursor-pointer"
+              class="duration-300 bg-gray-100 text-gray-700 p-4 flex justify-between items-center cursor-pointer border-b-2 border-gray-300"
+              :class="{
+                '!bg-gray-800 text-gray-100': isActive
+              }"
               @click="toggleAccordion(ref)"
             >
               <div>Header</div>
@@ -95,7 +104,10 @@ const accordion = [
           </template>
           <template #header_example2="{ toggleAccordion, ref, isActive }">
             <div
-              class="bg-gray-200 text-gray-700 p-4 flex justify-between items-center cursor-pointer"
+              class="duration-300 bg-gray-100 text-gray-700 p-4 flex justify-between items-center cursor-pointer border-b-2 border-gray-300"
+              :class="{
+                '!bg-gray-800 text-gray-100': isActive
+              }"
               @click="toggleAccordion(ref)"
             >
               <div>Header 2</div>
