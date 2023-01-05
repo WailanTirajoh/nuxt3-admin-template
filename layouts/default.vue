@@ -14,16 +14,17 @@ const { toasts } = Toast();
   <div>
     <TwToast position="bottom-right" :toasts="toasts" />
     <div>
+      <LayoutFloating />
       <LayoutHeader />
       <div class="py-4 px-0 md:px-1">
         <div
-          class="flex min-h-screen text-sky-900 bg-opacity-40 bg-gray-900 rounded-3xl shadow-lg"
+          class="flex min-h-screen text-sky-900 dark:text-gray-200 bg-opacity-40 bg-gray-900 rounded-3xl shadow-lg"
         >
           <LayoutSidebar class="h-full" />
           <div
             class="w-full md:w-[calc(100%-8rem)] lg:w-[calc(100%-16rem)] sm:rounded-l-none"
           >
-            <div class="p-4 bg-gray-100 h-full rounded-3xl">
+            <div class="p-4 bg-gray-100 dark:bg-gray-900 h-full rounded-3xl">
               <slot />
             </div>
           </div>
@@ -50,5 +51,4 @@ const { toasts } = Toast();
   </div>
 </template>
 
-<style>
-</style>
+<style></style>

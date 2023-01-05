@@ -86,10 +86,10 @@ const toggleFormError = () => {
       }"
       class="text-gray-800 rounded-t-lg w-96 shadow-lg p-1 bg-gradient-to-b from-indigo-400 h-20"
     >
-      <div class="header bg-white border-b text-indigo-900 p-4 rounded-t">
+      <div class="header bg-white dark:bg-gray-900 border-b dark:border-gray-700 text-indigo-900 p-4 rounded-t">
         <h1 class="text-2xl font-bold text-center">Welcome</h1>
       </div>
-      <div class="body bg-white p-4 rounded-b-lg">
+      <div class="body bg-white dark:bg-gray-900 p-4 rounded-b-lg">
         <div class="grid grid-cols-12 gap-2">
           <div class="col-span-12">
             <TwInput v-model="formData.email" name="email" label="Email" />

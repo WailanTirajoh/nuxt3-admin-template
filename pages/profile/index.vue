@@ -9,7 +9,7 @@ useHead({
     <h1 class="text-3xl font-bold">
       Profile
     </h1>
-    <hr class="my-2 border" />
+    <hr class="my-2 border dark:border-gray-700" />
     <KOtherComingSoon />
   </div>
 </template>

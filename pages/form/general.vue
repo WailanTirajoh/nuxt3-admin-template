@@ -102,7 +102,7 @@ const ruleSchemaFormA = {
       <TwForm
         ref="formA"
         name="formA"
-        class="grid grid-cols-12 gap-2 bg-white rounded-lg p-2 shadow"
+        class="grid grid-cols-12 gap-2 bg-white dark:bg-gray-900 dark:border dark:border-gray-700 rounded-lg p-2 shadow"
         :class="{
           'tw-shake': formError,
         }"

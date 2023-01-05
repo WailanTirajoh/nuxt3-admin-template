@@ -17,7 +17,6 @@ nav .router-link-active::before {
   animation-delay: 0.1s;
   -webkit-animation-fill-mode: forwards;
   animation-fill-mode: forwards;
-  background-image: url(../svg/sidebar-active-wave.svg);
   background-repeat: no-repeat;
   background-size: cover;
   bottom: 0;
@@ -30,6 +29,14 @@ nav .router-link-active::before {
   right: 0;
   top: 0;
   width: 20px;
+}
+
+.dark nav .router-link-active::before {
+  background-image: url(../svg/sidebar-active-wave-dark.svg);
+}
+
+.light nav .router-link-active::before {
+  background-image: url(../svg/sidebar-active-wave.svg);
 }
 
 @-webkit-keyframes active-menu-wave-animation {

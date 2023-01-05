@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import feather from "feather-icons";
-import { Toast, TwButton } from "vue3-tailwind";
+import { Toast, TwButton, TwInput } from "vue3-tailwind";
 
 useHead({
   title: "Icons",
@@ -30,9 +30,9 @@ const copyText = (text: string) => {
 <template>
   <div class="">
     <h1 class="text-3xl font-bold">Icons</h1>
-    <hr class="my-2 border" />
+    <hr class="my-2 border dark:border-gray-700" />
     <div class="mb-2">
-      <input
+      <TwInput
         class="bg-white rounded w-full p-2 focus:outline focus:outline-offset-2 focus:outline-sky-800"
         type="text"
         v-model="search"
@@ -49,7 +49,7 @@ const copyText = (text: string) => {
         <TwButton
           :icon="icon"
           variant="light"
-          class="w-full !text-sky-900"
+          class="w-full text-sky-900 dark:text-gray-300"
           text-position="left"
           ripple
         >

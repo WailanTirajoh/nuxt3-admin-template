@@ -79,6 +79,7 @@ onMounted(() => {
     <h2 class="text-2xl font-bold">Datatable Clientside</h2>
     <hr class="my-2 border dark:border-gray-700" />
     <TwDatatableClient
+      class="!dark:text-gray-200"
       v-model:search="data.search"
       v-model:limit="data.limit"
       v-model:selected="data.selected"
@@ -109,7 +110,7 @@ onMounted(() => {
         </template>
       </template>
       <template #empty>
-        <div class="bg-white">No Data</div>
+        <div class="bg-white dark:bg-gray-800">No Data</div>
       </template>
     </TwDatatableClient>
     <hr class="my-2 dark:border-gray-700" />
