@@ -11,87 +11,8 @@ import {
   TwErrorMessage,
   TwTextarea,
 } from "vue3-tailwind";
-
-const toast = Toast();
-
-const formData: {
-  [key: string]: any;
-} = reactive({
-  fileModel: null,
-  selectExample: null,
-  multiSelectExample: null,
-  inputExample: null,
-  toggleExample: null,
-});
-
-const selectionList = [
-  {
-    label: "test",
-    value: "test",
-  },
-  {
-    label: "test2",
-    value: "test2",
-  },
-  {
-    label: "test3",
-    value: "test3",
-  },
-];
-
-const formError = ref(false);
-
-const formA = ref();
-
-const submit = async () => {
-  const validator = formA.value.validator();
-  validator.clearErrors();
-  await validator.validate();
-  if (validator.fail()) {
-    toast.error({
-      message: validator.getErrorMessage(),
-    });
-
-    formError.value = true;
-
-    setTimeout(() => {
-      formError.value = false;
-    }, 1000);
-  }
-};
-
-const clear = () => {
-  formData.fileModel = null;
-  formData.selectExample = null;
-  formData.multiSelectExample = null;
-  formData.inputExample = null;
-  formData.textAreaExample = null;
-  formData.toggleExample = null;
-
-  const validator = formA.value.validator();
-  validator.clearErrors();
-};
-
-const ruleSchemaFormA = {
-  inputExample: ["required", "string"],
-  textAreaExample: [
-    "required",
-    "string",
-    (value: string) => {
-      if (!value || value.length < 3) return "Min length is 3";
-    },
-  ],
-  selectExample: [
-    "required",
-  ],
-  toggleExample: [
-    "required",
-    "boolean",
-    (value: string) => {
-      if (!value) return "Value must be true";
-    },
-  ],
-};
+import { useFormExample } from "@/store/formExample";
+const formExample = useFormExample();
 </script>
 
 <template>
@@ -100,22 +21,21 @@ const ruleSchemaFormA = {
     <hr class="my-2 border dark:border-gray-700" />
     <div>
       <TwForm
-        ref="formA"
-        name="formA"
+        :name="formExample.formName"
         class="grid grid-cols-12 gap-2 bg-white dark:bg-gray-900 dark:border dark:border-gray-700 rounded-lg p-2 shadow"
         :class="{
-          'tw-shake': formError,
+          'tw-shake': formExample.isError,
         }"
-        :rules="ruleSchemaFormA"
-        @submit="submit"
+        :rules="formExample.formRules"
+        @submit="formExample.submit()"
       >
         <div class="col-span-12">
-          <TwFile v-model="formData.fileModel" />
+          <TwFile v-model="formExample.formData.fileModel" />
         </div>
         <div class="col-span-12">
           <TwInput
             name="inputExample"
-            v-model="formData.inputExample"
+            v-model="formExample.formData.inputExample"
             label="Input"
             placeholder="Input Field"
             type="text"
@@ -125,7 +45,7 @@ const ruleSchemaFormA = {
         <div class="col-span-12">
           <TwTextarea
             name="textAreaExample"
-            v-model="formData.textAreaExample"
+            v-model="formExample.formData.textAreaExample"
             label="Textarea"
             placeholder="Textarea Field"
             type="text"
@@ -135,8 +55,8 @@ const ruleSchemaFormA = {
         <div class="col-span-12">
           <TwSelect
             name="selectExample"
-            v-model="formData.selectExample"
-            :items="selectionList"
+            v-model="formExample.formData.selectExample"
+            :items="formExample.selectionList"
             label="Single Select"
             placeholder="Choose select"
           />
@@ -145,8 +65,8 @@ const ruleSchemaFormA = {
         <div class="col-span-12">
           <TwMultiSelect
             name="multiSelectExample"
-            v-model="formData.multiSelectExample"
-            :items="selectionList"
+            v-model="formExample.formData.multiSelectExample"
+            :items="formExample.selectionList"
             label="Multi Select"
             placeholder="Choose select"
           />
@@ -156,7 +76,7 @@ const ruleSchemaFormA = {
           <TwToggle
             name="toggleExample"
             id="toggle"
-            v-model="formData.toggleExample"
+            v-model="formExample.formData.toggleExample"
             label="Toggle"
           />
           <TwErrorMessage name="toggleExample" />
@@ -167,7 +87,7 @@ const ruleSchemaFormA = {
             variant="secondary"
             type="button"
             class="px-4"
-            @click="clear"
+            @click="formExample.clear()"
           >
             Reset
           </TwButton>
