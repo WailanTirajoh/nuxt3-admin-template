@@ -6,7 +6,7 @@ export const useFormExample = defineStore("formExample", () => {
   const toast = Toast();
   const composableForm = useForm();
 
-  const formName = "formExample"
+  const formName = "formExample";
 
   const formData: {
     [key: string]: any;
@@ -17,24 +17,6 @@ export const useFormExample = defineStore("formExample", () => {
     inputExample: null,
     toggleExample: null,
   });
-
-  const selectionList = [
-    {
-      label: "test",
-      value: "test",
-    },
-    {
-      label: "test2",
-      value: "test2",
-    },
-    {
-      label: "test3",
-      value: "test3",
-    },
-  ];
-
-  const isError = ref(false);
-  const form = computed(() => composableForm.getForm(formName));
 
   const formRules = {
     inputExample: ["required", "string"],
@@ -57,6 +39,24 @@ export const useFormExample = defineStore("formExample", () => {
       },
     ],
   };
+
+  const selectionList = [
+    {
+      label: "test",
+      value: "test",
+    },
+    {
+      label: "test2",
+      value: "test2",
+    },
+    {
+      label: "test3",
+      value: "test3",
+    },
+  ];
+
+  const isError = ref(false);
+  const form = computed(() => composableForm.getForm(formName));
 
   async function submit() {
     const validator = form.value.validator;
@@ -88,9 +88,9 @@ export const useFormExample = defineStore("formExample", () => {
   return {
     formName,
     formData,
-    selectionList,
-    isError,
     formRules,
+    isError,
+    selectionList,
     submit,
     clear,
   };

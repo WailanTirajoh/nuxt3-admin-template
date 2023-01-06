@@ -44,8 +44,9 @@ const { toasts } = Toast();
           class="text-blue-300"
           href="https://github.com/WailanTirajoh"
           target="_blank"
-          >Wailan</a
         >
+          Wailan
+        </a>
       </div>
     </div>
   </div>

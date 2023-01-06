@@ -25,7 +25,7 @@ const accordion = [
         <TwAccordion class="bg-white dark:bg-gray-900 rounded overflow-hidden shadow" :data="accordion">
           <template #header_example1="{ toggleAccordion, ref, isActive }">
             <div
-              class="duration-300 bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-200 p-4 flex justify-between items-center cursor-pointer border-b-2 border-gray-300 dark:border-gray-700"
+              class="duration-300 bg-gray-200 dark:bg-gray-800 text-gray-700 dark:text-gray-200 p-4 flex justify-between items-center cursor-pointer border-b-2 border-gray-300 dark:border-gray-700"
               :class="{
                 '!bg-gray-800 text-gray-100': isActive
               }"
@@ -48,7 +48,7 @@ const accordion = [
           </template>
           <template #header_example2="{ toggleAccordion, ref, isActive }">
             <div
-              class="duration-300 bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-200 p-4 flex justify-between items-center cursor-pointer border-b-2 border-gray-300 dark:border-gray-700"
+              class="duration-300 bg-gray-200 dark:bg-gray-800 text-gray-700 dark:text-gray-200 p-4 flex justify-between items-center cursor-pointer border-b-2 border-gray-300 dark:border-gray-700"
               :class="{
                 '!bg-gray-800 text-gray-100': isActive
               }"
@@ -81,7 +81,7 @@ const accordion = [
         >
           <template #header_example1="{ toggleAccordion, ref, isActive }">
             <div
-              class="duration-300 bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-200 p-4 flex justify-between items-center cursor-pointer border-b-2 border-gray-300 dark:border-gray-700"
+              class="duration-300 bg-gray-200 dark:bg-gray-800 text-gray-700 dark:text-gray-200 p-4 flex justify-between items-center cursor-pointer border-b-2 border-gray-300 dark:border-gray-700"
               :class="{
                 '!bg-gray-800 text-gray-100': isActive
               }"
@@ -104,7 +104,7 @@ const accordion = [
           </template>
           <template #header_example2="{ toggleAccordion, ref, isActive }">
             <div
-              class="duration-300 bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-200 p-4 flex justify-between items-center cursor-pointer border-b-2 border-gray-300 dark:border-gray-700"
+              class="duration-300 bg-gray-200 dark:bg-gray-800 text-gray-700 dark:text-gray-200 p-4 flex justify-between items-center cursor-pointer border-b-2 border-gray-300 dark:border-gray-700"
               :class="{
                 '!bg-gray-800 text-gray-100': isActive
               }"
