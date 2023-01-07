@@ -7,7 +7,6 @@ import {
   TwMultiSelect,
   TwSelect,
   TwToggle,
-  Toast,
   TwErrorMessage,
   TwTextarea,
 } from "vue3-tailwind";
@@ -34,6 +33,7 @@ const formExample = useFormExample();
         </div>
         <div class="col-span-12">
           <TwInput
+            class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-400 focus:ring-indigo-400 focus:ring-1 sm:text-sm"
             name="inputExample"
             v-model="formExample.formData.inputExample"
             label="Input"
@@ -44,6 +44,7 @@ const formExample = useFormExample();
         </div>
         <div class="col-span-12">
           <TwTextarea
+            class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-400 focus:ring-indigo-400 focus:ring-1 sm:text-sm"
             name="textAreaExample"
             v-model="formExample.formData.textAreaExample"
             label="Textarea"

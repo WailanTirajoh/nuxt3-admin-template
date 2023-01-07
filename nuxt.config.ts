@@ -20,7 +20,11 @@ export default defineNuxtConfig({
       apiBase: "/api",
     },
   },
-  modules: ["@pinia/nuxt", "@kevinmarrec/nuxt-pwa"],
+  modules: [
+    "@pinia/nuxt",
+    "@pinia-plugin-persistedstate/nuxt",
+    "@kevinmarrec/nuxt-pwa"
+  ],
   pwa: {
     workbox: {
       enabled: false,

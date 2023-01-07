@@ -110,7 +110,7 @@ onMounted(() => {
         </template>
       </template>
       <template #empty>
-        <div class="bg-white dark:bg-gray-800">No Data</div>
+        <div class="bg-white text-center w-full">No Data</div>
       </template>
     </TwDatatableClient>
     <hr class="my-2 dark:border-gray-700" />

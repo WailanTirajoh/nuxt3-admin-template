@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import {
-  Toast,
+  useToast,
   TwButton,
   TwErrorMessage,
   TwForm,
@@ -15,8 +15,7 @@ useHead({
   title: "Login",
 });
 
-const toast = Toast();
-
+const toast = useToast();
 const formLogin = ref();
 const formError = ref(false);
 
@@ -56,47 +55,58 @@ const login = async () => {
 
   toast.success({
     message: "Loggin success, youre being redirected",
+    lifetime: 1000,
   });
 
   setTimeout(() => {
     router.push("/");
-  }, 3000);
+  }, 1000);
 };
 
 const toggleFormError = () => {
   formError.value = true;
   setTimeout(() => {
     formError.value = false;
-  }, 1000);
+  }, 1250);
 };
 </script>
 
 <template>
-  <div class="w-screen h-screen text-white flex justify-center pt-40">
-    <TwForm
-      ref="formLogin"
-      :rules="{
-        email: ['required', 'email'],
-        password: ['required'],
-      }"
-      @submit="login"
-      name="login"
+  <div class="text-white flex justify-center pt-40">
+    <div
+      class="text-gray-800 rounded-t-lg w-96 shadow-lg p-1 bg-gradient-to-b from-indigo-400 h-20"
       :class="{
         'tw-shake': formError,
       }"
-      class="text-gray-800 rounded-t-lg w-96 shadow-lg p-1 bg-gradient-to-b from-indigo-400 h-20"
     >
-      <div class="header bg-white dark:bg-gray-900 border-b dark:border-gray-700 text-indigo-900 p-4 rounded-t">
+      <div
+        class="header bg-white dark:bg-gray-900 border-b dark:border-gray-700 text-indigo-900 dark:text-gray-200 p-4 rounded-t"
+      >
         <h1 class="text-2xl font-bold text-center">Welcome</h1>
       </div>
-      <div class="body bg-white dark:bg-gray-900 p-4 rounded-b-lg">
+      <TwForm
+        ref="formLogin"
+        name="login"
+        :rules="{
+          email: ['required', 'email'],
+          password: ['required'],
+        }"
+        @submit="login"
+        class="body bg-white dark:bg-gray-900 p-4 rounded-b-lg"
+      >
         <div class="grid grid-cols-12 gap-2">
           <div class="col-span-12">
-            <TwInput v-model="formData.email" name="email" label="Email" />
+            <TwInput
+              class="dark:text-gray-200"
+              v-model="formData.email"
+              name="email"
+              label="Email"
+            />
             <TwErrorMessage name="email"></TwErrorMessage>
           </div>
           <div class="col-span-12">
             <TwInput
+              class="dark:text-gray-200"
               v-model="formData.password"
               name="password"
               label="Password"
@@ -110,7 +120,7 @@ const toggleFormError = () => {
             </TwButton>
           </div>
         </div>
-      </div>
-    </TwForm>
+      </TwForm>
+    </div>
   </div>
 </template>

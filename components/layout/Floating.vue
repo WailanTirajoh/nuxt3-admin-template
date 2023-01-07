@@ -3,10 +3,6 @@ import { TwToggle } from "vue3-tailwind";
 import { useThemeStore } from "~/store/theme"
 
 const theme = useThemeStore();
-
-onMounted(() => {
-  theme.initAppTheme();
-});
 </script>
 <template>
   <div class="fixed bottom-4 right-4 z-10">

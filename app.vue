@@ -1,5 +1,9 @@
+<script setup lang="ts">
+import { TwDialog } from "vue3-tailwind";
+</script>
 <template>
   <NuxtLayout>
+    <TwDialog />
     <NuxtPage />
   </NuxtLayout>
 </template>

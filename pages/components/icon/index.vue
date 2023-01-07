@@ -1,12 +1,12 @@
 <script setup lang="ts">
 import feather from "feather-icons";
-import { Toast, TwButton, TwInput } from "vue3-tailwind";
+import { useToast, TwButton, TwInput } from "vue3-tailwind";
 
 useHead({
   title: "Icons",
 });
 
-const toast = Toast();
+const toast = useToast();
 const icons = Object.keys(feather.icons);
 const search = ref("");
 

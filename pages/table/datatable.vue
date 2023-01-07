@@ -118,7 +118,7 @@ const fetchData = async () => {
         </template>
       </template>
       <template #empty>
-        <div class="bg-white">No Data</div>
+        <div class="bg-white dark:bg-gray-800 text-center w-full">No Data</div>
       </template>
     </TwDatatableServer>
     <hr class="my-2 dark:border-gray-700" />

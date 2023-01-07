@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { Toast } from 'vue3-tailwind';
+import { useToast } from 'vue3-tailwind';
 
 useHead({
   htmlAttrs: {
@@ -7,7 +7,7 @@ useHead({
   }
 })
 
-const { toasts } = Toast();
+const { toasts } = useToast();
 </script>
 
 <template>

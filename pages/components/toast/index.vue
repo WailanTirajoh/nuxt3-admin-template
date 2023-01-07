@@ -1,11 +1,11 @@
 <script setup lang="ts">
-import { Toast, TwButton, TwToast } from "vue3-tailwind";
+import { useToast, TwButton, TwToast } from "vue3-tailwind";
 
 useHead({
   title: "Toasts",
 });
 
-const { success, error, warning, info } = Toast();
+const { success, error, warning, info } = useToast();
 </script>
 
 <template>

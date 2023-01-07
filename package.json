@@ -11,6 +11,7 @@
     "@commitlint/cli": "^17.3.0",
     "@commitlint/config-conventional": "^17.3.0",
     "@kevinmarrec/nuxt-pwa": "^0.13.0",
+    "@pinia-plugin-persistedstate/nuxt": "^1.0.0",
     "@tailwindcss/typography": "^0.5.8",
     "@types/feather-icons": "^4.29.0",
     "@types/quill": "^2.0.9",
@@ -26,6 +27,6 @@
     "@pinia/nuxt": "^0.4.6",
     "@vercel/analytics": "^0.1.6",
     "feather-icons": "^4.29.0",
-    "vue3-tailwind": "^0.2.11"
+    "vue3-tailwind": "^0.2.13"
   }
 }

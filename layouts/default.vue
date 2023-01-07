@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { Toast, TwFeather, TwToast } from "vue3-tailwind";
+import { useToast, TwFeather, TwToast } from "vue3-tailwind";
 
 useHead({
   link: [{ rel: "icon", type: "image/x-icon", href: "/icon.png" }],
@@ -7,7 +7,7 @@ useHead({
     lang: "en",
   },
 });
-const { toasts } = Toast();
+const { toasts } = useToast();
 </script>
 
 <template>

@@ -1,11 +1,12 @@
 import { defineStore } from "pinia";
-import { Toast } from "vue3-tailwind";
+import { useDialog, useToast } from "vue3-tailwind";
 import { useForm } from "vue3-tailwind";
 
-export const useFormExample = defineStore("formExample", () => {
-  const toast = Toast();
-  const composableForm = useForm();
+const toast = useToast();
+const dialog = useDialog();
+const composableForm = useForm();
 
+export const useFormExample = defineStore("formExample", () => {
   const formName = "formExample";
 
   const formData: {
@@ -40,31 +41,22 @@ export const useFormExample = defineStore("formExample", () => {
     ],
   };
 
-  const selectionList = [
-    {
-      label: "test",
-      value: "test",
-    },
-    {
-      label: "test2",
-      value: "test2",
-    },
-    {
-      label: "test3",
-      value: "test3",
-    },
-  ];
-
   const isError = ref(false);
+
   const form = computed(() => composableForm.getForm(formName));
+  const validator = computed(() => form.value.validator);
 
   async function submit() {
-    const validator = form.value.validator;
-    validator.clearErrors();
-    await validator.validate();
-    if (validator.fail()) {
+    const isConfirmed = await dialog.fire({
+      title: "Are you sure you want to submit this?",
+      description: "This action is irreversible!",
+    });
+    if (!isConfirmed) return;
+    validator.value.clearErrors();
+    await validator.value.validate();
+    if (validator.value.fail()) {
       toast.error({
-        message: validator.getErrorMessage(),
+        message: validator.value.getErrorMessage(),
       });
       isError.value = true;
       setTimeout(() => {
@@ -81,9 +73,23 @@ export const useFormExample = defineStore("formExample", () => {
     formData.textAreaExample = null;
     formData.toggleExample = null;
 
-    const validator = form.value.validator;
-    validator.clearErrors();
+    validator.value.clearErrors();
   }
+
+  const selectionList = [
+    {
+      label: "test",
+      value: "test",
+    },
+    {
+      label: "test2",
+      value: "test2",
+    },
+    {
+      label: "test3",
+      value: "test3",
+    },
+  ];
 
   return {
     formName,
