@@ -56,6 +56,13 @@ export default [
       },
       {
         isTitle: false,
+        name: "Dialog",
+        url: "/components/dialog",
+        icon: "chevron-right",
+        submenu: [],
+      },
+      {
+        isTitle: false,
         name: "Toast",
         url: "/components/toast",
         icon: "chevron-right",
