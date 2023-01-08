@@ -13,7 +13,7 @@ const logout = () => {
 </script>
 <template>
   <header
-    class="md:flex w-full text-gray-200 border-spacing-1 border-t-0 shadow-xl border-[#343434] bg-gray-800 px-2 md:sticky md:top-0 z-10"
+    class="md:flex w-full text-gray-200 border-spacing-1 border-t-0 shadow-xl border-[#343434] bg-gray-800 px-2 md:sticky md:top-0 z-20"
   >
     <div
       class="h-14 flex justify-between md:justify-center items-center w-full md:w-52 px-4"
