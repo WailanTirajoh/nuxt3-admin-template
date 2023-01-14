@@ -1,34 +1,5 @@
 <script setup lang="ts">
-import { ref } from "vue";
-import { TwTab } from "vue3-tailwind";
-
-const horizontalTabTop = ref();
-const horizontalTabBottom = ref();
-const verticalTabLeft = ref();
-const verticalTabRight = ref();
-const tabs = ref([
-  {
-    name: "Tab 1",
-    ref: "tab1",
-  },
-  {
-    name: "Tab 2",
-    ref: "tab2",
-  },
-  {
-    name: "Tab 3",
-    ref: "tab3",
-  },
-]);
-const currentTab = ref("tab1");
-
-const handleAfterMove = (newTab: string) => {
-  currentTab.value = newTab;
-  horizontalTabTop.value.changeTab(currentTab.value);
-  horizontalTabBottom.value.changeTab(currentTab.value);
-  verticalTabLeft.value.changeTab(currentTab.value);
-  verticalTabRight.value.changeTab(currentTab.value);
-};
+import { TwTabBody, TwTabNavigator, TwTabWrapper } from "vue3-tailwind";
 </script>
 
 <template>
@@ -36,94 +7,120 @@ const handleAfterMove = (newTab: string) => {
     <h2 class="text-2xl font-bold">Tabs</h2>
     <hr class="my-2 border dark:border-gray-700" />
     <div class="grid grid-cols-12 gap-2">
-      <div
-        class="col-span-12 p-2 shadow-inner rounded bg-gray-200 dark:bg-gray-900"
-      >
-        <h3 class="text-base font-medium mb-2">Horizontal Tab - Line Bottom</h3>
-        <TwTab
-          ref="horizontalTabBottom"
-          type="horizontal"
-          position="bottom"
-          :tabs="tabs"
-          :current-tab="currentTab"
-          nav-class="px-2 rounded-t gap-2 py-2"
-          tab-class="p-2 text-gray-900 dark:text-gray-300 rounded"
-          line-class="!bg-gray-700 rounded-t"
-          tab-active-class="!font-bold"
-          body-class="bg-white dark:bg-gray-800 shadow border rounded dark:border-gray-700"
-          @after-move="handleAfterMove"
-        >
-          <template #tab1> Tab 1 template </template>
-          <template #tab2> Tab 2 template </template>
-          <template #tab3> Tab 3 template </template>
-        </TwTab>
+      <div class="col-span-12">
+        <TwTabWrapper>
+          <div
+            class="flex border dark:border-gray-700 rounded-lg overflow-hidden"
+          >
+            <div
+              class="bg-gray-50 dark:bg-gray-900 border-r dark:border-gray-700 relative flex flex-col justify-between"
+            >
+              <div>
+                <div class="text-lg p-2 bg-gray-200 dark:bg-gray-800">
+                  Title
+                </div>
+                <hr class="border-gray-300 dark:border-gray-700" />
+                <TwTabNavigator type="vertical">
+                  <template #tab1>
+                    <div class="p-2 w-full">Test</div>
+                  </template>
+                  <template #tab2>
+                    <div class="p-2 w-full">Test 2</div>
+                  </template>
+                </TwTabNavigator>
+              </div>
+              <div>
+                <hr class="border-gray-300 dark:border-gray-700" />
+                <div class="text-lg p-2 bg-gray-200 dark:bg-gray-800 w-full">
+                  Footer
+                </div>
+              </div>
+            </div>
+            <TwTabBody id="tab1" v-slot="{ active }">
+              <div
+                class="w-full p-2 rounded-r bg-white dark:bg-gray-800 h-96 overflow-auto"
+                v-if="active"
+              >
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugit
+                omnis cum earum mollitia quia delectus officiis possimus odio
+                totam aut. Error asperiores quis aliquid ad sit mollitia aliquam
+                expedita aperiam quibusdam saepe non itaque, repellendus modi
+                magnam, architecto quisquam consectetur ex! Eum, consectetur
+                aliquid. Accusamus esse nobis fugit deserunt, eligendi beatae
+                quaerat corporis cum quo ducimus possimus aspernatur reiciendis,
+                aliquam eveniet earum sit accusantium laudantium voluptate
+                neque, eaque assumenda optio at. Vitae non molestiae placeat
+                accusamus vero labore sit optio fuga consequatur! Reiciendis ab
+                eos dolorem officia, exercitationem laudantium tempore
+                repellendus similique. Rerum beatae qui quae autem libero
+                necessitatibus ipsam? Aliquid voluptates rem possimus nihil
+                tenetur sit repellat, commodi dolores consequatur minus hic
+                consequuntur recusandae similique excepturi officiis ut
+                explicabo numquam praesentium, natus quas expedita modi sed.
+                Quae ut saepe esse aliquam? Eligendi, eaque, ab excepturi
+                placeat id est dolores tenetur dolorum, repellendus voluptatibus
+                nisi nostrum incidunt esse quidem quisquam facilis quos.
+                Sapiente corrupti esse vero animi quibusdam quas eos nostrum
+                maiores voluptatibus, quaerat nam fuga, nesciunt placeat est
+                saepe nihil facere repellendus perspiciatis. Enim sed hic quo ut
+                alias vitae quidem non rerum, voluptatem tenetur aut quod iste a
+                recusandae facilis, voluptate velit praesentium. Officiis totam
+                suscipit deserunt dolore culpa provident ratione odio
+                dignissimos nostrum in quod minima necessitatibus eum nulla
+                odit, quia maiores, qui exercitationem aperiam! Fuga repellat
+                consectetur iste in ex est sapiente corporis sit. Numquam ab
+                debitis ut, nisi quas qui placeat error commodi vero. Vitae
+                veniam dolorem dolorum voluptatum voluptatibus, doloribus
+                quisquam numquam nesciunt ad at temporibus quam quaerat fuga et?
+              </div>
+            </TwTabBody>
+            <TwTabBody id="tab2" v-slot="{ active }">
+              <div
+                class="w-full p-2 rounded-r bg-white dark:bg-gray-800 h-96 overflow-auto"
+                v-if="active"
+              >
+                Test 2
+              </div>
+            </TwTabBody>
+          </div>
+        </TwTabWrapper>
       </div>
-      <div
-        class="col-span-12 p-2 shadow-inner rounded bg-gray-200 dark:bg-gray-900"
-      >
-        <h3 class="text-base font-medium mb-2">Horizontal Tab - Line Top</h3>
-        <TwTab
-          ref="horizontalTabTop"
-          type="horizontal"
-          position="top"
-          :tabs="tabs"
-          :current-tab="currentTab"
-          nav-class="px-2 rounded-t gap-2 py-2"
-          tab-class="p-2 text-gray-900 dark:text-gray-300 rounded"
-          line-class="!bg-gray-700 rounded-lg"
-          tab-active-class="!font-bold"
-          body-class="bg-white dark:bg-gray-800 shadow border rounded dark:border-gray-700"
-          @after-move="handleAfterMove"
-        >
-          <template #tab1> Tab 1 template </template>
-          <template #tab2> Tab 2 template </template>
-          <template #tab3> Tab 3 template </template>
-        </TwTab>
-      </div>
-      <div
-        class="col-span-12 p-2 shadow-inner rounded bg-gray-200 dark:bg-gray-900"
-      >
-        <h3 class="text-base font-medium mb-2">Vertical Tab - Line Left</h3>
-        <TwTab
-          ref="verticalTabLeft"
-          type="vertical"
-          position="left"
-          :tabs="tabs"
-          :current-tab="currentTab"
-          nav-class="px-2 rounded-l gap-2 py-2"
-          tab-class="p-2 text-gray-900 dark:text-gray-300 rounded text-left"
-          line-class="!bg-gray-700 rounded"
-          tab-active-class="!font-bold"
-          body-class="bg-white dark:bg-gray-800 shadow rounded border dark:border-gray-700"
-          @after-move="handleAfterMove"
-        >
-          <template #tab1> Tab 1 template </template>
-          <template #tab2> Tab 2 template </template>
-          <template #tab3> Tab 3 template </template>
-        </TwTab>
-      </div>
-      <div
-        class="col-span-12 p-2 shadow-inner rounded bg-gray-200 dark:bg-gray-900"
-      >
-        <h3 class="text-base font-medium mb-2">Vertical Tab - Line Right</h3>
-        <TwTab
-          ref="verticalTabRight"
-          type="vertical"
-          position="right"
-          :tabs="tabs"
-          :current-tab="currentTab"
-          nav-class="px-2 rounded-l gap-2 py-2"
-          tab-class="p-2 text-gray-900 dark:text-gray-300 rounded text-center bg-gray-200 dark:bg-gray-900 shadow-inset"
-          line-class="!bg-gray-700 rounded-l"
-          tab-active-class="!font-bold"
-          body-class="bg-white dark:bg-gray-800 shadow rounded border dark:border-gray-700"
-          @after-move="handleAfterMove"
-        >
-          <template #tab1> Tab 1 template </template>
-          <template #tab2> Tab 2 template </template>
-          <template #tab3> Tab 3 template </template>
-        </TwTab>
-      </div>
+      <!-- <div class="col-span-12">
+        <TwTabWrapper>
+          <div class="border border-gray-200 rounded-lg overflow-hidden">
+            <div class="bg-gray-100 shadow-inner">
+              <div class="text-lg p-2 bg-gray-300">Title</div>
+              <hr class="border-gray-300" />
+              <TwTabNavigator class="bg-gray-100" type="horizontal">
+                <template #tab1>
+                  <div class="p-2 w-full">Test</div>
+                </template>
+                <template #tab2>
+                  <div class="p-2 w-full">Test 2</div>
+                </template>
+                <template #tab3>
+                  <div class="p-2 w-full">Test 3</div>
+                </template>
+              </TwTabNavigator>
+            </div>
+            <TwTabBody id="tab1" v-slot="{ active }">
+              <div class="w-full p-2 rounded bg-white shadow" v-if="active">
+                Test
+              </div>
+            </TwTabBody>
+            <TwTabBody id="tab2" v-slot="{ active }">
+              <div class="w-full p-2 rounded bg-white shadow" v-if="active">
+                Test 2
+              </div>
+            </TwTabBody>
+            <TwTabBody id="tab3" v-slot="{ active }">
+              <div class="w-full p-2 rounded bg-white shadow" v-if="active">
+                Test 3
+              </div>
+            </TwTabBody>
+          </div>
+        </TwTabWrapper>
+      </div> -->
     </div>
   </div>
 </template>
