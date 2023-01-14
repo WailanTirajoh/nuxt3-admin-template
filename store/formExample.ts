@@ -24,6 +24,7 @@ export const useFormExample = defineStore("formExample", () => {
     textAreaExample: [
       "required",
       "string",
+      "test",
       (value: string) => {
         const MIN_LENGTH = 15;
         if (!value || value.length < MIN_LENGTH) {

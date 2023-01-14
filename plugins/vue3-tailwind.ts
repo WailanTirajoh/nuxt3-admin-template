@@ -1,5 +1,24 @@
-import { Vue3Tailwind } from "vue3-tailwind";
+import { TwRipple, useForm } from "vue3-tailwind";
 
 export default defineNuxtPlugin((nuxtApp) => {
-  nuxtApp.vueApp.use(Vue3Tailwind);
+  // Activate v-ripple directive
+  TwRipple.color = "rgba(255, 255, 255, 0.35)";
+  TwRipple.zIndex = "55";
+  nuxtApp.vueApp.directive("ripple", TwRipple);
+
+
+  // Customize Form Rules
+  // You can create new rules here / overwrite the default rules
+  // Read detail at: https://github.com/WailanTirajoh/js-form-validator
+  const form = useForm();
+  form.setCustomRules({
+    // New Rule example
+    test(value: any) {
+      if (value === "test") return "Please do not write test inside this form";
+    },
+    // Overwrite rule example
+    required(value: any) {
+      if (!value) return "This field must be filled!";
+    },
+  });
 });
