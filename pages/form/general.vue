@@ -26,6 +26,10 @@ const formExample = useFormExample();
         }"
         :rules="formExample.formRules"
         @submit="formExample.submit()"
+        :custom-field-name="{
+          inputExample: 'Input',
+          textAreaExample: 'Text Area',
+        }"
       >
         <div class="col-span-12">
           <TwFile v-model="formExample.formData.fileModel" />
