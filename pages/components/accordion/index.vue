@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { TwAccordion, TwButton } from "vue3-tailwind";
+import { TwAccordion, TwButton, TwFeather } from "vue3-tailwind";
 
 useHead({
   title: "Accordions",

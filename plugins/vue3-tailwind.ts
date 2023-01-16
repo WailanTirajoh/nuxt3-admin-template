@@ -22,6 +22,6 @@ export default defineNuxtPlugin((nuxtApp) => {
   });
 
   form.setGlobalCustomValidatorErrorMessage({
-    ["required"]: "{field} ini dibutuhkan!",
+    ["required"]: "The {field} is required!",
   });
 });
