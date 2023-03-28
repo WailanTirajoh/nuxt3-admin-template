@@ -1,5 +1,9 @@
 <script setup lang="ts">
 import { TwButton, TwModal } from "vue3-tailwind";
+
+useHead({
+  title: "Modal",
+});
 </script>
 
 <template>
