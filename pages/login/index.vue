@@ -115,7 +115,7 @@ const toggleFormError = () => {
             <TwErrorMessage name="password"></TwErrorMessage>
           </div>
           <div class="col-span-12">
-            <TwButton type="submit" class="w-full text-center">
+            <TwButton class="w-full text-center">
               Login
             </TwButton>
           </div>

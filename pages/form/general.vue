@@ -93,7 +93,9 @@ const formExample = useFormExample();
           >
             Reset
           </TwButton>
-          <TwButton ripple type="submit" class="px-4"> Submit </TwButton>
+          <TwButton variant="primary" class="px-4">
+            Submit
+          </TwButton>
         </div>
       </TwForm>
     </div>
