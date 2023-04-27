@@ -1,11 +1,17 @@
 <script setup lang="ts">
 import { useToast, TwFeather, TwToast } from "vue3-tailwind";
+import { useThemeStore } from "~~/store/theme";
+const themeStore = useThemeStore();
 
 useHead({
   link: [{ rel: "icon", type: "image/x-icon", href: "/icon.png" }],
   htmlAttrs: {
     lang: "en",
   },
+  bodyAttrs: {
+    class: themeStore.appTheme,
+    'data-theme': themeStore.appTheme
+  }
 });
 const { toasts } = useToast();
 </script>

@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { TwToggle } from "vue3-tailwind";
-import { useThemeStore } from "~/store/theme"
+import { useThemeStore } from "~~/store/theme";
 
 const theme = useThemeStore();
 </script>
