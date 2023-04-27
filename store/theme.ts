@@ -14,6 +14,7 @@ export const useThemeStore = defineStore(
     };
 
     watch(appTheme, (value, oldValue) => {
+      document.body.setAttribute("data-theme", value);
       document.body.classList.remove(oldValue);
       document.body.classList.add(value);
     });
