@@ -88,7 +88,7 @@ const formExample = useFormExample();
             ripple
             variant="secondary"
             type="button"
-            class="px-4"
+            class="px-4 dark:text-gray-200 dark:!border-gray-800 dark:border"
             @click="formExample.clear()"
           >
             Reset
