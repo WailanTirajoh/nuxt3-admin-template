@@ -81,6 +81,17 @@ const fetchData = async () => {
     totalData: responseJson["total"],
   };
 };
+
+
+const sortClick = (event: any) => {
+  window.console.log('clicked')
+  const sortBy = data.value.sortBy
+  const sortType = data.value.sortType
+  const sortByNew = event
+  const sortTypeNew = event === sortBy ? (sortType === 'asc' ? 'desc' : 'asc') : 'asc'
+  data.value = { ...data.value, sortBy: sortByNew, sortType: sortTypeNew }
+}
+
 </script>
 
 <template>
@@ -97,6 +108,7 @@ const fetchData = async () => {
       v-model:sort-type="data.sortType"
       :column="data.column"
       :setting="data.setting"
+      @on-sort-change="sortClick"
     >
       <template #row="{ column, data }">
         <template v-if="column.field === 'brand'">
