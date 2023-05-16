@@ -84,7 +84,6 @@ const fetchData = async () => {
 
 
 const sortClick = (event: any) => {
-  window.console.log('clicked')
   const sortBy = data.value.sortBy
   const sortType = data.value.sortType
   const sortByNew = event
