@@ -1,4 +1,4 @@
-# Nuxt 3 admin template
+# Nuxt 3 Admin Template
 
 ## Installation
 ```
