@@ -1,5 +1,10 @@
 # Nuxt 3 Admin Template
 
+Open source Nuxt 3 admin template
+
+![image](https://github.com/WailanTirajoh/nuxt3-admin-template/assets/53980548/b5d26e75-31f3-4308-9d36-7d1395ff0f66)
+
+
 ## Installation
 ```
 # Clone this repository
