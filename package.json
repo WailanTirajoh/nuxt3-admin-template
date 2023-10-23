@@ -9,7 +9,7 @@
   },
   "devDependencies": {
     "@commitlint/cli": "^17.3.0",
-    "@commitlint/config-conventional": "^17.3.0",
+    "@commitlint/config-conventional": "^18.0.0",
     "@kevinmarrec/nuxt-pwa": "^0.17.0",
     "@pinia-plugin-persistedstate/nuxt": "^1.0.0",
     "@tailwindcss/typography": "^0.5.8",
