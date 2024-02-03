@@ -18,7 +18,7 @@
     "@vueuse/core": "^10.1.2",
     "@vueuse/nuxt": "^10.1.2",
     "autoprefixer": "^10.4.13",
-    "husky": "^8.0.2",
+    "husky": "^9.0.7",
     "nuxt": "3.9.3",
     "pinia": "^2.0.23",
     "postcss": "^8.4.19",
