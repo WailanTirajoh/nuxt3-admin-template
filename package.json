@@ -10,11 +10,11 @@
   "devDependencies": {
     "@commitlint/cli": "^19.2.1",
     "@commitlint/config-conventional": "^19.1.0",
-    "@kevinmarrec/nuxt-pwa": "^0.17.0",
     "@pinia-plugin-persistedstate/nuxt": "^1.0.0",
     "@tailwindcss/typography": "^0.5.8",
     "@types/feather-icons": "^4.29.0",
     "@types/quill": "^2.0.9",
+    "@vite-pwa/nuxt": "^0.9.1",
     "@vueuse/core": "^10.1.2",
     "@vueuse/nuxt": "^10.1.2",
     "autoprefixer": "^10.4.13",

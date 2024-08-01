@@ -1,7 +1,18 @@
 <script setup lang="ts">
-import { TwButton, TwDialog, TwFeather } from "vue3-tailwind";
+import { useToast, TwButton, TwDialog, TwFeather } from "vue3-tailwind";
+const { $pwa } = useNuxtApp();
+
+const toast = useToast();
+onMounted(() => {
+  if ($pwa && $pwa.offlineReady) {
+    toast.success({
+      message: "App ready to work offline",
+    });
+  }
+});
 </script>
 <template>
+  <NuxtPwaManifest />
   <NuxtLayout>
     <TwDialog>
       <template v-slot="{ isShown, dialog, confirm, reject }">
