@@ -2,6 +2,7 @@
 import { TwButton, TwDialog, TwFeather } from "vue3-tailwind";
 </script>
 <template>
+  <NuxtPwaManifest />
   <NuxtLayout>
     <TwDialog>
       <template v-slot="{ isShown, dialog, confirm, reject }">
