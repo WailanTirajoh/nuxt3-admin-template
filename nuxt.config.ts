@@ -23,7 +23,7 @@ export default defineNuxtConfig({
   modules: [
     "@pinia/nuxt",
     "@pinia-plugin-persistedstate/nuxt",
-    "@kevinmarrec/nuxt-pwa",
+    "@vite-pwa/nuxt",
     "@vueuse/nuxt",
   ],
   pwa: {
