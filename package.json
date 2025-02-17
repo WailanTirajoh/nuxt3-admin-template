@@ -20,7 +20,7 @@
     "autoprefixer": "^10.4.13",
     "husky": "^9.0.7",
     "nuxt": "3.15.4",
-    "pinia": "^2.0.23",
+    "pinia": "^3.0.1",
     "postcss": "^8.4.19",
     "sass": "^1.56.1",
     "tailwindcss": "^3.2.4"
