@@ -30,6 +30,7 @@ export default defineNuxtConfig({
     "@pinia-plugin-persistedstate/nuxt",
     "@vite-pwa/nuxt",
     "@vueuse/nuxt",
+    "@nuxtjs/tailwindcss",
   ],
 
   pwa: {

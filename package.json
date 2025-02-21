@@ -10,8 +10,8 @@
   "devDependencies": {
     "@commitlint/cli": "^19.2.1",
     "@commitlint/config-conventional": "^19.1.0",
+    "@nuxtjs/tailwindcss": "^6.13.1",
     "@pinia-plugin-persistedstate/nuxt": "^1.0.0",
-    "@tailwindcss/typography": "^0.5.8",
     "@types/feather-icons": "^4.29.0",
     "@types/quill": "^2.0.9",
     "@vite-pwa/nuxt": "^0.10.0",
@@ -22,8 +22,7 @@
     "nuxt": "3.15.4",
     "pinia": "^3.0.1",
     "postcss": "^8.4.19",
-    "sass": "^1.56.1",
-    "tailwindcss": "^3.2.4"
+    "sass": "^1.56.1"
   },
   "dependencies": {
     "@pinia/nuxt": "^0.10.1",
