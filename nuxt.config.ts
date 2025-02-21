@@ -3,29 +3,35 @@ export default defineNuxtConfig({
   app: {
     pageTransition: { name: "page", mode: "out-in" },
   },
+
   css: ["~/assets/css/main.css"],
+
   postcss: {
     plugins: {
       tailwindcss: {},
       autoprefixer: {},
     },
   },
+
   typescript: {
     shim: false,
     strict: true,
   },
+
   runtimeConfig: {
     apiSecret: "",
     public: {
       apiBase: "/api",
     },
   },
+
   modules: [
     "@pinia/nuxt",
     "@pinia-plugin-persistedstate/nuxt",
     "@vite-pwa/nuxt",
     "@vueuse/nuxt",
   ],
+
   pwa: {
     registerType: "autoUpdate",
     manifest: {
@@ -71,4 +77,6 @@ export default defineNuxtConfig({
       type: "module",
     },
   },
+
+  compatibilityDate: "2025-02-21",
 });
