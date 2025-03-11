@@ -19,7 +19,7 @@
     "@vueuse/nuxt": "^12.0.0",
     "autoprefixer": "^10.4.13",
     "husky": "^9.0.7",
-    "nuxt": "3.15.4",
+    "nuxt": "3.16.0",
     "pinia": "^3.0.1",
     "postcss": "^8.4.19",
     "sass": "^1.56.1"
@@ -29,5 +29,6 @@
     "@vercel/analytics": "^1.0.0",
     "feather-icons": "^4.29.0",
     "vue3-tailwind": "^0.3.4"
-  }
+  },
+  "packageManager": "pnpm@9.11.0+sha512.0a203ffaed5a3f63242cd064c8fb5892366c103e328079318f78062f24ea8c9d50bc6a47aa3567cabefd824d170e78fa2745ed1f16b132e16436146b7688f19b"
 }
