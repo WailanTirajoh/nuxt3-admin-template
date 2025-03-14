@@ -10,7 +10,7 @@
   "devDependencies": {
     "@commitlint/cli": "^19.8.0",
     "@commitlint/config-conventional": "^19.1.0",
-    "@nuxtjs/tailwindcss": "^6.13.1",
+    "@nuxtjs/tailwindcss": "^6.13.2",
     "@pinia-plugin-persistedstate/nuxt": "^1.0.0",
     "@types/feather-icons": "^4.29.0",
     "@types/quill": "^2.0.9",
