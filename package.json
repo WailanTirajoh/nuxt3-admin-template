@@ -15,7 +15,7 @@
     "@types/feather-icons": "^4.29.0",
     "@types/quill": "^2.0.9",
     "@vite-pwa/nuxt": "^0.10.0",
-    "@vueuse/core": "^12.0.0",
+    "@vueuse/core": "^13.0.0",
     "@vueuse/nuxt": "^13.0.0",
     "autoprefixer": "^10.4.13",
     "husky": "^9.0.7",
