@@ -22,7 +22,7 @@
     "nuxt": "3.16.1",
     "pinia": "^3.0.1",
     "postcss": "^8.4.19",
-    "sass": "^1.56.1"
+    "sass": "^1.86.0"
   },
   "dependencies": {
     "@pinia/nuxt": "^0.10.1",
